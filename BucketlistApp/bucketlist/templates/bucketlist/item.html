@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+
+<script>
+submitForms = function(){
+document.forms["bucketlist"].submit();
+document.forms["bucketlistitems"].submit();}
+</script>
+
+<section>
+    <form name="bucketlist" method="POST" action="">
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        <fieldset>
+        <!-- Form Name -->
+            <legend>Create Your Bucketlist</legend>
+            <div class="form-group col-md-4">
+                <label class="control-label" for="name">Title</label>
+                <div>
+                    <input id="name" name="name" type="text" placeholder="Bucketlist Name" class="form-control input-md">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Your Bucketlist is not visible to others.</label>
+                <br/>
+                <input type="checkbox" name="private">(Optional) Mark as Public <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+            </div>
+
+        </fieldset>
+    </form>
+
+    <form name="bucketlistitems" method="POST" action="">
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+        <fieldset>
+
+    <!-- Form Name -->
+            <legend>Add Your Bucketlist Item</legend>
+
+            <!-- Textarea -->
+            <div class="form-group col-md-6">
+                <label class="control-label" for="name">Item</label>
+                <div >
+                     <textarea class="form-control" id="name" name="name"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Have you already accomplished this?</label>
+                <br/>
+                <input id="done" name="done" type="checkbox"> Mark as Done <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </div>
+
+        </fieldset>
+    </form>
+
+    <div class="form-group">
+        <label class="col-md-12 control-label" for="singlebutton"></label>
+        <div class="col-md-0">
+            <input id="singlebutton" name="singlebutton" class="btn btn-primary" type="button" value="Create" onclick="submitForms()" />
+        </div>
+    </div>
+</section>
+
+
+{% endblock main %}

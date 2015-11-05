@@ -1,12 +1,12 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+import bucketlist
+import bucketlistapi
 
-urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'BucketlistApp.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
+urlpatterns = [
+  
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^', include('bucketlistapi.urls')),
-    url(r'^', include('bucketlist.urls')),
-)
+    url(r'^bucketlist/', include('bucketlist.urls')),
+    url(r'^$', bucketlist.views.HomePageView.as_view(), name='homepage'),
+    #url(r'^', include('bucketlistapi.urls')) 
+]
