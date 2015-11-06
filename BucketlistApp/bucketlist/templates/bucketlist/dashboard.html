@@ -3,6 +3,15 @@
 
 {% block main %}
 
+{% if messages %}
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
+
 <p><a class="btn btn-lg btn-success" href="#" role="button">My Bucketlist</a></p>
 
 <input type="button" value="Click Me!" onclick="submitForms()" />

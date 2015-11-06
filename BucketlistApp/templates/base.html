@@ -16,6 +16,7 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="screen" />
     <link href="{% static 'css/signup.css' %}" rel="stylesheet" type="text/css" media="screen" />
 
+
       
     <!-- Bootstrap Core CSS <link href="css/bootstrap.min.css" rel="stylesheet"> -->
     
@@ -39,14 +40,17 @@
             <nav>
               <ul class="nav nav-pills pull-right">
                 {% if request.user.is_authenticated %}
-                <li role="presentation" class="#"><a href="{% url 'dashboard' %}">Dasboard</a></li>
-                <li role="presentation"><a href="#">My List</a></li>
-                <li role="presentation"><a href="/bucketlist/action/{{ request.user.username }}">Action</a></li>
+                <li role="presentation" class="#"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li role="presentation"><a href="/bucketlist/{{ request.user.username }}/{{ request.user.id }}">My List</a></li>
+                <li role="presentation"><a href="/bucketlist/action/{{ request.user.username }}/{{ request.user.id }}">Action</a></li>
                 <li role="presentation"><a href="{% url 'signout' %}">Sign Out</a></li>
                 {% else %}
                 <li role="presentation"><a href="{% url 'homepage' %}">Home</a></li>
                 <li role="presentation"><a href="{% url 'signin' %}">Sign In</a></li>
                 <li role="presentation"><a href="{% url 'signup' %}">Sign Up</a></li>
+               {% endif %}
+               {% if request.user.is_authenticated %}
+               <li><a><p>Signed in as {{ request.user.username }}</p></a></li>
                {% endif %}
               </ul>
              </nav>
@@ -69,7 +73,7 @@
  
               <div class="navbar navbar-default navbar-fixed-bottom">
                 <div class="container">
-                  <p class="navbar-text pull-left">© 2014 - Site Built Andela-Sjames
+                  <p class="navbar-text pull-left">© 2014 - Site Built by Andela-Sjames
                        <a href="#" target="_blank" >ANDELA</a>
                   </p>
                   
@@ -88,6 +92,7 @@
     <script src="{% static "js/jquery.js" %}"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/packery.min.js" %}"></script>
 
     {% block extended_js %}
          <!-- override this block to add app/feature-specific js libraries and scripts in extending templates -->

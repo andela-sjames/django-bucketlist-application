@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View
+from django.views.generic.base import TemplateView
 from django.core.context_processors import csrf
 from bucketlist.forms import UserSignupForm
 from django.contrib.auth.models import User
@@ -9,6 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.validators import validate_email, ValidationError
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
+from bucketlist.models import Bucketlist, BucketlistItems
 # Create your views here. 
 
 class HomePageView(View):
@@ -113,10 +115,149 @@ class BucketItemsView(View):
         return render(request, self.template_name, args)
 
 
+    def post(self, request, **kwargs):
+
+        username = self.kwargs.get('username')
+        userid=self.kwargs.get('id')
+
+        name = request.POST.get('name','')
+        public = request.POST.get('public')
+        public = True if public else False
+
+        itemname = request.POST.get('itemname','')
+        done = request.POST.get('done')
+        done = True if done else False
+
+        if name and itemname:
+            bucketlist=Bucketlist(name=name, public=public, created_by=username, user_id=userid)
+            bucketlist.save()
+            items=BucketlistItems(name=itemname, done=done, bucketlist_id=bucketlist.id)
+            items.save()
+
+            msg = "Action succesfully performed."
+            messages.add_message(request, messages.SUCCESS, msg)
+            return HttpResponseRedirect(reverse('mylist', kwargs={
+                'username': username,
+                'id':userid
+                }))
+
+        else:
+            args ={}
+            args.update(csrf(request))
+            msg = "It seems like you didn't add an item."
+            messages.add_message(request, messages.INFO, msg)
+            return render(request, self.template_name, args)
+
+class BucketlistView(TemplateView):
+
+    template_name = 'bucketlist/list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(BucketlistView, self).get_context_data(**kwargs)
+        userid=self.kwargs.get('id')
+        context['bucketlists'] = Bucketlist.objects.filter(user=userid)
+        return context
 
 
+class ViewBucketlistdetail(TemplateView):
+
+    template_name='bucketlist/view.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ViewBucketlistdetail, self).get_context_data(**kwargs)
+        bucketlistid=self.kwargs.get('id')
+        context['items'] = BucketlistItems.objects.filter(bucketlist_id=bucketlistid)
+        context['bucketlists']=Bucketlist.objects.filter(id=bucketlistid)
+        return context
+
+class AddItemsView(View):
 
 
+    def post(self, request, **kwargs):
 
-
+        bucketlistid=self.kwargs.get('id')
         
+        itemname = request.POST.get('itemname','')
+        done = request.POST.get('done')
+        done = True if done else False
+
+        if itemname:
+            items=BucketlistItems(name=itemname, done=done, bucketlist_id=bucketlistid)
+            items.save()
+
+            msg = "Item succesfully added."
+            messages.add_message(request, messages.SUCCESS, msg)
+            return HttpResponseRedirect(reverse('view', kwargs={
+                    'id':bucketlistid }))
+
+        else:
+            msg = "Item field should not be left empty."
+            messages.add_message(request, messages.SUCCESS, msg)
+            return HttpResponseRedirect(reverse('view', kwargs={
+                'id':bucketlistid }))
+
+
+
+class DeleteUpdateBucketlistView(View):
+
+    def get(self, request, **kwargs):
+        bucketlistid=self.kwargs.get('id')
+        bucketlist=Bucketlist.objects.get(id=bucketlistid)
+        bucketlist.delete()
+
+        msg = "bucketlist succesfully deleted"
+        messages.add_message(request, messages.SUCCESS, msg)
+        return HttpResponseRedirect(reverse('view', kwargs={
+                'id':bucketlistid }))
+
+    def post(self, request, **kwargs):
+
+        bucketlistid=self.kwargs.get('id')
+        name = request.POST.get('name','')
+        bucketlist=Bucketlist.objects.get(id=bucketlistid)
+        bucketlist.name=name
+        bucketlist.save()
+        msg = "Bucketlist name succesfully edited."
+        messages.add_message(request, messages.SUCCESS, msg)
+        return HttpResponseRedirect(reverse('view', kwargs={
+                'id':bucketlistid }))
+
+
+
+
+class delUpdateItemView(View):
+
+    def get(self, request, **kwargs):
+
+        bucketlistid=self.kwargs.get('id')
+        itemid = self.kwargs.get('item_id')
+        item=BucketlistItems.objects.get(id=itemid)
+        item.delete()
+
+        msg = "Item sucessfully deleted."
+        messages.add_message(request, messages.SUCCESS, msg)
+        return HttpResponseRedirect(reverse('view', kwargs={
+                'id':bucketlistid }))
+
+    def post(self, request, **kwargs):
+
+        bucketlistid=self.kwargs.get('id')
+        itemid = self.kwargs.get('item_id')
+        itemname = request.POST.get('itemname','')
+        done = request.POST.get('done')
+        done = True if done else False
+
+        item=BucketlistItems.objects.get(id=itemid)
+        item.name=itemname
+        item.done=done
+        item.save()
+
+        msg = "Item sucessfully edited."
+        messages.add_message(request, messages.SUCCESS, msg)
+        return HttpResponseRedirect(reverse('view', kwargs={
+                'id':bucketlistid }))
+
+
+
+
+

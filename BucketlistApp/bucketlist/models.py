@@ -14,7 +14,7 @@ class AutoDateTimeField(models.DateTimeField):
 class Bucketlist((models.Model)):
 
     name=models.CharField(max_length=100, blank=True)
-    private=models.BooleanField(default=True)
+    public=models.BooleanField(default=False)
     date_created=models.DateField(default=timezone.now)
     date_modified=AutoDateTimeField(default=timezone.now)
     created_by=models.CharField(max_length=100, blank=True)
@@ -28,7 +28,7 @@ class BucketlistItems(models.Model):
     done = models.BooleanField(default = False)
     bucketlist=models.ForeignKey(Bucketlist, related_name="item", related_query_name="items")
 
-#Query becomes:Bucketlist.objects.filter(item__name="important")
-
+#Query becomes:Bucketlist.objects.filter(items__name="important")
+#
 
 
