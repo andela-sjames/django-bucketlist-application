@@ -53,6 +53,7 @@ class BucketList(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
+
         userid=request.user.id
         username=request.user.username
         val=request.data
@@ -60,6 +61,7 @@ class BucketList(APIView):
         userdetail={unicode('user'):unicode(userid),
            unicode('created_by'):unicode(username)}
         val.update(userdetail)
+        import pdb; pdb.set_trace()
 
         serializer = BucketlistSerializer(data=val)
 
@@ -104,9 +106,9 @@ class BucketListDetail(APIView):
 
     def delete(self, request, pk, format=None):
         bucketlist = self.get_object(pk)
-        #import pdb; pdb.set_trace()
+    
         bucketlist.delete()
-        return Response(content, status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class AddBucketItem(APIView):
 
@@ -130,8 +132,6 @@ class AddBucketItem(APIView):
         bucketserializer=BucketlistSerializer(bucketlist)
         if itemserializer.is_valid():
             itemserializer.save()
-    
-            content ={ 'bucketlist':bucketserializer.data}
             return Response(bucketserializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -154,10 +154,29 @@ class ItemListDetail(APIView):
 
     def put(self, request, id, item_id, format=None):
 
-        bucket=self.check_bucketlistexist(id=id)
-        item=self.check_itemexist(id=item_id)
+        bucketlist=self.check_bucketlistexist(id=id)
+        item=self.check_itemexist(item_id=item_id)
 
-        pass
+        input_value=request.data
+        keyid={unicode('bucketlist'):unicode(id)}
+        input_value.update(keyid)
+
+        itemserializer = BucketlistItemsSerializer(item, data=input_value)
+        #bucketserializer=BucketlistSerializer(bucketlist)
+        if itemserializer.is_valid():
+            itemserializer.save()
+            return Response(itemserializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+    def delete(self, request, id, item_id, format=None):
+
+        item=self.check_itemexist(item_id=item_id)
+        item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+        
     
 
 

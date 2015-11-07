@@ -20,7 +20,7 @@ class Bucketlist((models.Model)):
     created_by=models.CharField(max_length=100, blank=True)
     user=models.ForeignKey(User, related_name="buckets")
     class Meta:
-        ordering = ('name',)
+        ordering = ('date_created',)
 
 class BucketlistItems(models.Model):
 
@@ -30,7 +30,7 @@ class BucketlistItems(models.Model):
     done = models.BooleanField(default = False)
     bucketlist=models.ForeignKey(Bucketlist, related_name="items")
     class Meta:
-        ordering = ('name',)
+        ordering = ('date_created',)
 
 #Query becomes:Bucketlist.objects.filter(items__name="important")
 #

@@ -95,8 +95,19 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
 
-    )
+    ),
+    'DEFAULT_PAGINATION_CLASS': (
+        'rest_framework.pagination.PageNumberPagination',
+        'rest_framework.pagination.LimitOffsetPagination',
+        'rest_framework.pagination.CursorPagination',
+        ),
 }
+
+REST_FRAMEWORK = {
+    'PAGINATE_BY': 10,
+    'PAGE_SIZE':20,
+}
+
 
 
 # Internationalization
