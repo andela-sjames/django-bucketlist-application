@@ -5,7 +5,7 @@ from django.core.context_processors import csrf
 from bucketlist.forms import UserSignupForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 from django.core.validators import validate_email, ValidationError
 from django.contrib import messages
@@ -47,7 +47,7 @@ class SignUpView(View):
             usersignupform.save()
             confirmation_msg = "You have sucessfully registered."
             messages.add_message(request, messages.INFO, confirmation_msg)
-            return HttpResponseRedirect(reverse('signin'))
+            return HttpResponseRedirect(reverse_lazy('signin'))
 
         else:
             login = "Seems like you didn't input a strong password."
@@ -62,7 +62,7 @@ class SignOutView(View):
     def get(self, request, *args, **kwargs):
         logout(request)
         return HttpResponseRedirect(
-            reverse('homepage'))    
+            reverse_lazy('homepage'))    
 
 class SignInView(View):
 
@@ -76,7 +76,7 @@ class SignInView(View):
     def post(self, request, *args, **kwargs):
 
         if self.request.user.is_authenticated():
-            return HttpResponseRedirect(reverse('dashboard'))
+            return HttpResponseRedirect(reverse_lazy('board'))
 
         else:
             email = self.request.POST.get('email', '')
@@ -91,12 +91,12 @@ class SignInView(View):
                 user = authenticate(username=theuser.username, password=password)
                 if user is not None and user.is_active:
                     login(self.request, user)
-                return HttpResponseRedirect(reverse('dashboard'))
+                return HttpResponseRedirect(reverse_lazy('board'))
 
             except ObjectDoesNotExist:
                 new_user_msg = "Please Sign Up for a wonderful experience."
                 messages.add_message(request, messages.INFO, new_user_msg)
-                return HttpResponseRedirect(reverse('homepage'))
+                return HttpResponseRedirect(reverse_lazy('homepage'))
 
 
 class DashboardView(View):
@@ -136,7 +136,7 @@ class BucketItemsView(View):
 
             msg = "Action succesfully performed."
             messages.add_message(request, messages.SUCCESS, msg)
-            return HttpResponseRedirect(reverse('mylist', kwargs={
+            return HttpResponseRedirect(reverse_lazy('mylist', kwargs={
                 'username': username,
                 'id':userid
                 }))
@@ -187,13 +187,13 @@ class AddItemsView(View):
 
             msg = "Item succesfully added."
             messages.add_message(request, messages.SUCCESS, msg)
-            return HttpResponseRedirect(reverse('view', kwargs={
+            return HttpResponseRedirect(reverse_lazy('view', kwargs={
                     'id':bucketlistid }))
 
         else:
             msg = "Item field should not be left empty."
             messages.add_message(request, messages.SUCCESS, msg)
-            return HttpResponseRedirect(reverse('view', kwargs={
+            return HttpResponseRedirect(reverse_lazy('view', kwargs={
                 'id':bucketlistid }))
 
 
@@ -207,7 +207,7 @@ class DeleteUpdateBucketlistView(View):
 
         msg = "bucketlist succesfully deleted"
         messages.add_message(request, messages.SUCCESS, msg)
-        return HttpResponseRedirect(reverse('view', kwargs={
+        return HttpResponseRedirect(reverse_lazy('view', kwargs={
                 'id':bucketlistid }))
 
     def post(self, request, **kwargs):
@@ -219,7 +219,7 @@ class DeleteUpdateBucketlistView(View):
         bucketlist.save()
         msg = "Bucketlist name succesfully edited."
         messages.add_message(request, messages.SUCCESS, msg)
-        return HttpResponseRedirect(reverse('view', kwargs={
+        return HttpResponseRedirect(reverse_lazy('view', kwargs={
                 'id':bucketlistid }))
 
 
@@ -236,7 +236,7 @@ class delUpdateItemView(View):
 
         msg = "Item sucessfully deleted."
         messages.add_message(request, messages.SUCCESS, msg)
-        return HttpResponseRedirect(reverse('view', kwargs={
+        return HttpResponseRedirect(reverse_lazy('view', kwargs={
                 'id':bucketlistid }))
 
     def post(self, request, **kwargs):
@@ -254,7 +254,7 @@ class delUpdateItemView(View):
 
         msg = "Item sucessfully edited."
         messages.add_message(request, messages.SUCCESS, msg)
-        return HttpResponseRedirect(reverse('view', kwargs={
+        return HttpResponseRedirect(reverse_lazy('view', kwargs={
                 'id':bucketlistid }))
 
 

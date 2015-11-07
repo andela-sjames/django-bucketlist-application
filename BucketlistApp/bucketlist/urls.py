@@ -1,16 +1,16 @@
 from django.conf.urls import url, include
-from bucketlist.views import HomePageView, SignInView, SignUpView, DashboardView, SignOutView, BucketItemsView, BucketlistView,ViewBucketlistdetail, AddItemsView, DeleteUpdateBucketlistView,delUpdateItemView
+from bucketlist import views 
 
 
 urlpatterns = [
-    url(r'^signin/$', SignInView.as_view(), name='signin'),
-    url(r'^signup/$', SignUpView.as_view(), name='signup'),
-    url(r'^signout/$', SignOutView.as_view(), name='signout'),
-    url(r'^dashboard/$', DashboardView.as_view(), name='dashboard'),
-    url(r'^(?P<id>[0-9]+)/items/(?P<item_id>[0-9]+)$', delUpdateItemView.as_view(), name='delupdateitem'),
-    url(r'^action/(?P<username>\w+)/(?P<id>[0-9]+)$', BucketItemsView.as_view(), name = 'action'),
-    url(r'^(?P<username>\w+)/(?P<id>[0-9]+)$', BucketlistView.as_view(), name = 'mylist'),
-    url(r'^view/(?P<id>[0-9]+)/items/$', ViewBucketlistdetail.as_view(), name='view'), 
-    url(r'^(?P<id>[0-9]+)/items/$', AddItemsView.as_view(), name='additem'), 
-    url(r'^(?P<id>[0-9]+)/$', DeleteUpdateBucketlistView.as_view(), name='deleteupdatebucket'),
+    url(r'^signin/$', views.SignInView.as_view(), name='signin'),
+    url(r'^signup/$', views.SignUpView.as_view(), name='signup'),
+    url(r'^signout/$', views.SignOutView.as_view(), name='signout'),
+    url(r'^dashboard/$', views.DashboardView.as_view(), name='board'),
+    url(r'^(?P<id>[0-9]+)/items/(?P<item_id>[0-9]+)$', views.delUpdateItemView.as_view(), name='delupdateitem'),
+    url(r'^action/(?P<username>\w+)/(?P<id>[0-9]+)$', views.BucketItemsView.as_view(), name = 'action'),
+    url(r'^(?P<username>\w+)/(?P<id>[0-9]+)$', views.BucketlistView.as_view(), name = 'mylist'),
+    url(r'^view/(?P<id>[0-9]+)/items/$', views.ViewBucketlistdetail.as_view(), name='view'), 
+    url(r'^(?P<id>[0-9]+)/items/$', views.AddItemsView.as_view(), name='additem'), 
+    url(r'^(?P<id>[0-9]+)/$', views.DeleteUpdateBucketlistView.as_view(), name='deleteupdatebucket'),
 ]

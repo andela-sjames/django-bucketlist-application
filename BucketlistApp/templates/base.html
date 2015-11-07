@@ -40,7 +40,7 @@
             <nav>
               <ul class="nav nav-pills pull-right">
                 {% if request.user.is_authenticated %}
-                <li role="presentation" class="#"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li role="presentation" class="#"><a href="{% url 'board' %}">Dashboard</a></li>
                 <li role="presentation"><a href="/bucketlist/{{ request.user.username }}/{{ request.user.id }}">My List</a></li>
                 <li role="presentation"><a href="/bucketlist/action/{{ request.user.username }}/{{ request.user.id }}">Action</a></li>
                 <li role="presentation"><a href="{% url 'signout' %}">Sign Out</a></li>

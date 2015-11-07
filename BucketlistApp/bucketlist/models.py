@@ -15,18 +15,22 @@ class Bucketlist((models.Model)):
 
     name=models.CharField(max_length=100, blank=True)
     public=models.BooleanField(default=False)
-    date_created=models.DateField(default=timezone.now)
+    date_created=models.DateTimeField(default=timezone.now)
     date_modified=AutoDateTimeField(default=timezone.now)
     created_by=models.CharField(max_length=100, blank=True)
-    user=models.ForeignKey(User, related_name="bucket", related_query_name="buckets")
+    user=models.ForeignKey(User, related_name="buckets")
+    class Meta:
+        ordering = ('name',)
 
 class BucketlistItems(models.Model):
 
     name=models.CharField(max_length=500, blank=True)
-    date_created=models.DateField(default=timezone.now)
+    date_created=models.DateTimeField(default=timezone.now)
     date_modified=AutoDateTimeField(default=timezone.now)
     done = models.BooleanField(default = False)
-    bucketlist=models.ForeignKey(Bucketlist, related_name="item", related_query_name="items")
+    bucketlist=models.ForeignKey(Bucketlist, related_name="items")
+    class Meta:
+        ordering = ('name',)
 
 #Query becomes:Bucketlist.objects.filter(items__name="important")
 #

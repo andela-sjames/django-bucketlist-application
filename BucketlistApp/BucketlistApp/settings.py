@@ -37,8 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'bucketlist',
     'bucketlistapi',
+    'bucketlist', 
+    'rest_framework.authtoken',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,6 +83,21 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
+#authentication settings
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+
+    )
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
