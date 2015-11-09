@@ -13,8 +13,9 @@
     </div>
 {% endif %}
 
-
-      <div class="jumbotron col-md-6 col-md-push-3">
+<div class="container cntr">
+    <div class="row">
+    <div class="jumbotron">
         <h3>Bucket List App</h3>
         <form class="form-signin" action="{% url 'signup' %}" method="POST">
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
@@ -33,6 +34,8 @@
             
             <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
         </form>
-     </div>
+    </div>
+  </div>
+</div>
 {% endblock main %}
 

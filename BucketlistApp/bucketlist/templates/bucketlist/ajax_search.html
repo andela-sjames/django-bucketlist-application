@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+
+<div class="#" id="background">
+
+{% if search %}
+
+{% for result in search %}
+    <ul class="list-group animated fadeInRight">
+        <li class="list-group-item">{{ result.name }}
+             <div class="pull-right action-buttons">
+
+            <a href="/bucketlist/view/{{ result.id }}/items"><span class="glyphicon glyphicon-eye-open xt" aria-hidden="true"></span></a>
+             </div>
+        </li>
+    </ul>
+
+
+
+{% endfor %}
+{% else %}
+
+<li class="txt"> Bucketlist Not found </li>
+
+{% endif %}
+
+</div>
+{% endblock main %}

@@ -12,7 +12,18 @@
     </div>
 {% endif %}
 
-<p><a class="btn btn-lg btn-success" href="#" role="button">My Bucketlist</a></p>
+<!-- <span class="glyphicon glyphicon-home" aria-hidden="true"></span></p> -->
+<div class="container cntr">
+    <div class="row">
+        <div class="jumbotron ctr" id="home">
+          <h3 id="welcome" class="text-center">Welcome, {{ request.user.username }}</h3>
+          <p>...</p>
+          <p><a class="btn btn-success btn-lg ctr" href="/bucketlist/action/{{ request.user.username }}/{{ request.user.id }}" role="button">Create</a><
 
-<input type="button" value="Click Me!" onclick="submitForms()" />
+          <p><a class="btn btn-success btn-lg ctr" href="/bucketlist/{{ request.user.username }}/{{ request.user.id }}" role="button">View</a></p>
+        </div>
+    </div>
+</div>
+
+
 {% endblock main %}

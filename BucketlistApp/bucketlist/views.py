@@ -11,14 +11,10 @@ from django.core.validators import validate_email, ValidationError
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from bucketlist.models import Bucketlist, BucketlistItems
+from django.core.paginator import Paginator, EmptyPage, InvalidPage
+from django.views.generic.list import ListView
+
 # Create your views here. 
-
-class HomePageView(View):
-
-    template_name = 'bucketlist/index.html'
-    
-    def get(self, request):
-        return render(request, self.template_name)
 
 class SignUpView(View):
 
@@ -62,7 +58,7 @@ class SignOutView(View):
     def get(self, request, *args, **kwargs):
         logout(request)
         return HttpResponseRedirect(
-            reverse_lazy('homepage'))    
+            reverse_lazy('signin'))    
 
 class SignInView(View):
 
@@ -75,13 +71,19 @@ class SignInView(View):
 
     def post(self, request, *args, **kwargs):
 
+        email = self.request.POST.get('email', '')
+        password = self.request.POST.get('password', '')
+        csrfmiddlewaretoken = self.request.POST.get('csrfmiddlewaretoken', '')
+
         if self.request.user.is_authenticated():
-            return HttpResponseRedirect(reverse_lazy('board'))
+            username=request.user.username
+            userid=request.user.id
+            return HttpResponseRedirect(reverse_lazy('mylist', kwargs={
+                'username': username,
+                'id':userid
+                }))
 
         else:
-            email = self.request.POST.get('email', '')
-            password = self.request.POST.get('password', '')
-            csrfmiddlewaretoken = self.request.POST.get('csrfmiddlewaretoken', '')
             try:
                 validate_email(email)
             except ValidationError:
@@ -90,30 +92,21 @@ class SignInView(View):
                 theuser = User.objects.get(email=email)
                 user = authenticate(username=theuser.username, password=password)
                 if user is not None and user.is_active:
+                    username=user.username
+                    userid=user.id
                     login(self.request, user)
-                return HttpResponseRedirect(reverse_lazy('board'))
+                return HttpResponseRedirect(reverse_lazy('mylist', kwargs={
+                'username': username,
+                'id':userid
+                }))
 
             except ObjectDoesNotExist:
                 new_user_msg = "Please Sign Up for a wonderful experience."
                 messages.add_message(request, messages.INFO, new_user_msg)
-                return HttpResponseRedirect(reverse_lazy('homepage'))
+                return HttpResponseRedirect(reverse_lazy('signin'))
 
-
-class DashboardView(View):
-    template_name = 'bucketlist/dashboard.html'
-    
-    def get(self, request):
-        return render(request, self.template_name)
 
 class BucketItemsView(View):
-
-    template_name ='bucketlist/item.html'
-
-    def get(self, request, *args, **kwargs):
-        args ={}
-        args.update(csrf(request))
-        return render(request, self.template_name, args)
-
 
     def post(self, request, **kwargs):
 
@@ -121,15 +114,13 @@ class BucketItemsView(View):
         userid=self.kwargs.get('id')
 
         name = request.POST.get('name','')
-        public = request.POST.get('public')
-        public = True if public else False
 
         itemname = request.POST.get('itemname','')
         done = request.POST.get('done')
         done = True if done else False
 
         if name and itemname:
-            bucketlist=Bucketlist(name=name, public=public, created_by=username, user_id=userid)
+            bucketlist=Bucketlist(name=name, created_by=username, user_id=userid)
             bucketlist.save()
             items=BucketlistItems(name=itemname, done=done, bucketlist_id=bucketlist.id)
             items.save()
@@ -142,36 +133,67 @@ class BucketItemsView(View):
                 }))
 
         else:
-            args ={}
-            args.update(csrf(request))
             msg = "It seems like you didn't add an item."
             messages.add_message(request, messages.INFO, msg)
-            return render(request, self.template_name, args)
+            return HttpResponseRedirect(reverse_lazy('mylist', kwargs={
+                'username': username,
+                'id':userid
+                }))
 
-class BucketlistView(TemplateView):
+class BucketlistView(View):
 
+    
     template_name = 'bucketlist/list.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(BucketlistView, self).get_context_data(**kwargs)
+    def get(self, request, *args, **kwargs):
+        args ={}
         userid=self.kwargs.get('id')
-        context['bucketlists'] = Bucketlist.objects.filter(user=userid)
-        return context
+        user_bucketlists= Bucketlist.objects.filter(user=userid).order_by('-date_created')
+        paginator = Paginator(user_bucketlists, 10, 2)
+
+        try:
+            page = int(request.GET.get('page',1))
+        except:
+            page = 1
+
+        try:
+            bucketlists = paginator.page(page)
+        except(EmptyPage, InvalidPage):
+            bucketlists = paginator.page(paginator.num_pages)
+
+        args['bucketlists'] = bucketlists
+        args.update(csrf(request))
+        return render(request, self.template_name, args)
 
 
 class ViewBucketlistdetail(TemplateView):
 
     template_name='bucketlist/view.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(ViewBucketlistdetail, self).get_context_data(**kwargs)
+    def get(self, request, *args, **kwargs):
+        args ={}
         bucketlistid=self.kwargs.get('id')
-        context['items'] = BucketlistItems.objects.filter(bucketlist_id=bucketlistid)
-        context['bucketlists']=Bucketlist.objects.filter(id=bucketlistid)
-        return context
+        
+        myitems_list = BucketlistItems.objects.filter(bucketlist_id=bucketlistid)
+        paginator = Paginator(myitems_list, 8, 2)
+
+        try:
+            page = int(request.GET.get('page',1))
+        except:
+            page = 1
+
+        try:
+            items = paginator.page(page)
+        except(EmptyPage, InvalidPage):
+            items = paginator.page(paginator.num_pages)
+        
+        args.update(csrf(request))
+        args['items'] = items
+        args['bucketlists']=Bucketlist.objects.filter(id=bucketlistid)
+        return render(request, self.template_name, args)
+
 
 class AddItemsView(View):
-
 
     def post(self, request, **kwargs):
 
@@ -257,7 +279,18 @@ class delUpdateItemView(View):
         return HttpResponseRedirect(reverse_lazy('view', kwargs={
                 'id':bucketlistid }))
 
+class SearchListView(TemplateView):
 
+    template_name='bucketlist/ajax_search.html'
+
+    def get(self, request, *args, **kwargs):
+
+        userid = self.kwargs.get('id')
+        text =  request.GET.get('q', '')
+        result = Bucketlist.objects.filter(name__icontains=text).filter(user_id=userid)
+
+
+        return render(request, self.template_name, {'search':result})
 
 
 

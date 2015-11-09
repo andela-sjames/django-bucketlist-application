@@ -4,8 +4,11 @@
 
 {% block main %}
 
+
+<div class="#" id="background">
+
 {% if messages %}
-    <div class="alert alert-success alert-dismissible">
+    <div class="alert alert-success alert-dismissible fade in msg">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         {% for message in messages %}
             {{ message }}
@@ -13,72 +16,66 @@
     </div>
 {% endif %}
 
-<h3>I AM HERE FOR NOW PENDING WHEN SOMETHING IS PLACED HERE THANKS FOR YOUR PATIENCE.</h3>
+<button type="button" class="btn btn-success top " data-toggle="modal" data-target="#create-modal" href="#create-modal">
+  create
+</button>
+    
+{% include "bucketlist/create_modal.html" %}
+
+
 {% if bucketlists %}
 {% for bucketlist in bucketlists %}
 
-<div class="row">
-  <div class="col-sm-7 col-md-4">
-    <div class="thumbnail">
-      <div class="caption">
-        <h3>Thumbnail </h3>
-        <p> Bucketlist name: {{ bucketlist.name }}</p>
-        <form method="POST" action="/bucketlist/{{bucketlist.id}}/">
-        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-        <fieldset>
-            <input id="name" name="name" type="text" placeholder="Edit bucketlist name" class="form-control input-md" required>
 
-        </fieldset><br>
-        <input id="button" name="button" class="btn btn-primary" type="submit" value="Edit" />            
-        </form>
-        <!--FORM STARTS HERE-->
-        <form method="POST" action="/bucketlist/{{ bucketlist.id}}/items/">
-        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-        <fieldset>
-            <legend>Add Your Bucketlist Item</legend>
+<div class="container cntr pos">
+  <div class="row">
 
-            <!-- Textarea -->
-            <div class="form-group col-md-12">
-                <label class="control-label" for="itemname">Item</label>
-                <div >
-                     <textarea class="form-control" id="itemname" name="itemname" placeholder="Add your item here"></textarea>
-                </div>
-            </div>
+    <ul class="list-group animated fadeInRight">
+      <li class="list-group-item">{{ bucketlist.name }}
+        <div class="pull-right action-buttons">
+            <a href="#additemmodal" class="modal-toggle txt" data-toggle="modal" data-target="#additemmodal"><span class="glyphicon glyphicon-plus xt" aria-hidden="true"></span></a>
+            <a href="#edit-modal" class="modal-toggle txt" data-toggle="modal" data-target="#edit-modal"><span class="glyphicon glyphicon-edit xt" aria-hidden="true"></span></a>
+            <a href="/bucketlist/{{ bucketlist.id}}"><span class="glyphicon glyphicon-trash xt" aria-hidden="true"></span></a>
+            <a href="/bucketlist/view/{{ bucketlist.id }}/items"><span class="glyphicon glyphicon-eye-open xt" aria-hidden="true"></span></a>
+        </div>
+      </li>
+    </ul>
 
-            <div class="form-group">
-                <label>Have you already accomplished this?</label>
-                <br/>
-                <input id="done" name="done" type="checkbox" value="yes"> Mark as Done <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            </div>
-
-            <input id="button" name="button" class="btn btn-primary" type="submit" value="Add Items" />
-        </fieldset>
-        </form>
-        <br>
-        <p> <a href="/bucketlist/{{ bucketlist.id}}" class="btn btn-default" role="button">Delete</a>
-        <a href="/bucketlist/view/{{ bucketlist.id }}/items" class="btn btn-default" role="button">View </a></p>
-      </div>
-    </div>
-  </div>
+        <div>
+            {% include "bucketlist/additem_modal.html" %}
+            {% include "bucketlist/editbucketlist_modal.html" %}
+            {% include "bucketlist/create_modal.html" %}  
+        </div>
+     </div>
 </div>
+
 {% endfor %}
 {% else %}
 
 <p>None to show!</p>
 
-<div class="row">
-  <div class="col-sm-6 col-md-4">
-
-    <div class="thumbnail">
-      <div class="caption">
-        <p>This is a Thumbnail</p>
-        <p><a href="#" class="btn btn-primary" role="button">Update</a> <a href="#" class="btn btn-default" role="button">Delete</a>
-        <a href="#" class="btn btn-default" role="button">Add Items</a></p>
-      </div>
-    </div>
-  </div>
-</div>
 {% endif %}
 
+<nav class="page txt">
+  <div class="pagination">
+    <span class="step-links">
+        {% if bucketlists.has_previous %}
+            <a href="?page={{ bucketlists.previous_page_number }}"><span aria-hidden="true" class="glyphicon glyphicon-backward"></span></a>
+        {% endif %}
 
+        <span class="current">
+            Page {{ bucketlists.number }} of {{ bucketlists.paginator.num_pages }}.
+        </span>
+
+        {% if bucketlists.has_next %}
+            <a href="?page={{ bucketlists.next_page_number }}"><span aria-hidden="true" class="glyphicon glyphicon-forward" ></span></a>
+        
+        {% endif %}
+    </span>
+   </div>
+</nav>
+</div>
 {% endblock main %}
+
+
+

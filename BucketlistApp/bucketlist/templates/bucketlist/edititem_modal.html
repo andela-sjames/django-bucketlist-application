@@ -1,0 +1,44 @@
+
+{% load static %}
+{# {% if items %}{% for item in items %}{{ item.name }}{% endfor %}{% endif %} #}
+
+<div class="modal fade" id="edititem-modal" tabindex="-1" role="dialog" aria-labelledby="myitemLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myitemLabel">Edit Item</h4>
+      </div>
+        <div class="modal-body">
+
+
+<form method="POST" action="/bucketlist/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        <fieldset>
+            <div class="form-group">
+                <input id="itmname" name="itemname" type="text" placeholder="Edit bucketlist item name({{ item.name }})" class="form-control input-md" 
+                 value="{{ item.name }}"> 
+
+            
+                <label>Have you already accomplished this?</label>
+                <br/>
+                <input id="done" name="done" type="checkbox" value="yes"> Mark as Done <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <input id="button" name="button" class="btn btn-primary" type="submit" value="Edit"/>
+                <p>Done: {{ item.done }}</p>{{ item.name }}
+            </div>
+        </fieldset>                   
+  </form>
+
+
+  </div>
+
+      <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+
+
+    </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+ {# {% endfor %}{% endif %} #}

@@ -8,7 +8,7 @@ urlpatterns = [
   
     url(r'^admin/', include(admin.site.urls)),
     url(r'^bucketlist/', include('bucketlist.urls')),
-    url(r'^$', bucketlist.views.HomePageView.as_view(), name='homepage'),
+    url(r'^$', bucketlist.views.SignInView.as_view(), name='signin'),
     url(r'^api/', include('bucketlistapi.urls')),
    
 ]
