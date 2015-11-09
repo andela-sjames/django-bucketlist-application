@@ -89,12 +89,12 @@ body {
 
 #itemsbackground{
   background: rgb(200, 54, 54); /* This is for ie8 and below */
-  background: rgba(200,200, 200, 0.7);
+  background: rgba(200,200, 200, 0.0);
   border-radius: 2% ;
   width: 700px ;
   margin-left: auto ;
   margin-right: auto ;
-  background:url('#')
+  /*background:url('#') */
   
 }
 .msg{
@@ -104,7 +104,7 @@ body {
 .top {
   margin-top: 10% ;
   position: relative;
-  top: -100px;
+  top: -90px;
   left: 70px;
 }
 
@@ -131,8 +131,9 @@ body {
         top: 0px;
         left: 460px;
   }
-
-
+.edit-form {
+  display: none;
+}
 
 
 

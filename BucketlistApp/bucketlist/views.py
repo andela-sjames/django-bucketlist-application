@@ -289,8 +289,18 @@ class SearchListView(TemplateView):
         text =  request.GET.get('q', '')
         result = Bucketlist.objects.filter(name__icontains=text).filter(user_id=userid)
 
+        paginator = Paginator(result, 8, 2)
 
-        return render(request, self.template_name, {'search':result})
+        try:
+            page = int(request.GET.get('page',1))
+        except:
+            page = 1
+        try:
+            search_result = paginator.page(page)
+        except(EmptyPage, InvalidPage):
+            search_result = paginator.page(paginator.num_pages)
+
+        return render(request, self.template_name, {'search':search_result})
 
 
 

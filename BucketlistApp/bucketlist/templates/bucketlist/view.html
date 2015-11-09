@@ -29,15 +29,38 @@
 {% if items %}
 {% for item in items %}
 
+<div class="bucket-item">
 <ul class="list-group animated fadeInRight">
     <li class="list-group-item">{{ item.name }}
         <div class="pull-right action-buttons">
             {% if item.done %}<span class="glyphicon glyphicon-thumbs-up xt"></span>{% else %}<span class="glyphicon glyphicon-thumbs-down xt"></span> {% endif %}
             <a href="/bucketlist/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}"><span class="glyphicon glyphicon-trash xt" aria-hidden="true"></span></a>
-            <a href="#edit-modal" class="modal-toggle txt" data-toggle="modal" data-target="#edititem-modal"><span class="glyphicon glyphicon-edit xt" aria-hidden="true"></span></a>
+            <a href="#" class="edit"><span class="glyphicon glyphicon-edit xt" aria-hidden="true"></span></a>
         </div>
     </li>
 </ul>
+
+<div class="edit-form">
+    <form method="POST" action="/bucketlist/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        <fieldset>
+            <div class="form-group">
+                <input id="itmname" name="itemname" type="text" placeholder="Edit bucketlist item name" class="form-control input-md" 
+                 value="{{ item.name }}"> 
+
+            
+                <label class="txt">Have you already accomplished this?</label>
+                <br/>
+                <input id="done" name="done" type="checkbox" value="yes"><a class="txt"> Mark as Done </a><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <input id="button" name="button" class="btn btn-primary" type="submit" value="Edit"/>
+                <p class="txt">Done: {{ item.done }}</p>
+            </div>
+        </fieldset>                   
+  </form>
+</div>
+</div>
+
+
 
   {% include "bucketlist/edititem_modal.html" %}
 
