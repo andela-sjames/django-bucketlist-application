@@ -24,8 +24,9 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+#ALLOWED_HOSTS = ['*']
+#ALLOWED_HOSTS = ['localhost:8000', '127.0.0.1:8000']
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = (
     'bucketlistapi',
     'bucketlist', 
     'rest_framework.authtoken',
+    'debug_toolbar',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,6 +50,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -84,6 +87,16 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'BucketlistApp',
+#         'USER': 'Administrator',
+#         'PASSWORD': 'administrator',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
 
 #authentication settings
 REST_FRAMEWORK = {
@@ -101,14 +114,11 @@ REST_FRAMEWORK = {
         'rest_framework.pagination.LimitOffsetPagination',
         'rest_framework.pagination.CursorPagination',
         ),
-}
-
-REST_FRAMEWORK = {
     'PAGINATE_BY': 10,
     'PAGE_SIZE':20,
 }
 
-
+#APPEND_SLASH = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -126,9 +136,24 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+
+def show_toolbar(request):
+    if not request.is_ajax() and request.user and request.user.username == 'andelasjames':
+        return True
+    return False
+
+DEBUG_TOOLBAR_CONFIG = {
+'SHOW_TOOLBAR_CALLBACK':'BucketlistApp.settings.show_toolbar',
+    #rest of config
+}
+#INTERNAL_IPS = ('127.0.0.1', '192.168.0.1',)
+
+LOGIN_REDIRECT_URL='/api/bucketlists/'
+

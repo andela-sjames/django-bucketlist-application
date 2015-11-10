@@ -13,8 +13,26 @@ from django.core.exceptions import ObjectDoesNotExist
 from bucketlist.models import Bucketlist, BucketlistItems
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.views.generic.list import ListView
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 # Create your views here. 
+def custom_404(request):
+    return render(request, 'bucketlist/404.html')
+
+def custom_500(request):
+    return render(request, 'bucketlist/500.html')
+
+
+class LoginRequiredMixin(object):
+
+    '''View mixin which requires that the user is authenticated.'''
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(LoginRequiredMixin, self).dispatch(
+            request, *args, **kwargs)
+
 
 class SignUpView(View):
 
@@ -53,7 +71,7 @@ class SignUpView(View):
             return render(request, self.template_name, args)
 
 
-class SignOutView(View):
+class SignOutView(View, LoginRequiredMixin):
 
     def get(self, request, *args, **kwargs):
         logout(request)
@@ -106,7 +124,7 @@ class SignInView(View):
                 return HttpResponseRedirect(reverse_lazy('signin'))
 
 
-class BucketItemsView(View):
+class BucketItemsView(View, LoginRequiredMixin):
 
     def post(self, request, **kwargs):
 
@@ -140,33 +158,41 @@ class BucketItemsView(View):
                 'id':userid
                 }))
 
-class BucketlistView(View):
+class BucketlistView(View, LoginRequiredMixin):
 
     
     template_name = 'bucketlist/list.html'
 
     def get(self, request, *args, **kwargs):
+
+
         args ={}
         userid=self.kwargs.get('id')
-        user_bucketlists= Bucketlist.objects.filter(user=userid).order_by('-date_created')
-        paginator = Paginator(user_bucketlists, 10, 2)
+        username=self.kwargs.get('username')
+        name=self.request.user.username
+        if username == name:
 
-        try:
-            page = int(request.GET.get('page',1))
-        except:
-            page = 1
+            user_bucketlists= Bucketlist.objects.filter(user=userid).order_by('-date_created')
+            paginator = Paginator(user_bucketlists, 10, 2)
 
-        try:
-            bucketlists = paginator.page(page)
-        except(EmptyPage, InvalidPage):
-            bucketlists = paginator.page(paginator.num_pages)
+            try:
+                page = int(request.GET.get('page',1))
+            except:
+                page = 1
 
-        args['bucketlists'] = bucketlists
-        args.update(csrf(request))
-        return render(request, self.template_name, args)
+            try:
+                bucketlists = paginator.page(page)
+            except(EmptyPage, InvalidPage):
+                bucketlists = paginator.page(paginator.num_pages)
+
+            args['bucketlists'] = bucketlists
+            args.update(csrf(request))
+            return render(request, self.template_name, args)
+        else:
+            return HttpResponseRedirect(reverse_lazy('signin'))
 
 
-class ViewBucketlistdetail(TemplateView):
+class ViewBucketlistdetail(TemplateView, LoginRequiredMixin):
 
     template_name='bucketlist/view.html'
 
@@ -193,7 +219,7 @@ class ViewBucketlistdetail(TemplateView):
         return render(request, self.template_name, args)
 
 
-class AddItemsView(View):
+class AddItemsView(View, LoginRequiredMixin):
 
     def post(self, request, **kwargs):
 
@@ -220,7 +246,7 @@ class AddItemsView(View):
 
 
 
-class DeleteUpdateBucketlistView(View):
+class DeleteUpdateBucketlistView(View, LoginRequiredMixin):
 
     def get(self, request, **kwargs):
         bucketlistid=self.kwargs.get('id')
@@ -247,7 +273,7 @@ class DeleteUpdateBucketlistView(View):
 
 
 
-class delUpdateItemView(View):
+class delUpdateItemView(View, LoginRequiredMixin):
 
     def get(self, request, **kwargs):
 
@@ -279,7 +305,7 @@ class delUpdateItemView(View):
         return HttpResponseRedirect(reverse_lazy('view', kwargs={
                 'id':bucketlistid }))
 
-class SearchListView(TemplateView):
+class SearchListView(TemplateView, LoginRequiredMixin):
 
     template_name='bucketlist/ajax_search.html'
 
