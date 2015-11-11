@@ -109,7 +109,14 @@ class SignInView(View):
             try:
                 theuser = User.objects.get(email=email)
                 user = authenticate(username=theuser.username, password=password)
+
+                if user is None:
+                    new_user_msg = "    Invalid password, please confirm your password."
+                    messages.add_message(request, messages.INFO, new_user_msg)
+                    return HttpResponseRedirect(reverse_lazy('signin'))
+
                 if user is not None and user.is_active:
+
                     username=user.username
                     userid=user.id
                     login(self.request, user)
@@ -122,6 +129,7 @@ class SignInView(View):
                 new_user_msg = "Please Sign Up for a wonderful experience."
                 messages.add_message(request, messages.INFO, new_user_msg)
                 return HttpResponseRedirect(reverse_lazy('signin'))
+
 
 
 class BucketItemsView(View, LoginRequiredMixin):
@@ -327,6 +335,5 @@ class SearchListView(TemplateView, LoginRequiredMixin):
             search_result = paginator.page(paginator.num_pages)
 
         return render(request, self.template_name, {'search':search_result})
-
 
 

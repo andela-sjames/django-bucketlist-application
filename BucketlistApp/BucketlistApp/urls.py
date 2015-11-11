@@ -9,7 +9,7 @@ urlpatterns = [
   
     url(r'^myappadmin/', include(admin.site.urls)),
     url(r'^bucketlist/', include('bucketlist.urls')),
-    url(r'^$', bucketlist.views.SignInView.as_view(), name='signin'),
+    url(r'^$', bucketlist.views.SignUpView.as_view(), name='signup'),
     url(r'^api/', include('bucketlistapi.urls')),
    
 ]
@@ -22,5 +22,7 @@ urlpatterns += [
 
 handler404='bucketlist.views.custom_404'
 handler500='bucketlist.views.custom_500'
+
+
 
 
