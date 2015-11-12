@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'bucketlist', 
     'rest_framework.authtoken',
     'debug_toolbar',
+    'django_nose',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -156,4 +157,11 @@ DEBUG_TOOLBAR_CONFIG = {
 #INTERNAL_IPS = ('127.0.0.1', '192.168.0.1',)
 
 LOGIN_REDIRECT_URL='/api/bucketlists/'
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=bucketlist,bucketlistapi',
+]
 

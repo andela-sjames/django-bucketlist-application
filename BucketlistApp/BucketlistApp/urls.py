@@ -23,6 +23,6 @@ urlpatterns += [
 handler404='bucketlist.views.custom_404'
 handler500='bucketlist.views.custom_500'
 
-
-
+#test command.
+#coverage run --source bucketlist/ manage.py test bucketlist
 

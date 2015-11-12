@@ -59,9 +59,9 @@ class SignUpView(View):
 
         if usersignupform.is_valid():                      
             usersignupform.save()
-            confirmation_msg = "You have sucessfully registered."
+            confirmation_msg="You have sucessfully registered, please sign in."
             messages.add_message(request, messages.INFO, confirmation_msg)
-            return HttpResponseRedirect(reverse_lazy('signin'))
+            return HttpResponseRedirect(reverse_lazy('signup'))
 
         else:
             login = "Seems like you didn't input a strong password."
@@ -76,16 +76,9 @@ class SignOutView(View, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
         logout(request)
         return HttpResponseRedirect(
-            reverse_lazy('signin'))    
+            reverse_lazy('signup'))    
 
 class SignInView(View):
-
-    template_name = 'bucketlist/signin.html'
-
-    def get(self, request, *args, **kwargs):
-        args ={}
-        args.update(csrf(request))
-        return render(request, self.template_name, args)
 
     def post(self, request, *args, **kwargs):
 
@@ -111,9 +104,9 @@ class SignInView(View):
                 user = authenticate(username=theuser.username, password=password)
 
                 if user is None:
-                    new_user_msg = "    Invalid password, please confirm your password."
+                    new_user_msg = "Invalid password, please confirm your password."
                     messages.add_message(request, messages.INFO, new_user_msg)
-                    return HttpResponseRedirect(reverse_lazy('signin'))
+                    return HttpResponseRedirect(reverse_lazy('signup'))
 
                 if user is not None and user.is_active:
 
@@ -128,7 +121,7 @@ class SignInView(View):
             except ObjectDoesNotExist:
                 new_user_msg = "Please Sign Up for a wonderful experience."
                 messages.add_message(request, messages.INFO, new_user_msg)
-                return HttpResponseRedirect(reverse_lazy('signin'))
+                return HttpResponseRedirect(reverse_lazy('signup'))
 
 
 

@@ -13,29 +13,68 @@
     </div>
 {% endif %}
 
-<div class="container cntr">
-    <div class="row">
-    <div class="jumbotron">
-        <h3>Bucket List App</h3>
-        <form class="form-signin" action="{% url 'signup' %}" method="POST">
+<div class="login-wrap">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+
+    <!--LOGIN FORM HERE-->
+        <div class="login-form">
+            <div class="sign-in-htm">
+
+        <form class="form-signin" action="{% url 'signin' %}" method="POST">
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
-            <label for="username" class="sr-only">Name</label>
-            <input type="text" name="username" id="username" class="form-control" placeholder="username" required autofocus>
-
-            <label for="email" class="sr-only">Email address</label>
-            <input type="email" name="email" id="email" class="form-control" placeholder="Email address" required autofocus>
-
-            <label for="password1" class="sr-only">Password</label>
-            <input type="password" name="password1" id="password1" class="form-control" placeholder="Password" required>
-
-            <label for="password2" class="sr-only">Password</label>
-            <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirm password" required>
-            
-            <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+                <div class="group">
+                    <label for="email" class="label">Email address</label>
+                    <input id="user" type="email" name="email" class="input">
+                </div>
+                <div class="group">
+                    <label for="password" class="label">Password</label>
+                    <input id="pass" type="password" name="password" class="input" data-type="password" required>
+                </div>
+                <div class="group">
+                    <input type="submit" class="button" value="Sign In">
+                </div>
+                <div class="hr"></div>
         </form>
+
+            </div>
+    <!--END LOGIN FORM-->
+
+    <!--SIGNUP FORM HERE-->
+            <div class="sign-up-htm">
+
+        <form class="form-signin" action="{% url 'signup' %}" method="POST">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                <div class="group">
+                    <label for="username" class="label">Username</label>
+                    <input id="user" name="username" type="text" class="input">
+                </div>
+                <div class="group">
+                    <label for="password1" class="label">Password</label>
+                    <input id="pass" type="password" name="password1" class="input" data-type="password">
+                </div>
+                <div class="group">
+                    <label for="password2" class="label">Repeat Password</label>
+                    <input id="pass" type="password" name="password2" class="input" data-type="password">
+                </div>
+                <div class="group">
+                    <label for="email" class="label">Email Address</label>
+                    <input id="pass" type="email" name="email" class="input">
+                </div>
+                <div class="group">
+                    <input type="submit" class="button" value="Sign Up">
+                </div>
+                <div class="foot-lnk">
+                    <label for="tab-1">Already Member?</label>
+                </div>
+        </form>
+
+            </div>
+            <!-- END SIGNUP FORM HERE-->
+        </div>
     </div>
-  </div>
 </div>
 {% endblock main %}
 

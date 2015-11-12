@@ -47,9 +47,17 @@
                 {% if request.user.is_authenticated %}
                 <li role="presentation"><a href="/bucketlist/{{ request.user.username }}/{{ request.user.id }}">My List</a></li>
                 <li role="presentation"><a href="{% url 'signout' %}">Sign Out</a></li>
+                <div class="pull-right">     
+                        <div class="form-group">
+                        <form method="GET" action="/bucketlist/search/{{ request.user.id }}">
+                        <input type="text" placeholder="Search" id="search" name="q">
+                        <button class="btn btn-success" type="submit"><span class=" glyphicon glyphicon-search"></span></button>
+                        </form>
+                        </div>
+                        </div>
+                </div>
                 {% else %}
-                <li role="presentation"><a href="{% url 'signin' %}">Sign In</a></li>
-                <li role="presentation"><a href="{% url 'signup' %}">Sign Up</a></li>
+                    {# Logo should be placed here #}           
                {% endif %}          
               </ul>
              </nav>
@@ -57,22 +65,6 @@
       </div>
 
     <main>
-{% if request.user.is_authenticated %}
-
-  <div class="container cont">
-    <div class="row">     
-            <div class="form-group">
-            <form method="GET" action="/bucketlist/search/{{ request.user.id }}">
-            <input type="text" placeholder="Search" id="search" name="q">
-            <button class="btn btn-success" type="submit"><span class=" glyphicon glyphicon-search"></span></button>
-            </form>
-            </div>
-    </div>
-    <ul id="search-results">
-      
-    </ul>
-  </div>
-{% endif %}
 
     {% block main %} 
 
