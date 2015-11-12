@@ -61,8 +61,6 @@ class BucketList(APIView):
         userdetail={unicode('user'):unicode(userid),
            unicode('created_by'):unicode(username)}
         val.update(userdetail)
-        import pdb; pdb.set_trace()
-
         serializer = BucketlistSerializer(data=val)
 
         if serializer.is_valid():
@@ -139,6 +137,8 @@ class AddBucketItem(APIView):
 
 class ItemListDetail(APIView):
 
+    ''' Delete and Update bucketlist items by id.'''
+    
     def check_bucketlistexist(self, id):
         try:
             return Bucketlist.objects.get(id=id)

@@ -15,14 +15,13 @@ urlpatterns = [
 ]
 
 urlpatterns += [
+    url(r'^docs/', include('rest_framework_swagger.urls')),
     url(r'^api-auth/', include('rest_framework.urls',
                                namespace='rest_framework')),
-     url(r'^api/auth/login/', views.obtain_auth_token)
+     url(r'^api/auth/login/', views.obtain_auth_token, name='gettoken')
 ]
 
 handler404='bucketlist.views.custom_404'
 handler500='bucketlist.views.custom_500'
 
-#test command.
-#coverage run --source bucketlist/ manage.py test bucketlist
 

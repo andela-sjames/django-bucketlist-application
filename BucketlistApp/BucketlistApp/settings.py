@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'rest_framework.authtoken',
     'debug_toolbar',
     'django_nose',
+    'rest_framework_swagger',
 )
 
 MIDDLEWARE_CLASSES = (

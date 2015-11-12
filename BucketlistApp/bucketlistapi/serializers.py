@@ -11,7 +11,7 @@ class BucketlistItemsSerializer(serializers.ModelSerializer):
 
 class BucketlistSerializer(serializers.ModelSerializer):
 
-    items= BucketlistItemsSerializer(many=True)
+    items= BucketlistItemsSerializer(many=True, read_only=True)
 
     class Meta:
         model = Bucketlist
