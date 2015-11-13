@@ -1,0 +1,75 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+
+{% if messages %}
+    <div class="alert alert-success alert-dismissible fade in msg">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
+    
+{% include "bucketlist/create_modal.html" %}
+<div class="pos">
+<button type="button" class="btn btn-success top" data-toggle="modal" data-target="#create-modal" href="#create-modal">
+  create
+</button>
+{% if bucketlists %}
+<center>
+{% for bucketlist in bucketlists %}
+   
+    
+        <div class="card animated fadeInRight" >
+        <h4>{{ bucketlist.name }}</h4>
+        <section class="card-inner">
+            <div class="action-buttons">
+                <br>
+                <a href="#additemmodal" class="modal-toggle txt" data-toggle="modal" data-target="#additemmodal" data-bucketlist-id="{{ bucketlist.id }}"><span class="glyphicon glyphicon-plus xt" aria-hidden="true"></span></a>
+                <a href="#edit-modal" class="modal-toggle txt" data-toggle="modal" data-target="#editmodal" data-bucketlist-id="{{ bucketlist.id }}"><span class="glyphicon glyphicon-edit xt" aria-hidden="true"></span></a>
+                <a href="/bucketlist/{{ bucketlist.id}}"><span class="glyphicon glyphicon-trash xt" aria-hidden="true"></span></a>
+                <a href="/bucketlist/view/{{ bucketlist.id }}/items"><span class="glyphicon glyphicon-eye-open xt" aria-hidden="true"></span></a>
+            </div>
+        </section>
+        </div>
+
+{% endfor %}
+</center>
+    <div>
+        {% include "bucketlist/additem_modal.html" %}
+        {% include "bucketlist/editbucketlist_modal.html" %}
+        {% include "bucketlist/create_modal.html" %} 
+    </div>
+{% else %}
+
+<p>None to show!</p>
+
+{% endif %}
+</div>
+
+<nav class="page xt">
+  <div class="pagination">
+    <span class="step-links">
+        {% if bucketlists.has_previous %}
+            <a href="?page={{ bucketlists.previous_page_number }}"><span aria-hidden="true" class="glyphicon glyphicon-backward"></span></a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ bucketlists.number }} of {{ bucketlists.paginator.num_pages }}.
+        </span>
+
+        {% if bucketlists.has_next %}
+            <a href="?page={{ bucketlists.next_page_number }}"><span aria-hidden="true" class="glyphicon glyphicon-forward" ></span></a>
+        
+        {% endif %}
+    </span>
+   </div>
+</nav>
+
+{% endblock main %}
+
+
+

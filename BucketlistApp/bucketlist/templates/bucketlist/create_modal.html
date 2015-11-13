@@ -1,0 +1,63 @@
+{% load staticfiles %}
+
+
+
+<div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="mycreateLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="mycreateLabel">Create Bucketlist</h4>
+      </div>
+        <div class="modal-body">
+
+<section>
+    <form name="bucketlist" method="POST" action="/bucketlist/action/{{ request.user.username }}/{{ request.user.id }}">
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        <fieldset>
+        <!-- Form Name -->
+            <div class="form-group col-md-5">
+                <label class="control-label" for="name">Title</label>
+                <div>
+                    <input id="name" name="name" type="text" placeholder="Bucketlist Name" class="form-control input-md" required>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <!-- Textarea -->
+            <div class="form-group col-md-6">
+                <label class="control-label" for="itemname">Item</label>
+                <div >
+                     <textarea class="form-control" id="itemname" name="itemname" placeholder="Add your item here"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Have you already accomplished this?</label>
+                <br/>
+                <input id="done" name="done" type="checkbox" value="yes"> Mark as Done <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-12 control-label" for="singlebutton"></label>
+            </div>
+            <div class="col-xs-6 col-sm-4">
+                <input id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit" value="Create" />
+            </div>
+        </fieldset>
+            
+        </form>   
+</section>
+
+</div>
+
+      <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+
+
+    </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->

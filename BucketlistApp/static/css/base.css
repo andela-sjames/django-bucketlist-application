@@ -1,0 +1,209 @@
+html, body {
+    min-height: 100%;
+}
+
+body {
+   background-image: url();
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    padding-top: 70px; 
+    margin: 0 auto;
+}
+#home {
+  border-radius: 5% ;
+  margin-bottom: 0% ;
+  margin-right: 0% ;
+}
+
+.jumbotron {
+   background: rgb(200, 54, 54); /* This is for ie8 and below */
+   background: rgba(0, 0, 0, 0.5); 
+   width: 100% ;
+   height: 100% ;
+   background:url('../img/coola.jpeg') ;
+}
+ #welcome {
+  color: White ;
+ }
+
+ #navcolor a {
+  background-color: black;
+  background-image: none;
+  background-repeat: no-repeat;
+ }
+
+ #signedin {
+  color: White;
+ }
+
+ .cntr {
+   width: 50% ;
+   height: 50% ;
+
+ }
+
+ .focus {
+   width: 70% ;
+   height: 70% ;
+ }
+
+.ctr {
+   width: 100% ;
+   height: 100% ;
+ }
+.iwell {
+    background: rgb(200, 54, 54); /* This is for ie8 and below */
+    background: rgba(200,200, 200, 0.7); 
+    width: 70% ;
+    height: 0% ;
+    border-radius: 0% ;
+    background:url('#') ;
+    
+}
+
+.txt {
+  color: white ;
+}
+
+.xt {
+  color: black ;
+}
+
+.bt{
+  position: relative;
+  top: -30px;
+  left: -200px;
+}
+.pos {
+  position: relative;
+  top: -100px;
+  left: 20px;
+}
+
+#background{
+  background: rgb(200, 54, 54); /* This is for ie8 and below */
+  background: rgba(200,200, 200, 0.7);
+  border-radius: 2% ;
+  width: 700px ;
+  margin-left: auto ;
+  margin-right: auto ;
+  background:url('#') 
+  
+}
+
+#itemsbackground{
+  background: rgb(200, 54, 54); /* This is for ie8 and below */
+  background: rgba(200,200, 200, 0.0);
+  border-radius: 2% ;
+  width: 700px ;
+  margin-left: auto ;
+  margin-right: auto ;
+  /*background:url('#') */
+  
+}
+.msg{
+  top: 20px ;
+}
+
+.top {
+  margin-top: 10% ;
+  position: relative;
+  top: 30px;
+  left: 0px;
+}
+
+.page{
+  margin-left: 45% ;
+  position: relative ;
+  top: -130px;
+  left: 40px;
+}
+
+.paged{
+  margin-left: 45% ;
+  position: relative ;
+  top: -10px;
+  left: -10px;
+}
+
+#create-modal .modal-dialog  {width:40%;}
+
+.cont {
+        position: relative;
+        width: 200px;
+        clear: both;
+        top: 0px;
+        left: 400px;
+  }
+.edit-form {
+  display: none;
+}
+
+center {
+  width: 95%;
+  max-width: 800px;
+  margin: 0 auto;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.card {
+  background: #e0e0e0;
+  width: 160px;
+  height: 140px;
+  margin: 0 12px;
+  box-shadow: 0 2px 0 -1px #bdbdbd, 0 4px 0 -2px #bdbdbd, 0 0 2px #bdbdbd;
+  border-radius: 2px 2px 0 0;
+  margin-bottom: 32px;
+  display: inline-block!important;
+  transition: all 0.5s ease-out;
+  cursor: pointer;
+}
+.card:hover {
+  box-shadow: 0 2px 0 -1px #bdbdbd, 0 4px 0 -2px #bdbdbd, 0 0 2px #bdbdbd, 0 8px 16px #bdbdbd;
+}
+.card:active {
+  background: #bdbdbd;
+  transition: all 0.2s;
+  box-shadow: 0 2px 0 -1px #9e9e9e, 0 4px 0 -2px #9e9e9e, 0 0 2px #9e9e9e, 0 8px 16px #9e9e9e;
+}
+.card p {
+  background: #e0e0e0;
+  margin: 0;
+  padding: 6px;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+.card:active p {
+  box-shadow: 0 4px 4px -4px #9e9e9e;
+  background: #e0e0e0;
+}
+.card-inner {
+  display: relative;
+  background: #fafafa;
+  width: 146px;
+  height: 72px;
+  margin-top: 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+  position: relative ;
+  
+}
+.cdabtn {
+  top: 10px ;
+  left: 0px ;
+}
+
+.card:active:after {
+  background: #eee;
+  box-shadow: 0 2px 8px #9e9e9e;
+}
+
+

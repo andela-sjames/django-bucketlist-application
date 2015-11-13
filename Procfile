@@ -1,0 +1,1 @@
+web: python BucketlistApp/manage.py collectstatic --noinput --settings=BucketlistApp.settings.production --verbosity 0; gunicorn BucketlistApp.wsgi --pythonpath=BucketlistApp --log-file -

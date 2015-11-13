@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+
+<div class="#" id="background">
+
+{% if search %}
+
+{% for result in search %}
+    <ul class="list-group animated fadeInRight">
+        <li class="list-group-item">{{ result.name }}
+             <div class="pull-right action-buttons">
+
+            <a href="/bucketlist/view/{{ result.id }}/items"><span class="glyphicon glyphicon-eye-open xt" aria-hidden="true"></span></a>
+             </div>
+        </li>
+    </ul>
+
+
+
+{% endfor %}
+{% else %}
+
+<li class="txt"> Bucketlist Not found </li>
+
+{% endif %}
+
+<nav class="paged txt">
+  <div class="pagination">
+    <span class="step-links">
+        {% if search.has_previous %}
+            <a href="?page={{ search.previous_page_number }}"><span aria-hidden="true" class="glyphicon glyphicon-backward"></span></a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ search.number }} of {{ search.paginator.num_pages }}.
+        </span>
+
+        {% if search.has_next %}
+            <a href="?page={{ search.next_page_number }}"><span aria-hidden="true" class="glyphicon glyphicon-forward" ></span></a>
+        
+        {% endif %}
+    </span>
+  </div>
+</nav>
+
+
+</div>
+{% endblock main %}
