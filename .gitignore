@@ -51,6 +51,16 @@ staticfiles
 *.mo
 *.pot
 
+# Mac OS Desktop Store
+*/.DS_Store
+.DS_Store
+
+# environment files
+.env.*
+
+# database migrations
+BucketlistApp/*/migrations/*
+
 # Django stuff:
 *.log
 
