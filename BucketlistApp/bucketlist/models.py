@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 from datetime import datetime
 
 
@@ -13,7 +14,7 @@ class Bucketlist((models.Model)):
     date_created=models.DateTimeField(auto_now_add = True)
     date_modified=models.DateTimeField(auto_now = True)
     created_by=models.CharField(max_length=100, blank=True)
-    user=models.ForeignKey(User, related_name="buckets")
+    user=models.ForeignKey(settings.AUTH_USER_MODEL, related_name="buckets")
     class Meta:
         ordering = ('-date_created',)
         

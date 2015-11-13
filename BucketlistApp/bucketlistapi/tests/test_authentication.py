@@ -9,12 +9,7 @@ class ApiUserCreateAccount(APITestCase):
 
     def setUp(self):
         self.client = APIClient()
-
-        self.form_data = dict(
-            username="andela",
-            password="andela",
-            email="andela@andela.com",
-        )
+        
         self.user = User.objects.create_user('johndoe',
                                              'johndoe@gmail.com',
                                              '12345')
@@ -22,8 +17,9 @@ class ApiUserCreateAccount(APITestCase):
 
     def test_user_can_signup(self):
 
+        form_data={'username':'andela','password':'andela','email':'andela@andela.com',}
         url= reverse_lazy('register')
-        response = self.client.post(url, self.form_data, format='json')
+        response = self.client.post(url, form_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_user_get_token(self):
@@ -37,8 +33,6 @@ class ApiUserCreateAccount(APITestCase):
 
         response = self.client.login(username='johndoe', password='12345')
         self.assertEqual(response, True)
-
-
 
 
 

@@ -4,13 +4,13 @@ from django.contrib.auth.models import User
 
 class UserCreateViewTestCase(TestCase):
 
+    fixtures = ['initial_fixtures']
+
     def setUp(self):
         self.client = Client()
-        self.user = User.objects.create_user('johndoe',
-                                             'johndoe@gmail.com',
-                                             '12345')
-        self.client.login(email='johndoe@gmail.com',
-                                 password='12345')
+
+        self.client.login(email='samuel.james@andela.com',
+                                 password='samuel')
 
 
     def test_user_create_edit_view(self):
@@ -20,20 +20,20 @@ class UserCreateViewTestCase(TestCase):
 
         #test user can create bucketlist
         response =self.client.post(reverse_lazy('action', kwargs={
-                'username':'johndoe' ,
+                'username':'samuel' ,
                 'id':1
                 }), data )
         self.assertEquals(response.status_code, 302)
 
         #test user can edit bucketlist created
         response = self.client.post(reverse_lazy('deleteupdatebucket', kwargs={
-            'id': 1
+            'id': 19
             }), data1 )
         self.assertEquals(response.status_code, 302)
 
         #test user can delete bucketlist created
         response = self.client.get(reverse_lazy('deleteupdatebucket', kwargs={
-            'id': 1
+            'id': 19
             }), data1 )
         self.assertEquals(response.status_code, 302)
         
@@ -46,8 +46,7 @@ class UserCreateViewTestCase(TestCase):
         emptydata={'itemname': '', 'done': '' }
         #test user can add bucketlist item
         response = self.client.post(reverse_lazy('additem', kwargs={
-            'id': 1
-            }), data )
+            'id': 1 }), data )
         self.assertEquals(response.status_code, 302)
 
         #test user should not submit empty add form
@@ -58,15 +57,14 @@ class UserCreateViewTestCase(TestCase):
 
         #test user can edit bucketlistitem
         response = self.client.post(reverse_lazy('delupdateitem', kwargs={
-            'id': 1,
-            'item_id': 1
-            }), data )
+            'id': 19,
+            'item_id': 33 }), data )
         self.assertEquals(response.status_code, 302)
 
         #test user can delete item created
         response = self.client.get(reverse_lazy('delupdateitem', kwargs={
-            'id': 1,
-            'item_id': 1
+            'id': 19,
+            'item_id': 33
             }), data )
         self.assertEquals(response.status_code, 302)
 
