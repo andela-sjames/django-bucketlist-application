@@ -8,5 +8,6 @@ install:
 script:
   cd BucketlistApp 
   coverage run --source bucketlistapi,bucketlist manage.py test
+
 after_success:
-  coveralls 
+    coveralls 
