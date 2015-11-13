@@ -58,9 +58,6 @@ staticfiles
 # environment files
 .env.*
 
-# database migrations
-BucketlistApp/*/migrations/*
-
 # Django stuff:
 *.log
 
