@@ -13,15 +13,6 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 # Create your views here.
 
-for user in User.objects.all():
-    Token.objects.get_or_create(user=user)
-
-#for user request for token
-def token_request(request):
-    if user_requested_token() and token_request_is_warranted():
-        new_token = Token.objects.create(user=request.user)
-
-
 @api_view(['POST'])
 @permission_classes((AllowAny,))
 def create_auth(request, format=None):
