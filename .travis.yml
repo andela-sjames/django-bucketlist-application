@@ -3,7 +3,7 @@ python:
 - '2.7'
 env:
   global:
-  - DJANGO_SETTINGS_MODULE='BucketlistApp.settings.base'
+  - DJANGO_SETTINGS_MODULE='BucketlistApp.settings'
 install:
 - pip install -r requirements.txt
 - pip install coveralls
