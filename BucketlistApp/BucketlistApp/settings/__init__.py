@@ -5,6 +5,7 @@ Settings package initialization.
 import os
 
 
+
 # Ensure development settings are not used in testing and production:
 if not os.getenv('CI') and not os.getenv('HEROKU'):
     # load and set environment variables from '.env.yml' or '.env.py' files with django_envie
@@ -15,3 +16,6 @@ if not os.getenv('CI') and not os.getenv('HEROKU'):
 
 if os.getenv('HEROKU') is not None:
     from production import *
+
+if os.getenv('TRAVIS') is not None:
+    from base import *
