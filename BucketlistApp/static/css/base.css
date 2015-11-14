@@ -81,6 +81,11 @@ body {
   top: -100px;
   left: 20px;
 }
+.xmov {
+  position: relative;
+  top: 0px;
+  left: -150px;
+}
 
 #background{
   background: rgb(200, 54, 54); /* This is for ie8 and below */
@@ -117,7 +122,7 @@ body {
 .page{
   margin-left: 45% ;
   position: relative ;
-  top: -130px;
+  top: -45px;
   left: 40px;
 }
 

@@ -1,5 +1,5 @@
 """
-Production specific settings for troupon project.
+Production specific settings for BucketlistApp project.
 """
 
 from .base import *
@@ -13,13 +13,6 @@ DEBUG = True
 DATABASES = {
     'default': dj_database_url.config()
 }
-
-# BOWER_COMPONENTS_ROOT = os.path.join(
-#     APPLICATION_DIR, '..', '..', 'static')
-
-# BOWER_PATH = '/app/node_modules/bower'
-
-
 
 # Enable Connection Pooling
 DATABASES['default']['ENGINE'] = 'django_postgrespool'
