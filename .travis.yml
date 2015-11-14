@@ -12,6 +12,9 @@ script: cd BucketlistApp coverage run --source bucketlistapi,bucketlist manage.p
 after_success: 
     coveralls
 deploy:
+  provider: heroku
+  buildpack:
+    - python
   api_key:
     secure: zFT8c7ANYzgvDVZpBMhZcV/Y67TN/v18BQc7kJvCFHHHh5XdtqKrdgdbKQyn58cq7AAOcFBcBZ7U9ues/Jt3h7FOBn4dzcRgwwNNOTG0lGt94BpeSiIgh+dQrXyOLW1QSkASKNztcydN/xzHyjFaPd6caeMiKCMz0MS/wTpjKNxhHbqn8UGCN+oXyItXrE9G/VP9EPqLb5Hk75zGQMsU62wKk0zGi3/jf9dutkT0J10aHAPPTitQbBFZ4ogb+j6dpN+ewlF+lY35n5qPrn4VqnxmUhsDaCwukXC4iiKnSZ6tJSbHc/i5OcNlI+t7O6p+hhn+3rXWO2YM2VdJaPg9pKaG+FSZdm/jihiJgdO055+R1jZGkv5CK9vf2kGVpOwkxj21pBtUZ3KYjf//ODYvoTgMR0e3X9w+9dZRgpR1p2hkFxOmLgSaHJd+lmRzER/s18Ws6i9GVWXbMnZZNozNZfG1TI/VBw+9jcCQIQEUaKqLxLN/MVQNPkV5ozdaU3DzfvCWFu9T9QlnrdGom4LGQHbvob/RDdX2bK5iPy09zhunUI7hdXHS8IlcN+SjMDhk22Wr7JP4Y4Uc57T2XQ75Owe9zxCFQddcpxsxtD7KP9f5IM8LCcjHeok2OOyRIRLdGpw6sw50p1j96SsH7lkvOA+/WY+K6Rxg0CpTrLWACBA=
 
