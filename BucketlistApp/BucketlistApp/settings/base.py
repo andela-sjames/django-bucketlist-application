@@ -154,17 +154,8 @@ def show_toolbar(request):
 
 DEBUG_TOOLBAR_CONFIG = {
 'SHOW_TOOLBAR_CALLBACK':'BucketlistApp.settings.show_toolbar',
-    #rest of config
+
 }
-#INTERNAL_IPS = ('127.0.0.1', '192.168.0.1',)
 
 LOGIN_REDIRECT_URL='/api/bucketlists/'
 
-# TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
-
-# NOSE_ARGS = [
-#     '--with-coverage',
-#     '--cover-package=bucketlist,bucketlistapi',
-# ]
-
-#coverage run --source bucketlistapi,bucketlist manage.py test

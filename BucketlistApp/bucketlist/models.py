@@ -30,7 +30,4 @@ class BucketlistItems(models.Model):
         ordering = ('-date_created',)
         
 
-#Query becomes:Bucketlist.objects.filter(items__name="important")
-#
-
 

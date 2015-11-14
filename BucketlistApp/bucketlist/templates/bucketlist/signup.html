@@ -4,6 +4,7 @@
 
 {% block main %}
 
+<div id="itemsbackground">
 {% if messages %}
     <div class="alert alert-warning alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -12,6 +13,7 @@
         {% endfor %}
     </div>
 {% endif %}
+</div>
 
 <div class="login-wrap">
     <div class="login-html">

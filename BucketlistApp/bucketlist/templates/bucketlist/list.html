@@ -3,27 +3,32 @@
 {% load static %}
 
 {% block main %}
-
+<div id="itemsbackground">
 {% if messages %}
-    <div class="alert alert-success alert-dismissible fade in msg">
+    <div class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         {% for message in messages %}
             {{ message }}
         {% endfor %}
     </div>
 {% endif %}
-    
-{% include "bucketlist/create_modal.html" %}
-<div class="pos">
-<button type="button" class="btn btn-success top" data-toggle="modal" data-target="#create-modal" href="#create-modal">
-  create
-</button>
+</div>
+<center> 
+<div class="row clearfix">
+
 {% if bucketlists %}
-<center>
+
+<div class="col-sm-1">
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-modal" href="#create-modal">
+      create
+    </button>
+</div>
+
+<div class="col-md-10">
 {% for bucketlist in bucketlists %}
    
-    
         <div class="card animated fadeInRight" >
+        <center>
         <h4>{{ bucketlist.name }}</h4>
         <section class="card-inner">
             <div class="action-buttons">
@@ -34,21 +39,32 @@
                 <a href="/bucketlist/view/{{ bucketlist.id }}/items"><span class="glyphicon glyphicon-eye-open xt" aria-hidden="true"></span></a>
             </div>
         </section>
+        </center>
         </div>
 
 {% endfor %}
-</center>
     <div>
         {% include "bucketlist/additem_modal.html" %}
         {% include "bucketlist/editbucketlist_modal.html" %}
         {% include "bucketlist/create_modal.html" %} 
     </div>
 {% else %}
+    <div class="row">
+        <div class="xmov">
+            <button type="button" class="btn btn-success top" data-toggle="modal"   data-target="#create-modal" href="#create-modal">
+                create
+            </button>
+        </div>
+        <p class="col-md-4">None to show!</p>
 
-<p>None to show!</p>
+    </div>
+
+    {% include "bucketlist/create_modal.html" %}
 
 {% endif %}
 </div>
+</div>
+</center>
 
 <nav class="page xt">
   <div class="pagination">

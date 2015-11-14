@@ -1,13 +1,25 @@
 language: python
 python:
-  - "2.7"
-# command to install dependencies
+- '2.7'
+env:
+  global:
+  - DJANGO_SETTINGS_MODULE='BucketlistApp.settings.base'
 install:
-  - pip install -r requirements.txt
-# command to run tests
-script:
-  cd BucketlistApp 
-  coverage run --source bucketlistapi,bucketlist manage.py test
+- pip install -r requirements.txt
+- pip install coveralls
+script: cd BucketlistApp coverage run --source bucketlistapi,bucketlist manage.py
+  test
+after_success: 
+    coveralls
+deploy:
+  api_key:
+    secure: zFT8c7ANYzgvDVZpBMhZcV/Y67TN/v18BQc7kJvCFHHHh5XdtqKrdgdbKQyn58cq7AAOcFBcBZ7U9ues/Jt3h7FOBn4dzcRgwwNNOTG0lGt94BpeSiIgh+dQrXyOLW1QSkASKNztcydN/xzHyjFaPd6caeMiKCMz0MS/wTpjKNxhHbqn8UGCN+oXyItXrE9G/VP9EPqLb5Hk75zGQMsU62wKk0zGi3/jf9dutkT0J10aHAPPTitQbBFZ4ogb+j6dpN+ewlF+lY35n5qPrn4VqnxmUhsDaCwukXC4iiKnSZ6tJSbHc/i5OcNlI+t7O6p+hhn+3rXWO2YM2VdJaPg9pKaG+FSZdm/jihiJgdO055+R1jZGkv5CK9vf2kGVpOwkxj21pBtUZ3KYjf//ODYvoTgMR0e3X9w+9dZRgpR1p2hkFxOmLgSaHJd+lmRzER/s18Ws6i9GVWXbMnZZNozNZfG1TI/VBw+9jcCQIQEUaKqLxLN/MVQNPkV5ozdaU3DzfvCWFu9T9QlnrdGom4LGQHbvob/RDdX2bK5iPy09zhunUI7hdXHS8IlcN+SjMDhk22Wr7JP4Y4Uc57T2XQ75Owe9zxCFQddcpxsxtD7KP9f5IM8LCcjHeok2OOyRIRLdGpw6sw50p1j96SsH7lkvOA+/WY+K6Rxg0CpTrLWACBA=
 
-after_success:
-    coveralls 
+  app:
+    master: moments-buckelist
+  run:
+    - "export DJANGO_SETTINGS_MODULE=BucketlistApp.settings.production"
+    - "python BucketlistApp/manage.py collectstatic --noinput"
+    - "python BucketlistApp/manage.py makemigrations"
+    - "python BucketlistApp/manage.py migrate"
+    - "gunicorn BucketlistApp.wsgi --pythonpath=BucketlistApp --log-file -"
