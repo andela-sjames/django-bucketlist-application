@@ -43,28 +43,25 @@
 
         <div class="header">
             <nav class="navbar navbar-inverse navbar-fixed-top">
-              <ul class="nav nav-pills">
+            <img src="{% static "img/logo.png" width = "auto" height = "" %}"/>
+              <ul class="nav nav-pills pull-right">
                 {% if request.user.is_authenticated %}
                 <li role="presentation"><a href="/bucketlist/{{ request.user.username }}/{{ request.user.id }}">My List</a></li>
                 <li role="presentation"><a href="{% url 'signout' %}">Sign Out</a></li>
-                <div class="pull-right">     
-                        <div class="form-group">
-                        <form method="GET" action="/bucketlist/search/{{ request.user.id }}">
-                        <input type="text" placeholder="Search" id="search" name="q">
-                        <button class="btn btn-success" type="submit"><span class=" glyphicon glyphicon-search"></span></button>
-                        </form>
-                        </div>
-                        </div>
+                <div class="col-sm-1">     
+                        <button type="button" class="btn-group btn btn-primary btn-group-xs" data-toggle="modal" data-target="#search-modal" href="#search-modal">
+                          Search
+                        </button>
                 </div>
                 {% else %}
-                    {# Logo should be placed here #}           
+                 <!--   <img src="{% static "img/blogo.png" width = "auto" height = "" %}"/>     -->
                {% endif %}          
               </ul>
              </nav>
           </div>
       </div>
       <br>
-
+        {% include "bucketlist/search_modal.html" %}
     <main>
 
     {% block main %} 
