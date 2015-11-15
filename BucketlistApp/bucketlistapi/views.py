@@ -11,6 +11,11 @@ from django.contrib.auth.models import User
 from django.http import Http404
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
+from .setpage import LimitOffsetpage
+
+
+from rest_framework import filters
+from rest_framework.generics import GenericAPIView, ListAPIView
 # Create your views here.
 
 @api_view(['POST'])
@@ -28,20 +33,30 @@ def create_auth(request, format=None):
     return Response(serialized._errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class BucketList(APIView):
+class BucketList(ListAPIView):
+    #import pdb; pdb.set_trace()
     """
     List all bucketlist, or create a new bucketlist.
     """
-    def get(self, request, format=None):
-        userid=request.user.id
-        bucketlists = Bucketlist.objects.filter(user=userid)
-        serializer = BucketlistSerializer(bucketlists, many=True)
-        if not serializer.data:
-            content={
-            'response':'No bucketlist to display'
-            }
-            return Response(content)
-        return Response(serializer.data)
+    model = Bucketlist
+    serializer_class = BucketlistSerializer
+    pagination_class = LimitOffsetpage
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('name')
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the bucketlist
+        for the currently authenticated user.
+        """
+        
+        quser=self.request.user.id
+        queryset = Bucketlist.objects.filter(user=quser)
+        q = self.request.query_params.get('q', None)
+        if q is not None:
+            queryset = queryset.filter(name__icontains=q)
+
+        return queryset
 
     def post(self, request, format=None):
 
@@ -60,10 +75,14 @@ class BucketList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class BucketListDetail(APIView):
+class BucketListDetail(ListAPIView):
     """
     Retrieve, update or delete a Bucketlist instance.
     """
+    model = Bucketlist
+    serializer_class = BucketlistSerializer
+    pagination_class = LimitOffsetpage
+
     def get_object(self, pk):
         try:
             return Bucketlist.objects.get(pk=pk)
@@ -99,9 +118,12 @@ class BucketListDetail(APIView):
         bucketlist.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class AddBucketItem(APIView):
+class AddBucketItem(GenericAPIView):
 
     ''' Create a new bucketlist Item.'''
+
+    serializer_class = BucketlistItemsSerializer
+    pagination_class = LimitOffsetpage
 
     def check_bucketlistexist(self, id):
         try:
@@ -126,10 +148,13 @@ class AddBucketItem(APIView):
 
 
 
-class ItemListDetail(APIView):
+class ItemListDetail(GenericAPIView):
 
     ''' Delete and Update bucketlist items by id.'''
-    
+
+    serializer_class = BucketlistItemsSerializer
+    pagination_class = LimitOffsetpage
+
     def check_bucketlistexist(self, id):
         try:
             return Bucketlist.objects.get(id=id)
@@ -165,9 +190,5 @@ class ItemListDetail(APIView):
         item=self.check_itemexist(item_id=item_id)
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-        
-    
 
 

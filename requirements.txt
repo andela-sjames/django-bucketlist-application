@@ -9,7 +9,7 @@ django-nose==1.4.2
 django-postgrespool==0.3.0
 django-rest-swagger==0.3.4
 django-toolbelt==0.0.1
-djangorestframework==3.3.0
+djangorestframework==3.2.5
 docopt==0.6.2
 gunicorn==19.1.1
 httpie==0.9.2
