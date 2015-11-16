@@ -76,7 +76,8 @@ installed on your local machine. [Python](https://www.python.org/downloads/), [G
 9. Be certain you are in the BucketlistApp dir and run ``` python manage.py runserver```.
 
 
-__.env.yml format:__
+__.env.yml format:__  
+
 ``` SECRET_KEY:  
       'some-random-crazy-value'
     DB_USER:
