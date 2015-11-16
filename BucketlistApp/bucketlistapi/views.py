@@ -17,26 +17,14 @@ from .setpage import LimitOffsetpage
 
 
 from rest_framework import filters
-from rest_framework.generics import GenericAPIView, ListAPIView
+from rest_framework.generics import GenericAPIView, ListAPIView, CreateAPIView
 # Create your views here.
 
-@api_view(['POST'])
-@permission_classes((AllowAny,))
-def create_auth(request, format=None):
+class UserRegistration(CreateAPIView):
 
-    ''' Endpoint for User Registration.''' 
+    '''Endpoint for User REgistration.'''
 
-    serialized = UserSerializer(data=request.data)
-    if serialized.is_valid():
-        serialized.save()
-        content = {
-        'status': 'User successfully created, login to continue',
-        'username':serialized.data['username'],
-        'email': serialized.data['email']
-            }
-        return Response(content, status=status.HTTP_201_CREATED)
-    return Response(serialized._errors, status=status.HTTP_400_BAD_REQUEST)
-
+    serializer_class=UserSerializer
 
 class BucketList(ListAPIView):
 
