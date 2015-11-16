@@ -1,3 +1,5 @@
+''' API view used for response and request. '''
+
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
@@ -21,6 +23,9 @@ from rest_framework.generics import GenericAPIView, ListAPIView
 @api_view(['POST'])
 @permission_classes((AllowAny,))
 def create_auth(request, format=None):
+
+    ''' Endpoint for User Registration.''' 
+
     serialized = UserSerializer(data=request.data)
     if serialized.is_valid():
         serialized.save()
@@ -34,7 +39,7 @@ def create_auth(request, format=None):
 
 
 class BucketList(ListAPIView):
-    #import pdb; pdb.set_trace()
+
     """
     List all bucketlist, or create a new bucketlist.
     """
@@ -75,7 +80,7 @@ class BucketList(ListAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class BucketListDetail(ListAPIView):
+class BucketListDetail(GenericAPIView):
     """
     Retrieve, update or delete a Bucketlist instance.
     """
@@ -178,7 +183,6 @@ class ItemListDetail(GenericAPIView):
         input_value.update(keyid)
 
         itemserializer = BucketlistItemsSerializer(item, data=input_value)
-        #bucketserializer=BucketlistSerializer(bucketlist)
         if itemserializer.is_valid():
             itemserializer.save()
             return Response(itemserializer.data, status=status.HTTP_201_CREATED)

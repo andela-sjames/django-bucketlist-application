@@ -3,12 +3,11 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from datetime import datetime
 
-
-#from pygments import highlight
-
 # Create your models here.
 
 class Bucketlist((models.Model)):
+
+    '''Bucketlist Models defined here.'''
 
     name=models.CharField(max_length=100, blank=True)
     date_created=models.DateTimeField(auto_now_add = True)
@@ -18,8 +17,9 @@ class Bucketlist((models.Model)):
     class Meta:
         ordering = ('-date_created',)
         
-
 class BucketlistItems(models.Model):
+
+    '''BucketlistItems Models defined here.'''
 
     name=models.CharField(max_length=500, blank=True)
     date_created=models.DateTimeField(auto_now_add = True)
@@ -29,5 +29,3 @@ class BucketlistItems(models.Model):
     class Meta:
         ordering = ('-date_created',)
         
-
-

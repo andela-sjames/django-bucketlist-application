@@ -1,8 +1,12 @@
+''' Script Used to convert python objects to json objects.'''
+
 from rest_framework import serializers
 from bucketlist.models import BucketlistItems, Bucketlist
 from django.contrib.auth.models import User
 
 class BucketlistItemsSerializer(serializers.ModelSerializer):
+
+    '''Bucketlistitem Model serializer class.'''
 
     class Meta:
         model=BucketlistItems
@@ -10,6 +14,8 @@ class BucketlistItemsSerializer(serializers.ModelSerializer):
 
 
 class BucketlistSerializer(serializers.ModelSerializer):
+
+    '''Bucketlist Model serializer class.'''
 
     items= BucketlistItemsSerializer(many=True, read_only=True)
 
@@ -20,6 +26,8 @@ class BucketlistSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
 
+    '''User Model serializer class.'''
+
     class Meta:
         model = User
         fields= ('username','email','password')
@@ -27,6 +35,8 @@ class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
 
     def create(self, validated_data):
+
+        ''' Method override to create a user via registration.'''
 
         user = User.objects.create(
             username=validated_data['username'],

@@ -1,3 +1,5 @@
+'''Script used for paginating views.'''
+
 from rest_framework.pagination import LimitOffsetPagination
 
 class LimitOffsetpage(LimitOffsetPagination):
