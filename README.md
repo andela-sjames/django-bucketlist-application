@@ -78,6 +78,7 @@ DB_USER:
     'Your Db username'
 DB_PASSWORD:
     'Your Db pssword'```  
+
 8. Set your Database name to : ```BucketlistApp``` on your pgAdmin
 9. Be certain you are in the BucketlistApp dir and run ``` python manage.py runserver```.
 
