@@ -71,19 +71,22 @@ installed on your local machine. [Python](https://www.python.org/downloads/), [G
 4. Get a virtual environment up using ``` virtualenv my_environment```  
 5. Install all requirements needed for project to run ``` pip install -r requirements.txt```  
 6. Change directory to project ``` cd BuckelistApp```  
-7. Be sure to have a postgress database setup by creating a ```.env.yml``` file and adding it to your ``` root``` file, have the following ```config``` in the ```.env.yml``` file  
-```SECRET_KEY:  
-  'some-random-crazy-value'
-DB_USER:
-    'Your Db username'
-DB_PASSWORD:
-    'Your Db pssword'```  
-
+7. Be sure to have a postgress database setup by creating a ```.env.yml``` file and adding it to your ``` root``` file, have the following ```config``` in the ```.env.yml``` file.  
 8. Set your Database name to : ```BucketlistApp``` on your pgAdmin
 9. Be certain you are in the BucketlistApp dir and run ``` python manage.py runserver```.
 
 
-#####Have Fun!
+__.env.yml format:__
+``` SECRET_KEY:  
+      'some-random-crazy-value'
+    DB_USER:
+      'Your Db username'
+    DB_PASSWORD:
+      'Your Db pssword' ```   
+    
+
+
+Have Fun!
 
 
 
