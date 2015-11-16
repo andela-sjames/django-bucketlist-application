@@ -78,7 +78,8 @@ installed on your local machine. [Python](https://www.python.org/downloads/), [G
 
 __.env.yml format:__  
 
-``` SECRET_KEY:  
+ ```
+    SECRET_KEY:  
       'some-random-crazy-value'
     DB_USER:
       'Your Db username'
