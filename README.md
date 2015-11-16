@@ -83,7 +83,8 @@ __.env.yml format:__
     DB_USER:
       'Your Db username'
     DB_PASSWORD:
-      'Your Db pssword' ```   
+      'Your Db pssword'
+```   
     
 
 
