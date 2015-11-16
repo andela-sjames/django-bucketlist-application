@@ -115,7 +115,10 @@ REST_FRAMEWORK = {
     'MAX_PAGINATE_BY': 100             # Maximum limit allowed when using `?page_size=xxx`.
 }
 
-#APPEND_SLASH = True
+SWAGGER_SETTINGS = {
+    "title": "moments-bucketlist API ",
+  "description": " A web API for creating Buckelist, i.e list of stuffs you want to do before you die.",
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/

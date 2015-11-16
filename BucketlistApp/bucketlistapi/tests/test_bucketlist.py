@@ -1,3 +1,5 @@
+'''Script used to test bucketlist response and request. '''
+
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient
 from django.core.urlresolvers import reverse_lazy
@@ -7,6 +9,8 @@ from django.contrib.auth.models import User
 
 
 class ApiHeaderAuthorization(APITestCase):
+
+    '''Base class used to Attach header to all request on setup.'''
 
     fixtures = ['initial_fix']
 

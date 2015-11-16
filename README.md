@@ -22,7 +22,20 @@ __example__:``` GET /api/bucketlists/?limit=5&offset=3```
 You can also decide to combine your search and pagination or not!  
 __example__: ``` GET /api/bucketlists/?q=andela&page=2&limit=5&offset=1```  
 
-Have it your way!  
+To register send to the endpoint below your  
+```{'username':'myusername','email':'myemail', 'password':'mypassword'}```  
+as a json data in the body of your request.  
+__example__: ```  POST /api/user/register/```
+
+To login send to the end point below your request.  
+```{'username':'myusername', 'password':'mypassword'}```   
+__example__: ``` POST /api/auth/login/```  
+Get a Token and you make calls to the protected endpoints..   
+
+__Note__: For clients to authenticate, the token key should be included in the ```Authorization``` HTTP header. The key should be prefixed by the string literal "Token", with whitespace separating the two strings.  
+__For example__:```Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b ```  
+
+Enjoy!  
   
 For other methods available and how to use them please view
 our api documentation  
@@ -47,4 +60,29 @@ Built using Django and Django Rest framework, frameworks of Python programmimg L
 * User can Update or delete existing buckelist items.    
 * User can search for bucketlist.  
 * User can mark a bucketlist item as done if he/she has done it.  
+
+##Build Locally  
+To build this project you will need to have git and python on your  
+installed on your local machine. [Python](https://www.python.org/downloads/), [Git](https://git-scm.com/downloads). Once insatlled  
+
+1. Make a directory for the project. ``` mkdir project```  
+2. Change directory to project ``` cd project``` and 
+3. Clone this repository using ``` git clone [repo_url]```   
+4. Get a virtual environment up using ``` virtualenv my_environment```  
+5. Install all requirements needed for project to run ``` pip install -r requirements.txt```  
+6. Change directory to project ``` cd BuckelistApp```  
+7. Be sure to have a postgress database setup by creating a ```.env.yml``` file and adding it to your ``` root``` file, have the following ```config``` in the ```.env.yml``` file  
+```SECRET_KEY:  
+  'some-random-crazy-value'
+DB_USER:
+    'Your Db username'
+DB_PASSWORD:
+    'Your Db pssword'```  
+8. Set your Database name to : ```BucketlistApp``` on your pgAdmin
+9. Be certain you are in the BucketlistApp dir and run ``` python manage.py runserver```.
+
+
+#####Have Fun!
+
+
 

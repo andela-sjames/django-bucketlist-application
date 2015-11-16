@@ -36,6 +36,8 @@ class LoginRequiredMixin(object):
 
 class SignUpView(View):
 
+    '''View defined for user signup.'''
+
     template_name = 'bucketlist/signup.html'
 
     def get(self, request, *args, **kwargs):
@@ -48,21 +50,24 @@ class SignUpView(View):
         usersignupform = UserSignupForm(request.POST)
         #get the user email address
         email = request.POST.get('email')
-        signup_new_user = User.objects.filter(email__exact=email)
+        new_user_signup = User.objects.filter(email__exact=email)
 
-        if signup_new_user:
+        #run if user already exist
+        if new_user_signup:
             args = {}
             args.update(csrf(request))
             mssg = "Email already taken please signup with another email"
             messages.add_message(request, messages.INFO, mssg)
             return render(request, self.template_name, args)
 
+        #run if user doesn't exist
         if usersignupform.is_valid():                      
             usersignupform.save()
             confirmation_msg="You have sucessfully registered, please sign in."
             messages.add_message(request, messages.INFO, confirmation_msg)
             return HttpResponseRedirect(reverse_lazy('signup'))
 
+        #run if the first two conditions are not met.
         else:
             login = "Seems like you didn't input a strong password."
             args = {}
@@ -73,12 +78,16 @@ class SignUpView(View):
 
 class SignOutView(View, LoginRequiredMixin):
 
+    '''Logout User from session.'''
+
     def get(self, request, *args, **kwargs):
         logout(request)
         return HttpResponseRedirect(
             reverse_lazy('signup'))    
 
 class SignInView(View):
+
+    '''Sign in existing user. '''
 
     def post(self, request, *args, **kwargs):
 
@@ -127,6 +136,8 @@ class SignInView(View):
 
 class BucketItemsView(View, LoginRequiredMixin):
 
+    ''' View to create a new bucketlist and associated item.'''
+
     def post(self, request, **kwargs):
 
         username = self.kwargs.get('username')
@@ -161,11 +172,11 @@ class BucketItemsView(View, LoginRequiredMixin):
 
 class BucketlistView(View, LoginRequiredMixin):
 
+    '''View to display specified bucketlist '''
     
     template_name = 'bucketlist/list.html'
 
     def get(self, request, *args, **kwargs):
-
 
         args ={}
         userid=self.kwargs.get('id')
@@ -195,6 +206,8 @@ class BucketlistView(View, LoginRequiredMixin):
 
 class ViewBucketlistdetail(TemplateView, LoginRequiredMixin):
 
+    '''View bucketlist detail even items enclosed.'''
+
     template_name='bucketlist/view.html'
 
     def get(self, request, *args, **kwargs):
@@ -222,10 +235,11 @@ class ViewBucketlistdetail(TemplateView, LoginRequiredMixin):
 
 class AddItemsView(View, LoginRequiredMixin):
 
+    '''View to  add item to a specific bucketlist '''
+
     def post(self, request, **kwargs):
 
         bucketlistid=self.kwargs.get('id')
-        
         itemname = request.POST.get('itemname','')
         done = request.POST.get('done')
         done = True if done else False
@@ -248,6 +262,8 @@ class AddItemsView(View, LoginRequiredMixin):
 
 
 class DeleteUpdateBucketlistView(View, LoginRequiredMixin):
+
+    '''View to delete and update a specified bucketlist.'''
 
     def get(self, request, **kwargs):
         bucketlistid=self.kwargs.get('id')
@@ -275,6 +291,8 @@ class DeleteUpdateBucketlistView(View, LoginRequiredMixin):
 
 
 class delUpdateItemView(View, LoginRequiredMixin):
+
+    '''View to delete and update a specified bucketlistitem.'''
 
     def get(self, request, **kwargs):
 
@@ -307,6 +325,8 @@ class delUpdateItemView(View, LoginRequiredMixin):
                 'id':bucketlistid }))
 
 class SearchListView(TemplateView, LoginRequiredMixin):
+
+    ''' View to search for bucketlists if there exists. '''
 
     template_name='bucketlist/ajax_search.html'
 

@@ -1,3 +1,5 @@
+'''API urls defined for views.''' 
+
 from django.conf.urls import url, include, patterns
 from rest_framework.urlpatterns import format_suffix_patterns
 from bucketlistapi import views

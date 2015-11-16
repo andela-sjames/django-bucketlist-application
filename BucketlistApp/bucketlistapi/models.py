@@ -1,4 +1,4 @@
-from django.db import models
+'''Script generates Token for every created user.'''
 
 from django.conf import settings
 from django.db.models.signals import post_save
