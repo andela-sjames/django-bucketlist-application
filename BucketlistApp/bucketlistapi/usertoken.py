@@ -5,6 +5,9 @@ from rest_framework.generics import GenericAPIView
 
 
 class GetAuthenticationToken(GenericAPIView):
+
+    '''Get token on login.'''
+
     throttle_classes = ()
     permission_classes = ()
     serializer_class = AuthTokenSerializer
