@@ -22,7 +22,7 @@
   <center><h3 class="xt">{{ bucketlist.name }}</h3></center>
 
   <div class="pull-right action-buttons">
-  <a href="#additemmodal" class="modal-toggle bt xt" data-toggle="modal" data-target="#additemmodal" data-bucketlist-id="{{ bucketlist.id }}"><span class="glyphicon glyphicon-plus xt" aria-hidden="true"></span></a>
+  <a href="#additemmodal" class="modal-toggle bt xt tooltipbasic" data-tooltip="Click to Add an item" data-toggle="modal" data-target="#additemmodal" data-bucketlist-id="{{ bucketlist.id }}"><span class="glyphicon glyphicon-plus xt" aria-hidden="true"></span></a>
   </div>
   
 {% endfor %}
@@ -40,8 +40,10 @@
     <li class="list-group-item">{{ item.name }}
         <div class="pull-right action-buttons">
             {% if item.done %}<span class="glyphicon glyphicon-thumbs-up xt"></span>{% else %}<span class="glyphicon glyphicon-thumbs-down xt"></span> {% endif %}
-            <a href="/bucketlist/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}"><span class="glyphicon glyphicon-trash xt" aria-hidden="true"></span></a>
-            <a href="#" class="edit"><span class="glyphicon glyphicon-edit xt" aria-hidden="true"></span></a>
+
+            <a href="/bucketlist/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}" class="tooltipbasic" data-tooltip="Click to Delete item"><span class="glyphicon glyphicon-trash xt" aria-hidden="true"></span></a>
+
+            <a href="#" class="edit tooltipbasic" data-tooltip="Click to Edit this item"><span class="glyphicon glyphicon-edit xt" aria-hidden="true"></span></a>
         </div>
     </li>
 </ul>
@@ -55,10 +57,10 @@
                  value="{{ item.name }}"> 
 
             
-                <label class="txt">Have you already accomplished this?</label>
+                <label class="txt edt">Have you already accomplished this?</label>
                 <br/>
-                <input id="done" name="done" type="checkbox" value="yes"><a class="xt"> Mark as Done </a><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                <input id="button" name="button" class="btn btn-success" type="submit" value="Edit"/>
+                <input id="done" name="done" type="checkbox" value="yes"><a class="xt edt"> Mark as Done </a><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <input id="button" name="button" class="btn btn-success edt" type="submit" value="Edit"/>
                 <p class="txt">Done: {{ item.done }}</p>
             </div>
         </fieldset>                   
@@ -73,7 +75,7 @@
 {% endif %}
 
 
-<nav class="paged xt">
+<nav class="paged xt andel">
   <div class="pagination">
     <span class="step-links">
         {% if items.has_previous %}

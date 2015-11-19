@@ -1,6 +1,9 @@
-$(function(){
-  $( "#editme" ).hide( "fast" )
+$(document).ready(function(){
 
+//$( document ).tooltip();
+  $('#tool').tooltip(); 
+
+  $( "#editme" ).hide( "fast" )
 
 $( ".bucket-item" ).find('.edit').click(function() {
   var parent = $(this).parentsUntil('.bucket-item').parent();

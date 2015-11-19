@@ -17,22 +17,13 @@ body {
   margin-right: 0% ;
 }
 
-.jumbotron {
-   background: rgb(200, 54, 54); /* This is for ie8 and below */
-   background: rgba(0, 0, 0, 0.5); 
-   width: 100% ;
-   height: 100% ;
-   background:url('../img/coola.jpeg') ;
-}
  #welcome {
   color: White ;
  }
 
- #navcolor a {
-  background-color: black;
-  background-image: none;
-  background-repeat: no-repeat;
- }
+.nav{
+  margin-top: 12px;
+}
 
  #signedin {
   color: White;
@@ -53,15 +44,6 @@ body {
    width: 100% ;
    height: 100% ;
  }
-.iwell {
-    background: rgb(200, 54, 54); /* This is for ie8 and below */
-    background: rgba(200,200, 200, 0.7); 
-    width: 70% ;
-    height: 0% ;
-    border-radius: 0% ;
-    background:url('#') ;
-    
-}
 
 .txt {
   color: white ;
@@ -158,6 +140,62 @@ center {
   user-select: none;
 }
 
+h4{
+  /* Using the custom font we've included in the HTML tab: */
+  font-family: 'Berkshire Swash', cursive;
+  font-weight:normal;
+  font-size:20px;
+  padding-top: 0px;
+}
+
+
+p {
+  /* Using the custom font we've included in the HTML tab: */
+  font-family: 'Berkshire Swash', cursive;
+  font-weight:normal;
+  font-size:20px;
+  padding-top: 0px;
+}
+
+.andel {
+  /* Using the custom font we've included in the HTML tab: */
+  font-family: 'Berkshire Swash', cursive;
+  font-weight:normal;
+  font-size:15px;
+  padding-top: 0px;
+}
+
+.srch {
+  /* Using the custom font we've included in the HTML tab: */
+  font-family: 'Berkshire Swash', cursive;
+  font-weight:normal;
+  font-size:20px;
+  padding-top: 0px;
+}
+.edt {
+  /* Using the custom font we've included in the HTML tab: */
+  font-family: Satisfy, cursive;
+  font-weight:normal;
+  font-size:20px;
+  padding-top: 0px;
+}
+
+
+h3 {
+  /* Using the custom font we've included in the HTML tab: */
+  font-family: 'Berkshire Swash', cursive;
+  font-weight:normal;
+  font-size:20px;
+  padding-top: 0px;
+}
+
+li {
+  /* Using the custom font we've included in the HTML tab: */
+  font-family: Satisfy, cursive;
+  font-weight:normal;
+  font-size:20px;
+  padding-top: 0px;
+}
 
 .card {
   background: #e0e0e0;
@@ -211,4 +249,44 @@ center {
   box-shadow: 0 2px 8px #9e9e9e;
 }
 
+/*
+================
+1. Plain Tooltip
+================
+*/
 
+a:link.tooltipbasic {
+  position:relative;
+}
+a:hover.tooltipbasic {
+  text-decoration:none; /* remove underline on tooltip */
+}
+
+a:hover.tooltipbasic:before {
+  display:block;
+  background:#eef;
+  background:-webkit-gradient(linear, 0 0, 0 100%, from(#ccf), to(#eef));
+  background:-moz-linear-gradient(#ccf, #eef);
+  background:-o-linear-gradient(#ccf, #eef);
+  background:linear-gradient(#ccf, #eef);
+  content:attr(data-tooltip);
+  position:absolute;
+  color:#000;
+  margin:0em 0 1em;
+  bottom:1.5em; /* ensure link is still visible under tooltip */
+  right:0px;
+  width:20em; /* a reasonable width to wrap the tooltip text */
+  text-align:center;
+  padding:4px;
+  border:2px solid #999;
+  -webkit-border-radius:6px;
+     -moz-border-radius:6px;
+      -ms-border-radius:6px;
+       -o-border-radius:6px;
+          border-radius:6px;
+  -webkit-box-shadow: -2px 2px 2px rgba(20, 20, 20, 0.4);
+     -moz-box-shadow: -2px 2px 2px rgba(20, 20, 20, 0.4);
+      -ms-box-shadow: -2px 2px 2px rgba(20, 20, 20, 0.4);
+       -o-box-shadow: -2px 2px 2px rgba(20, 20, 20, 0.4);
+          box-shadow: -2px 2px 2px rgba(20, 20, 20, 0.4);
+}
