@@ -1,4 +1,4 @@
-# BucketList-Application-API  [![Coverage Status](https://coveralls.io/repos/andela-sjames/BucketList-Application-API/badge.svg?branch=devdesign&service=github)](https://coveralls.io/github/andela-sjames/BucketList-Application-API?branch=devdesign)  
+# BucketList-Application-API  [![Coverage Status](https://coveralls.io/repos/andela-sjames/BucketList-Application-API/badge.svg?branch=devdesign&service=github)](https://coveralls.io/github/andela-sjames/BucketList-Application-API?branch=devdesign) [![Build Status](https://travis-ci.org/andela-sjames/BucketList-Application-API.svg?branch=master)](https://travis-ci.org/andela-sjames/BucketList-Application-API)  
 #####Demonstrating The Power Of Django and Django Rest Framework.
 
 ####__Life is but for a moment, best to take advantage of it with Moments Bucketlist.__  
