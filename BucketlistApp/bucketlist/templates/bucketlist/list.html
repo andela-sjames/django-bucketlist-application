@@ -19,7 +19,7 @@
 {% if bucketlists %}
 
 <div class="col-sm-1">
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-modal" href="#create-modal">
+    <button type="button" class="btn btn-success srch" data-toggle="modal" data-target="#create-modal" href="#create-modal">
       create
     </button>
 </div>
@@ -33,10 +33,14 @@
         <section class="card-inner">
             <div class="action-buttons">
                 <br>
-                <a href="#additemmodal" class="modal-toggle txt" data-toggle="modal" data-target="#additemmodal" data-bucketlist-id="{{ bucketlist.id }}"><span class="glyphicon glyphicon-plus xt" aria-hidden="true"></span></a>
-                <a href="#edit-modal" class="modal-toggle txt" data-toggle="modal" data-target="#editmodal" data-bucketlist-id="{{ bucketlist.id }}"><span class="glyphicon glyphicon-edit xt" aria-hidden="true"></span></a>
-                <a href="/bucketlist/{{ bucketlist.id}}"><span class="glyphicon glyphicon-trash xt" aria-hidden="true"></span></a>
-                <a href="/bucketlist/view/{{ bucketlist.id }}/items"><span class="glyphicon glyphicon-eye-open xt" aria-hidden="true"></span></a>
+                <a href="#additemmodal" class="modal-toggle txt tooltipbasic" data-toggle="modal" data-target="#additemmodal" data-bucketlist-id="{{ bucketlist.id }}" data-tooltip="Click to Add an Item to this bucketlist"><span class="glyphicon glyphicon-plus xt" aria-hidden="true"></span></a>
+
+                <a href="#edit-modal" class="modal-toggle txt tooltipbasic" data-toggle="modal" data-target="#editmodal" data-bucketlist-id="{{ bucketlist.id }}" data-tooltip="Click to Edit this bucketlist name"><span class="glyphicon glyphicon-edit xt" aria-hidden="true"></span></a>
+
+                <a href="/bucketlist/{{ bucketlist.id}}" data-tooltip="Click to Delete this bucketlist" class="tooltipbasic"><span class="glyphicon glyphicon-trash xt" aria-hidden="true"></span></a>
+
+                <a href="/bucketlist/view/{{ bucketlist.id }}/items" data-tooltip="Click to view bucketlist detail" class="tooltipbasic"><span class="glyphicon glyphicon-eye-open xt" aria-hidden="true"></span></a>
+
             </div>
         </section>
         </center>
@@ -51,7 +55,7 @@
 {% else %}
     <div class="row">
         <div class="xmov">
-            <button type="button" class="btn btn-success top" data-toggle="modal"   data-target="#create-modal" href="#create-modal">
+            <button type="button" class="btn srch btn-success top" data-toggle="modal"   data-target="#create-modal" href="#create-modal">
                 create
             </button>
         </div>
@@ -66,7 +70,7 @@
 </div>
 </center>
 
-<nav class="page xt">
+<nav class="page xt andel">
   <div class="pagination">
     <span class="step-links">
         {% if bucketlists.has_previous %}
