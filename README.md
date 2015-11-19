@@ -30,7 +30,7 @@ __example__: ```  POST /api/user/register/```
 To login send to the end point below your request.  
 ```{'username':'myusername', 'password':'mypassword'}```   
 __example__: ``` POST /api/auth/login/```  
-Get a Token and you make calls to the protected endpoints..   
+Get a Token and you can make calls to the protected endpoints..   
 
 __Note__: For clients to authenticate, the token key should be included in the ```Authorization``` HTTP header. The key should be prefixed by the string literal "Token", with whitespace separating the two strings.  
 __For example__:```Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b ```  
@@ -48,10 +48,10 @@ Built using Django and Django Rest framework, frameworks of Python programmimg L
 
 ##Application Explained.  
 
-* User Sign's up for a wonderful experience.  
-* User Sign's in after Sign up.  
-* User Creates a bucketlist and a bucketlist item.  
-* User Can choose to add an item to an existing bucketlist.  
+* User sign's up for a wonderful experience.  
+* User sign's in after Sign up.  
+* User creates a bucketlist and a bucketlist item.  
+* User can choose to add an item to an existing bucketlist.  
 * User can view existing buckelist.  
 * User can Edit existing bucketlist.  
 * User can view existing buckelist items.    
@@ -62,7 +62,7 @@ Built using Django and Django Rest framework, frameworks of Python programmimg L
 * User can mark a bucketlist item as done if he/she has done it.  
 
 ##Build Locally  
-To build this project you will need to have git and python on your  
+To build this project you will need to have git and python  
 installed on your local machine. [Python](https://www.python.org/downloads/), [Git](https://git-scm.com/downloads). Once insatlled  
 
 1. Make a directory for the project. ``` mkdir project```  
