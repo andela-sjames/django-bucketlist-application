@@ -23,5 +23,5 @@ deploy:
     - "export DJANGO_SETTINGS_MODULE=BucketlistApp.settings.production"
     - "python BucketlistApp/manage.py collectstatic --noinput"
     - "python BucketlistApp/manage.py makemigrations --noinput"
-    - "python BucketlistApp/manage.py migrate"
+    - "python BucketlistApp/manage.py migrate --noinput"
 
