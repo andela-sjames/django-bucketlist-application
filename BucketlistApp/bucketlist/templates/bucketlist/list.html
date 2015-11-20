@@ -58,22 +58,16 @@
         {% include "bucketlist/create_modal.html" %} 
     </div>
 {% else %}
-
-    <div class="row">
-        
-        <div class="col-sm-6 col-sm-offset-3">
-        <center><h2><span id="flash">My Moments Bucketlist</span></h2></center>
-        <br><br>
-        <center><p class="xt">Welcome {{ request.user.username }}! you currently have no bucketlist. Please click the create button to start your moments.</p>
-        </center>
-        </div>
-        <div class="col-sm-6 col-sm-offset-3 text-center">
-        <button type="button" class="btn srch btn-success" data-toggle="modal"   data-target="#create-modal" href="#create-modal">
-        create
-        </button>
-        </div>
-
+<div class="container" style="width:700px">
+    <div class="jumbotron">
+        <center><h1><span id="flash">My Moments Bucketlist</span></h1></center>
+           <br><br>
+           <center><p class="xt">Welcome {{ request.user.username }}! </p>
+        <p class="lead">you currently have no bucketlist. Please click the create button to start your moments.</p>
+        <p><a class="btn btn-lg btn-success" data-toggle="modal"   data-target="#create-modal" href="#create-modal" role="button">Create </a></p>
     </div>
+</div>
+
 
     {% include "bucketlist/create_modal.html" %}
 
