@@ -29,11 +29,15 @@ body {
   color: White;
  }
 
-
-
  .focus {
    width: 70% ;
    height: 70% ;
+ }
+
+ .itm {
+  position: relative;
+  left: 0px ;
+  top: 15px ;
  }
 
 .ctr {
@@ -86,6 +90,21 @@ body {
   /*background:url('#') */
   
 }
+
+.rmov {
+  left: 0px;
+}
+
+#itemsbackground2{
+  background: rgb(200, 54, 54); /* This is for ie8 and below */
+  background: rgba(200,200, 200, 0.0);
+  border-radius: 2% ;
+  width: 850px ;
+  margin-left: auto ;
+  margin-right: auto ;
+  /*background:url('#') */
+}
+
 .msg{
   top: 20px ;
 }

@@ -4,7 +4,7 @@
 {% block main %}
 
 
-<div class="#" id="itemsbackground">
+<div class="#" id="itemsbackground2">
 
 {% if messages %}
     <div class="alert alert-success alert-dismissible">
@@ -19,11 +19,11 @@
 {% if bucketlists %}
 {% for bucketlist in bucketlists %}
 
-  <center><h2 class="xt" id="flash">{{ bucketlist.name }}</h2></center>
+  <h2 class="xt" id="flash">{{ bucketlist.name }}</h2>
 
-  <div class="pull-right action-buttons">
-  <a href="#additemmodal" class="modal-toggle bt xt tooltipbasic" data-tooltip="Click to Add an item" data-toggle="modal" data-target="#additemmodal" data-bucketlist-id="{{ bucketlist.id }}"><span class="glyphicon glyphicon-plus xt" aria-hidden="true"></span></a>
-  </div>
+  <button type="button" class="btn btn-success srch itm" style="float:right" data-toggle="modal" data-target="#additemmodal" data-bucketlist-id="{{ bucketlist.id }} href="#create-modal">
+      Add Item
+    </button>
   
 {% endfor %}
 {% include "bucketlist/additem_modal.html" %}
@@ -37,9 +37,10 @@
 
 <div class="bucket-item">
 <ul class="list-group animated fadeInRight">
-    <li class="list-group-item">{{ item.name }}
+
+    <li class="list-group-item"><a href="/bucketlist/itemdone/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}">{% if item.done %}<span class="glyphicon glyphicon-check xt"></span>{% else %}<span class="glyphicon glyphicon-unchecked xt"></span> {% endif %}</a>{{ item.name }}
+
         <div class="pull-right action-buttons">
-            <a href="/bucketlist/itemdone/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}">{% if item.done %}<span class="glyphicon glyphicon-check xt"></span>{% else %}<span class="glyphicon glyphicon-unchecked xt"></span> {% endif %}</a>
 
             <a href="/bucketlist/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}" class="tooltipbasic" data-tooltip="Click to Delete item"><span class="glyphicon glyphicon-trash xt" aria-hidden="true"></span></a>
 
