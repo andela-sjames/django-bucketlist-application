@@ -4,8 +4,8 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
-from bucketlist.models import Bucketlist, BucketlistItems
-from bucketlistapi.serializers import BucketlistSerializer, UserSerializer, BucketlistItemsSerializer
+from bucketlist.models import Bucketlist, BucketlistItem
+from bucketlistapi.serializers import BucketlistSerializer, UserSerializer, BucketlistItemSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
@@ -67,12 +67,12 @@ class BucketList(ListAPIView):
 
         userid=request.user.id
         username=request.user.username
-        val=request.data
+        create_value=request.data
 
         userdetail={unicode('user'):unicode(userid),
            unicode('created_by'):unicode(username)}
-        val.update(userdetail)
-        serializer = BucketlistSerializer(data=val)
+        create_value.update(userdetail)
+        serializer = BucketlistSerializer(data=create_value)
 
         if serializer.is_valid():
             serializer.save()
@@ -104,13 +104,13 @@ class BucketListDetail(GenericAPIView):
 
         userid=request.user.id
         username=request.user.username
-        val=request.data
+        update_bucketist_value=request.data
 
         userdetail={unicode('user'):unicode(userid),
         unicode('created_by'):unicode(username)}
-        val.update(userdetail)
+        update_bucketist_value.update(userdetail)
 
-        serializer = BucketlistSerializer(bucketlist, data=val)
+        serializer = BucketlistSerializer(bucketlist, data=update_bucketist_value)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -127,7 +127,7 @@ class AddBucketItem(GenericAPIView):
 
     ''' Create a new bucketlist Item.'''
 
-    serializer_class = BucketlistItemsSerializer
+    serializer_class = BucketlistItemSerializer
     pagination_class = LimitOffsetpage
 
     def check_bucketlistexist(self, id):
@@ -144,7 +144,7 @@ class AddBucketItem(GenericAPIView):
         keyid={unicode('bucketlist'):unicode(id)}
         val.update(keyid)
 
-        itemserializer=BucketlistItemsSerializer(data=val)
+        itemserializer=BucketlistItemSerializer(data=val)
         bucketserializer=BucketlistSerializer(bucketlist)
         if itemserializer.is_valid():
             itemserializer.save()
@@ -157,7 +157,7 @@ class ItemListDetail(GenericAPIView):
 
     ''' Delete and Update bucketlist items by id.'''
 
-    serializer_class = BucketlistItemsSerializer
+    serializer_class = BucketlistItemSerializer
     pagination_class = LimitOffsetpage
 
     def check_bucketlistexist(self, id):
@@ -168,8 +168,8 @@ class ItemListDetail(GenericAPIView):
 
     def check_itemexist(self, item_id):
         try:
-            return BucketlistItems.objects.get(id=item_id)
-        except BucketlistItems.DoesNotExist:
+            return BucketlistItem.objects.get(id=item_id)
+        except BucketlistItem.DoesNotExist:
             raise Http404
 
 
@@ -178,11 +178,11 @@ class ItemListDetail(GenericAPIView):
         bucketlist=self.check_bucketlistexist(id=id)
         item=self.check_itemexist(item_id=item_id)
 
-        input_value=request.data
+        update_item_value=request.data
         keyid={unicode('bucketlist'):unicode(id)}
-        input_value.update(keyid)
+        update_item_value.update(keyid)
 
-        itemserializer = BucketlistItemsSerializer(item, data=input_value)
+        itemserializer = BucketlistItemSerializer(item, data=update_item_value)
         if itemserializer.is_valid():
             itemserializer.save()
             return Response(itemserializer.data, status=status.HTTP_201_CREATED)

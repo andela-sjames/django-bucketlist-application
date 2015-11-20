@@ -17,8 +17,7 @@
     <link href="{% static 'css/signup.css' %}" rel="stylesheet" type="text/css" media="screen" />
     <link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css" media="screen" />
     <link href="{% static 'css/animate.min.css' %}" rel="stylesheet" type="text/css" media="screen" />
-    <link href="http://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel='stylesheet' type='text/css'>
 
     <script src="{% static "js/jquery.js" %}"></script>
     <!--<script src="{% static "js/jquery-ui.min.js" %}"></script>-->
@@ -49,7 +48,7 @@
             <img src="{% static "img/logo.png" width = "auto" height = "" %}"/>
               <ul class="nav nav-pills pull-right txt">
                 {% if request.user.is_authenticated %}
-                <li role="presentation"><a href="/bucketlist/{{ request.user.username }}/{{ request.user.id }}">My List</a></li>
+                <li role="presentation"><a href="/bucketlist/{{ request.user.username }}">My List</a></li>
                 <li role="presentation"><a href="{% url 'signout' %}">Sign Out</a></li>
                 <div class="col-sm-1">     
                         <button type="button" class="btn-group srch btn btn-primary btn-group-xs" data-toggle="modal" data-target="#search-modal" href="#search-modal">
@@ -82,7 +81,7 @@
                   <p class="navbar-text pull-left">© 2015 - Site Built by Samuel James #TIA
                   </p>
                   
-                  <a href="#" class="navbar-btn btn-primary btn pull-right andel">
+                  <a href="http://www.andela.com/" class="navbar-btn btn-primary btn pull-right andel">
                   <span class="glyphicon glyphicon-star"></span> ANDELA</a>
                 </div>
                 

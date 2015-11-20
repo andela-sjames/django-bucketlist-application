@@ -1,4 +1,33 @@
+var deleteBuckelist = {
+   config: {
+       button: ".delete",
+   },
+   init: function(config) {
+       if (config && typeof config == 'object') $.extend(deleteBuckelist.config, config);
+       $("body").on('click', deleteBuckelist.config.button, function(e) {
+           e.preventDefault();
+           if (!confirm("Are you sure you want to delete this bucketlist")) return;
+           deleteBuckelist.sendAction($(this));
+       })
+   },
+   sendAction: function(_this) {
+       $.ajax({
+           url: _this.closest("a").attr("href"),
+           type: "GET",
+           success: function(data){
+            location.reload();
+           },
+           error: function(res) {
+               console.log(res.responseText);
+           }
+       });
+   }
+};
+
 $(document).ready(function(){
+    deleteBuckelist.init({
+        button: '.glyphicon-trash'
+    })
 
 //$( document ).tooltip();
   $('#tool').tooltip(); 
