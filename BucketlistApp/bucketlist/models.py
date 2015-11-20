@@ -17,14 +17,14 @@ class Bucketlist((models.Model)):
     class Meta:
         ordering = ('-date_created',)
         
-class BucketlistItems(models.Model):
+class BucketlistItem(models.Model):
 
-    '''BucketlistItems Models defined here.'''
+    '''BucketlistItem Models defined here.'''
 
     name=models.CharField(max_length=500, blank=True)
     date_created=models.DateTimeField(auto_now_add = True)
     date_modified=models.DateTimeField(auto_now = True)
-    done = models.BooleanField(default = False)
+    done = models.BooleanField()
     bucketlist=models.ForeignKey(Bucketlist, related_name="items")
     class Meta:
         ordering = ('-date_created',)

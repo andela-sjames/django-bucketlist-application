@@ -10,7 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.validators import validate_email, ValidationError
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
-from bucketlist.models import Bucketlist, BucketlistItems
+from bucketlist.models import Bucketlist, BucketlistItem
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.views.generic.list import ListView
 from django.contrib.auth.decorators import login_required
@@ -34,16 +34,11 @@ class LoginRequiredMixin(object):
             request, *args, **kwargs)
 
 
-class SignUpView(View):
+class SignUpView(TemplateView):
 
     '''View defined for user signup.'''
 
     template_name = 'bucketlist/signup.html'
-
-    def get(self, request, *args, **kwargs):
-        args ={}
-        args.update(csrf(request))
-        return render(request, self.template_name, args)
 
     def post(self,request, *args, **kwargs):
 
@@ -69,10 +64,8 @@ class SignUpView(View):
 
         #run if the first two conditions are not met.
         else:
-            login = "Seems like you didn't input a strong password."
             args = {}
             args.update(csrf(request))
-            messages.add_message(request, messages.INFO,login )
             return render(request, self.template_name, args)
 
 
@@ -97,20 +90,14 @@ class SignInView(View):
 
         if self.request.user.is_authenticated():
             username=request.user.username
-            userid=request.user.id
             return HttpResponseRedirect(reverse_lazy('mylist', kwargs={
                 'username': username,
-                'id':userid
                 }))
 
         else:
             try:
-                validate_email(email)
-            except ValidationError:
-                pass
-            try:
-                theuser = User.objects.get(email=email)
-                user = authenticate(username=theuser.username, password=password)
+                singin_user = User.objects.get(email=email)
+                user = authenticate(username=singin_user.username, password=password)
 
                 if user is None:
                     new_user_msg = "Invalid password, please confirm your password."
@@ -120,11 +107,9 @@ class SignInView(View):
                 if user is not None and user.is_active:
 
                     username=user.username
-                    userid=user.id
                     login(self.request, user)
                 return HttpResponseRedirect(reverse_lazy('mylist', kwargs={
                 'username': username,
-                'id':userid
                 }))
 
             except ObjectDoesNotExist:
@@ -134,40 +119,28 @@ class SignInView(View):
 
 
 
-class BucketItemsView(View, LoginRequiredMixin):
+class CreateBucketlistView(View, LoginRequiredMixin):
 
-    ''' View to create a new bucketlist and associated item.'''
+    ''' View to create a new bucketlist.'''
 
     def post(self, request, **kwargs):
 
-        username = self.kwargs.get('username')
-        userid=self.kwargs.get('id')
-
         name = request.POST.get('name','')
 
-        itemname = request.POST.get('itemname','')
-        done = request.POST.get('done')
-        done = True if done else False
-
-        if name and itemname:
-            bucketlist=Bucketlist(name=name, created_by=username, user_id=userid)
+        if name:
+            bucketlist=Bucketlist(name=name, created_by=request.user.username, user_id=request.user.id)
             bucketlist.save()
-            items=BucketlistItems(name=itemname, done=done, bucketlist_id=bucketlist.id)
-            items.save()
-
             msg = "Action succesfully performed."
             messages.add_message(request, messages.SUCCESS, msg)
             return HttpResponseRedirect(reverse_lazy('mylist', kwargs={
-                'username': username,
-                'id':userid
+                'username': request.user.username,
                 }))
 
         else:
             msg = "It seems like you didn't add an item."
             messages.add_message(request, messages.INFO, msg)
             return HttpResponseRedirect(reverse_lazy('mylist', kwargs={
-                'username': username,
-                'id':userid
+                'username': request.user.username,
                 }))
 
 class BucketlistView(View, LoginRequiredMixin):
@@ -179,10 +152,9 @@ class BucketlistView(View, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
 
         args ={}
-        userid=self.kwargs.get('id')
-        username=self.kwargs.get('username')
-        name=self.request.user.username
-        if username == name:
+        userid=self.request.user.id
+        username=self.request.user.username
+        if username:
 
             user_bucketlists= Bucketlist.objects.filter(user=userid).order_by('-date_created')
             paginator = Paginator(user_bucketlists, 10, 2)
@@ -214,7 +186,7 @@ class ViewBucketlistdetail(TemplateView, LoginRequiredMixin):
         args ={}
         bucketlistid=self.kwargs.get('id')
         
-        myitems_list = BucketlistItems.objects.filter(bucketlist_id=bucketlistid)
+        myitems_list = BucketlistItem.objects.filter(bucketlist_id=bucketlistid)
         paginator = Paginator(myitems_list, 8, 2)
 
         try:
@@ -245,7 +217,7 @@ class AddItemsView(View, LoginRequiredMixin):
         done = True if done else False
 
         if itemname:
-            items=BucketlistItems(name=itemname, done=done, bucketlist_id=bucketlistid)
+            items=BucketlistItem(name=itemname, done=done, bucketlist_id=bucketlistid)
             items.save()
 
             msg = "Item succesfully added."
@@ -267,13 +239,14 @@ class DeleteUpdateBucketlistView(View, LoginRequiredMixin):
 
     def get(self, request, **kwargs):
         bucketlistid=self.kwargs.get('id')
+        import pdb; pdb.set_trace()
         bucketlist=Bucketlist.objects.get(id=bucketlistid)
         bucketlist.delete()
 
         msg = "bucketlist succesfully deleted"
         messages.add_message(request, messages.SUCCESS, msg)
-        return HttpResponseRedirect(reverse_lazy('view', kwargs={
-                'id':bucketlistid }))
+        return HttpResponseRedirect(reverse_lazy('mylist', kwargs={
+                'username': request.user.username,}))
 
     def post(self, request, **kwargs):
 
@@ -290,7 +263,7 @@ class DeleteUpdateBucketlistView(View, LoginRequiredMixin):
 
 
 
-class delUpdateItemView(View, LoginRequiredMixin):
+class DelUpdateItemView(View, LoginRequiredMixin):
 
     '''View to delete and update a specified bucketlistitem.'''
 
@@ -298,7 +271,7 @@ class delUpdateItemView(View, LoginRequiredMixin):
 
         bucketlistid=self.kwargs.get('id')
         itemid = self.kwargs.get('item_id')
-        item=BucketlistItems.objects.get(id=itemid)
+        item=BucketlistItem.objects.get(id=itemid)
         item.delete()
 
         msg = "Item sucessfully deleted."
@@ -314,7 +287,7 @@ class delUpdateItemView(View, LoginRequiredMixin):
         done = request.POST.get('done')
         done = True if done else False
 
-        item=BucketlistItems.objects.get(id=itemid)
+        item=BucketlistItem.objects.get(id=itemid)
         item.name=itemname
         item.done=done
         item.save()
@@ -323,6 +296,7 @@ class delUpdateItemView(View, LoginRequiredMixin):
         messages.add_message(request, messages.SUCCESS, msg)
         return HttpResponseRedirect(reverse_lazy('view', kwargs={
                 'id':bucketlistid }))
+
 
 class SearchListView(TemplateView, LoginRequiredMixin):
 
@@ -348,5 +322,25 @@ class SearchListView(TemplateView, LoginRequiredMixin):
             search_result = paginator.page(paginator.num_pages)
 
         return render(request, self.template_name, {'search':search_result})
+
+class ItemDone(View):
+
+    def get(self, request, *args, **kwargs):
+
+        bucketlistid=self.kwargs.get('id')
+        itemid = self.kwargs.get('item_id')
+        item=BucketlistItem.objects.get(id=itemid)
+        if item.done == True:
+            item.done = False
+            item.save()
+        else:
+            item.done = True
+            item.save()
+
+        return HttpResponseRedirect(reverse_lazy('view', kwargs={
+                'id':bucketlistid }))
+
+
+
 
 

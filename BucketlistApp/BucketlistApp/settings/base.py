@@ -125,6 +125,8 @@ SWAGGER_SETTINGS = {
   "description": " A web API for creating Buckelist, i.e list of stuffs you want to do before you die.",
 }
 
+#APPEND_SLASH = False
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
