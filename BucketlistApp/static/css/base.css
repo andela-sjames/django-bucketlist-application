@@ -258,6 +258,14 @@ a:hover.tooltipbasic:before {
   #itemsbackground{
     width:300px;
     }
+
+    #itemsbackground2{
+    width:300px;
+    }
+
+    #background {
+      width: 300px;
+    }
   }
 
 /* flash ------------------------------------------------------ */
