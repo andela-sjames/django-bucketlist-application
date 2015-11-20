@@ -16,18 +16,24 @@
 <div class="row clearfix">
 
 {% if bucketlists %}
+<div class="col-sm-8 col-md-offset-2" id="list">
+    <h4 id="flash">My Moments Bucketlist</h4>
 
-<div class="col-md-3 col-md-offset-2">
-    <button type="button" class="btn btn-success srch" data-toggle="modal" data-target="#create-modal" href="#create-modal">
+    <button type="button" class="btn btn-success srch lmove" style="float:right" data-toggle="modal" data-target="#create-modal" href="#create-modal">
       create
     </button>
 </div>
 
-<div class="col-sm-3" id="list">
-    <h4 id="flash">My Moments Bucketlist</h4>
-</div>
 
-<div class="col-sm-6 col-md-offset-3">
+<!--<div class="col-sm-3" id="list">
+    <h4 id="flash">My Moments Bucketlist</h4>
+
+    <button type="button" class="btn btn-success srch" data-toggle="modal" data-target="#create-modal" href="#create-modal">
+      create
+    </button>
+</div>-->
+
+<div class="col-sm-8 col-md-offset-2">
 {% for bucketlist in bucketlists %}
   <div class="row">
    

@@ -41,12 +41,21 @@
 </head>
 
 <body>
-    <div class="container">
+
 
         <div class="header">
             <nav class="navbar navbar-inverse navbar-fixed-top">
-            <img src="{% static "img/logo.png" width = "auto" height = "" %}"/>
-              <ul class="nav nav-pills pull-right txt">
+    <div class="row">
+      
+      <div class="col-sm-8 col-sm-offset-2">
+                   <div class="row">
+            <div class="col-sm-2">
+            <img src="{% static "img/logo.png" width = "auto" %}"/>
+              
+              </div>
+              <div class="col-sm-10">
+              <ul class="nav nav-pills  txt navbar-right">
+
                 {% if request.user.is_authenticated %}
                 <li role="presentation"><a href="/bucketlist/{{ request.user.username }}">My List</a></li>
                 <li role="presentation"><a href="{% url 'signout' %}">Sign Out</a></li>
@@ -59,9 +68,18 @@
                  
                {% endif %}          
               </ul>
-             </nav>
-          </div>
+              </div>
+
+              </div>
       </div>
+    </div>
+
+
+                            </div>
+
+              </nav>
+                            </div>
+
       <br>
         {% include "bucketlist/search_modal.html" %}
     <main>
