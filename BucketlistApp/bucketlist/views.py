@@ -239,7 +239,6 @@ class DeleteUpdateBucketlistView(View, LoginRequiredMixin):
 
     def get(self, request, **kwargs):
         bucketlistid=self.kwargs.get('id')
-        import pdb; pdb.set_trace()
         bucketlist=Bucketlist.objects.get(id=bucketlistid)
         bucketlist.delete()
 
