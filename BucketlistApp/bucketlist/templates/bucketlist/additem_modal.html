@@ -4,12 +4,12 @@
   <div class="modal-dialog">
     <div class="modal-content">
 
-    <div class="modal-header">
+    <div class="modal-header andel">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myitemLabel">Add Item</h4>
     </div>
 
-    <div class="modal-body andel">
+    
 
         <form method="POST" action="/bucketlist/{{ bucketlist.id}}/items/">
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
@@ -20,15 +20,10 @@
         <input id="done" name="done" type="checkbox" value="yes"/> Mark as Done <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
     
         <input id="button" name="button" class="btn btn-success" type="submit" value="Add Items" />
-
-        </form>
-    </div>
-
     
-    <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    </div>
-
+    
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </form><br>
 
 </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

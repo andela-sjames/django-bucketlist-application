@@ -39,7 +39,7 @@
 <ul class="list-group animated fadeInRight">
     <li class="list-group-item">{{ item.name }}
         <div class="pull-right action-buttons">
-            <a href="/bucketlist/itemdone/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}">{% if item.done %}<span class="glyphicon glyphicon-thumbs-up xt"></span>{% else %}<span class="glyphicon glyphicon-thumbs-down xt"></span> {% endif %}</a>
+            <a href="/bucketlist/itemdone/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}">{% if item.done %}<span class="glyphicon glyphicon-check xt"></span>{% else %}<span class="glyphicon glyphicon-unchecked xt"></span> {% endif %}</a>
 
             <a href="/bucketlist/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}" class="tooltipbasic" data-tooltip="Click to Delete item"><span class="glyphicon glyphicon-trash xt" aria-hidden="true"></span></a>
 
