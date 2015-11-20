@@ -256,8 +256,8 @@ class DeleteUpdateBucketlistView(View, LoginRequiredMixin):
         bucketlist.save()
         msg = "Bucketlist name succesfully edited."
         messages.add_message(request, messages.SUCCESS, msg)
-        return HttpResponseRedirect(reverse_lazy('view', kwargs={
-                'id':bucketlistid }))
+        return HttpResponseRedirect(reverse_lazy('mylist', kwargs={
+                'username': request.user.username, }))
 
 
 

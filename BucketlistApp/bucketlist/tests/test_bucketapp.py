@@ -2,7 +2,7 @@ from django.test import TestCase, Client, LiveServerTestCase, RequestFactory
 
 from django.core.urlresolvers import resolve, reverse, reverse_lazy
 from django.contrib.auth.models import User
-from bucketlist.views import CreateBucketlistView, BucketlistView
+from bucketlist.views import CreateBucketlistView, BucketlistView, DeleteUpdateBucketlistView
 from django.contrib.messages.storage.fallback import FallbackStorage
 
 
@@ -17,7 +17,6 @@ class UserCreateViewTestCase(TestCase):
         self.client.login(email='samuel.james@andela.com',
                                  password='samuel')
         self.user= User.objects.get(id=1)
-
 
 
 
@@ -38,9 +37,13 @@ class UserCreateViewTestCase(TestCase):
         self.assertEquals(response.status_code, 302)
 
         #test user can edit bucketlist created
-        response = self.client.post(reverse_lazy('deleteupdatebucket', kwargs={
-            'id': 19
-            }), data1 )
+        request = self.factory.post( '/bucketlist/19',data1)
+        request.user = self.user
+        setattr(request, 'session', 'session')
+        messages = FallbackStorage(request)
+        setattr(request, '_messages', messages)
+
+        response = DeleteUpdateBucketlistView.as_view()(request, id=19)
         self.assertEquals(response.status_code, 302)
     
 
