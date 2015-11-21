@@ -19,11 +19,13 @@
 {% if bucketlists %}
 {% for bucketlist in bucketlists %}
 
+  <div>
   <h2 class="xt" id="flash">{{ bucketlist.name }}</h2>
 
   <button type="button" class="btn btn-success srch itm" style="float:right" data-toggle="modal" data-target="#additemmodal" data-bucketlist-id="{{ bucketlist.id }}">
       Add Item
-    </button>
+  </button>
+  </div>
   
 {% endfor %}
 {% include "bucketlist/additem_modal.html" %}
