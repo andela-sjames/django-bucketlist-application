@@ -266,6 +266,9 @@ a:hover.tooltipbasic:before {
     #background {
       width: 300px;
     }
+    .jumbotron {
+      width: 300px;
+    }
   }
 
 /* flash ------------------------------------------------------ */
