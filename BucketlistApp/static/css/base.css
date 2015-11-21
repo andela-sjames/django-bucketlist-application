@@ -119,7 +119,7 @@ body {
 .page{
   margin-left: 45% ;
   position: relative ;
-  left: 40px;
+  left: -30px;
   margin-bottom:100px;
 }
 
@@ -134,7 +134,7 @@ body {
   margin-left: 45% ;
   position: relative ;
   top: -10px;
-  left: -10px;
+  left: -30px;
 }
 
 #create-modal .modal-dialog  {width:40%;}
