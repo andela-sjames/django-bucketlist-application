@@ -1,1 +1,1 @@
-web: gunicorn BucketlistApp.wsgi --pythonpath=BucketlistApp --log-file -
+web: gunicorn bucketlistapp.wsgi --pythonpath=bucketlistapp --log-file -
