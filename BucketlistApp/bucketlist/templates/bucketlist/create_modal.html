@@ -1,36 +1,29 @@
 {% load staticfiles %}
 
-
-
 <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="mycreateLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
 
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="mycreateLabel">Create Bucketlist</h4>
-      </div>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="mycreateLabel">Create Bucketlist</h4>
+                </div>
 
     
 
-    <form name="bucketlist" method="POST" action="/bucketlist/action/{{ request.user.username }}">
-    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-        
-        <!-- Form Name -->
+                <form name="bucketlist" method="POST" action="/bucketlist/action/{{ request.user.username }}" style="padding:15px">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                                            
+                    <input id="name" name="name" type="text" placeholder="Bucketlist Name" class="form-control input-md" required>
+                    
+                    <div class="modal-footer">
                             
-        <input id="name" name="name" type="text" placeholder="Bucketlist Name" class="form-control input-md" required>
-            
-                   
+                        <input id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit" value="Create" />
 
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
 
-      <div class="modal-footer">
-            
-            <input id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit" value="Create" />
-
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </form>
-
-    </div><!-- /.modal-content -->
+        </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+</div><!-- /.modal -->

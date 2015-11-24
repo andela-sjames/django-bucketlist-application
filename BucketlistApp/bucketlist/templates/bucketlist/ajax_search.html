@@ -33,9 +33,9 @@
             <a href="?page={{ search.previous_page_number }}"><span aria-hidden="true" class="glyphicon glyphicon-backward"></span></a>
         {% endif %}
 
-        <span class="current">
-            Page {{ search.number }} of {{ search.paginator.num_pages }}.
-        </span>
+            <span class="current">
+                Page {{ search.number }} of {{ search.paginator.num_pages }}.
+            </span>
 
         {% if search.has_next %}
             <a href="?page={{ search.next_page_number }}"><span aria-hidden="true" class="glyphicon glyphicon-forward" ></span></a>

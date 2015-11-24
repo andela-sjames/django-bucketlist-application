@@ -4,27 +4,25 @@
   <div class="modal-dialog">
     <div class="modal-content">
 
-    <div class="modal-header andel">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myitemLabel">Add Item</h4>
-    </div>
+        <div class="modal-header andel">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myitemLabel">Add Item</h4>
+        </div>
 
     
 
-        <form method="POST" action="/bucketlist/{{ bucketlist.id}}/items/">
-        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        <form method="POST" action="/bucketlist/{{ bucketlist.id}}/items/" style="padding:15px">
+            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
-        <input class="form-control" type="text" id="itemname" name="itemname" placeholder="Add your item here"></textarea>
-
-        <label>Have you already accomplished this?</label>
-        <input id="done" name="done" type="checkbox" value="yes"/> Mark as Done <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-    
-        <input id="button" name="button" class="btn btn-success" type="submit" value="Add Items" />
-    
-    
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input class="form-control" type="text" id="itemname" name="itemname" placeholder="Add your item here">
+            <div style="padding-top:10px">
+            <label>Have you already accomplished this?</label>
+            <input id="done" name="done" type="checkbox" value="yes"/> Mark as Done <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            <input id="button" name="button" class="btn btn-success" type="submit" value="Add Items" />
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
         </form><br>
 
-</div><!-- /.modal-content -->
+    </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

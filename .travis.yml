@@ -3,12 +3,12 @@ python:
 - '2.7'
 env:
   global:
-  - DJANGO_SETTINGS_MODULE='BucketlistApp.settings'
+  - DJANGO_SETTINGS_MODULE='bucketlistapp.settings'
 install:
 - pip install -r requirements.txt
 - pip install coveralls
 script:
-- cd BucketlistApp 
+- cd bucketlistapp 
 - coverage run --source bucketlistapi,bucketlist manage.py test
 after_success: 
 - coveralls
@@ -20,8 +20,8 @@ deploy:
   app:
     master: moments-bucketlist
   run:
-    - "export DJANGO_SETTINGS_MODULE=BucketlistApp.settings.production"
-    - "python BucketlistApp/manage.py collectstatic --noinput"
-    - "python BucketlistApp/manage.py makemigrations --noinput"
-    - "python BucketlistApp/manage.py migrate --noinput"
+    - "export DJANGO_SETTINGS_MODULE=bucketlistapp.settings.production"
+    - "python bucketlistapp/manage.py collectstatic --noinput"
+    - "python bucketlistapp/manage.py makemigrations --noinput"
+    - "python bucketlistapp/manage.py migrate --noinput"
 

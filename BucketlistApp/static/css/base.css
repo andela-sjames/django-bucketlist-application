@@ -3,7 +3,6 @@ html, body {
 }
 
 body {
-  /*background-image: url();*/
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -20,10 +19,6 @@ body {
  #welcome {
   color: White ;
  }
-
-/*.nav{
-  margin-top: 12px;
-}*/
 
  #signedin {
   color: White;
@@ -87,7 +82,7 @@ body {
   width: 700px ;
   margin-left: auto ;
   margin-right: auto ;
-  /*background:url('#') */
+  
   
 }
 
@@ -102,7 +97,7 @@ body {
   width: 850px ;
   margin-left: auto ;
   margin-right: auto ;
-  /*background:url('#') */
+  
 }
 
 .msg{
@@ -151,7 +146,7 @@ body {
 }
 
 h4{
-  /* Using the custom font we've included in the HTML tab: */
+  
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:20px;
@@ -160,7 +155,7 @@ h4{
 
 
 p {
-  /* Using the custom font we've included in the HTML tab: */
+  
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:20px;
@@ -168,7 +163,7 @@ p {
 }
 
 .andel {
-  /* Using the custom font we've included in the HTML tab: */
+  
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:15px;
@@ -176,14 +171,14 @@ p {
 }
 
 .srch {
-  /* Using the custom font we've included in the HTML tab: */
+  
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:20px;
   padding-top: 0px;
 }
 .edt {
-  /* Using the custom font we've included in the HTML tab: */
+  
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:20px;
@@ -192,7 +187,7 @@ p {
 
 
 h3 {
-  /* Using the custom font we've included in the HTML tab: */
+  
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:20px;
@@ -200,7 +195,7 @@ h3 {
 }
 
 li {
-  /* Using the custom font we've included in the HTML tab: */
+  
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:20px;
@@ -212,11 +207,6 @@ li {
   top: 10px ;
   left: 0px ;
 }
-/*
-================
-1. Plain Tooltip
-================
-*/
 
 a:link.tooltipbasic {
   position:relative;

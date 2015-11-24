@@ -1,5 +1,5 @@
 """
-Production specific settings for BucketlistApp project.
+Production specific settings for bucketlistapp project.
 """
 
 from .base import *

@@ -1,5 +1,5 @@
 """
-Development specific settings for BucketlistApp project.
+Development specific settings for bucketlistapp project.
 """
 
 from .base import *

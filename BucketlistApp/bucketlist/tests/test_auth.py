@@ -93,13 +93,3 @@ class UserRegistrationViewTest(TestCase):
         #signup or homepage is called
         response = self.client_stub.get('/')
         self.assertEquals(response.status_code, 200)
-
-
-
-
-
-
-
-
-
-
