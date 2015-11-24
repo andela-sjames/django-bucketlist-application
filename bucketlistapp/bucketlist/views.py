@@ -188,7 +188,7 @@ class ViewBucketlistdetail(TemplateView, LoginRequiredMixin):
         args ={}
         bucketlistid=self.kwargs.get('id')
 
-        bucketlist = Bucketlist.objects.filter(id=bucketlistid)
+        bucketlist = Bucketlist.objects.filter(id=bucketlistid).filter(user_id=self.request.user.id)
         if not bucketlist:
             raise Http404 
 
