@@ -13,17 +13,17 @@ from django.contrib.auth.models import User
 from django.http import Http404
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
-from .setpage import LimitOffsetpage
+from .setpagination import LimitOffsetpage
 
 from rest_framework import filters
 from rest_framework.generics import GenericAPIView, ListAPIView
-# Create your views here.
+
 
 class UserRegistration(GenericAPIView):
     serializer_class=UserSerializer
 
     '''Endpoint for User REgistration.'''
-
+    
     def post(self, request, *args, **kwargs):
 
         serialized = UserSerializer(data=request.data)
@@ -37,9 +37,7 @@ class UserRegistration(GenericAPIView):
             return Response(content, status=status.HTTP_201_CREATED)
         return Response(serialized._errors, status=status.HTTP_400_BAD_REQUEST)
 
-
 class BucketList(ListAPIView):
-
     """
     List all bucketlist, or create a new bucketlist.
     """
@@ -53,8 +51,7 @@ class BucketList(ListAPIView):
         """
         This view should return a list of all the bucketlist
         for the currently authenticated user.
-        """
-        
+        """        
         quser=self.request.user.id
         queryset = Bucketlist.objects.filter(user=quser)
         q = self.request.query_params.get('q', None)
@@ -78,7 +75,6 @@ class BucketList(ListAPIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 class BucketListDetail(GenericAPIView):
     """
@@ -116,7 +112,6 @@ class BucketListDetail(GenericAPIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
     def delete(self, request, pk, format=None):
         bucketlist = self.get_object(pk)
     
@@ -140,18 +135,16 @@ class AddBucketItem(GenericAPIView):
 
         bucketlist=self.check_bucketlistexist(id)
 
-        val=request.data
+        bucketlist_value=request.data
         keyid={unicode('bucketlist'):unicode(id)}
-        val.update(keyid)
+        bucketlist_value.update(keyid)
 
-        itemserializer=BucketlistItemSerializer(data=val)
+        itemserializer=BucketlistItemSerializer(data=bucketlist_value)
         bucketserializer=BucketlistSerializer(bucketlist)
         if itemserializer.is_valid():
             itemserializer.save()
             return Response(bucketserializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
 
 class ItemListDetail(GenericAPIView):
 
@@ -172,7 +165,6 @@ class ItemListDetail(GenericAPIView):
         except BucketlistItem.DoesNotExist:
             raise Http404
 
-
     def put(self, request, id, item_id, format=None):
 
         bucketlist=self.check_bucketlistexist(id=id)
@@ -187,7 +179,6 @@ class ItemListDetail(GenericAPIView):
             itemserializer.save()
             return Response(itemserializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
     def delete(self, request, id, item_id, format=None):
 

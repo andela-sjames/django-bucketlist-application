@@ -33,9 +33,3 @@ class ApiUserCreateAccount(APITestCase):
     def test_user_can_login(self):
         response=self.client.login(username='johndoe', password='12345')
         self.assertEqual(response, True)
-
-
-
-
-
-

@@ -29,34 +29,32 @@ $(document).ready(function(){
         button: '.glyphicon-trash'
     })
 
-//$( document ).tooltip();
-  $('#tool').tooltip(); 
+    $('#tool').tooltip(); 
+    $( "#editme" ).hide( "fast" )
 
-  $( "#editme" ).hide( "fast" )
+    $( ".bucket-item" ).find('.edit').click(function() {
+          var parent = $(this).parentsUntil('.bucket-item').parent();
+          
+          parent.find('.edit-form').slideToggle('fast');
+    });
+      
+    $('#additemmodal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) // Button that triggered the modal
+          var bucketlistId = button.data('bucketlistId') 
+          var modalForm = $(this).find('form')
+          var modalFormAction = "/bucketlist/" + bucketlistId + "/items/"
 
-$( ".bucket-item" ).find('.edit').click(function() {
-  var parent = $(this).parentsUntil('.bucket-item').parent();
-  //console.log(parent.children()[1]);
-  parent.find('.edit-form').slideToggle('fast');
-});
-  
-$('#additemmodal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var bucketlistId = button.data('bucketlistId') 
-  var modalForm = $(this).find('form')
-  var modalFormAction = "/bucketlist/" + bucketlistId + "/items/"
+          modalForm.attr( "action", modalFormAction );
+    })
 
-  modalForm.attr( "action", modalFormAction );
-})
+    $('#editmodal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) // Button that triggered the modal
+          var bucketlistId = button.data('bucketlistId') 
+          var modalForm = $(this).find('form')
+          var modalFormAction = "/bucketlist/" + bucketlistId + "/"
 
-$('#editmodal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var bucketlistId = button.data('bucketlistId') 
-  var modalForm = $(this).find('form')
-  var modalFormAction = "/bucketlist/" + bucketlistId + "/"
-
-  modalForm.attr( "action", modalFormAction );
-})
+          modalForm.attr( "action", modalFormAction );
+    })
 
 });
 

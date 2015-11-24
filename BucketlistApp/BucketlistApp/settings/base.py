@@ -1,5 +1,5 @@
 """
-Django settings for BucketlistApp project.
+Django settings for bucketlistapp project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -58,7 +58,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'BucketlistApp.urls'
+ROOT_URLCONF = 'bucketlistapp.urls'
 
 TEMPLATES = [
     {
@@ -77,7 +77,7 @@ TEMPLATES = [
 ]
 
 
-WSGI_APPLICATION = 'BucketlistApp.wsgi.application'
+WSGI_APPLICATION = 'bucketlistapp.wsgi.application'
 
 
 
@@ -150,10 +150,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR,'templates'),
-)
-
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -165,7 +161,7 @@ def show_toolbar(request):
     return False
 
 DEBUG_TOOLBAR_CONFIG = {
-'SHOW_TOOLBAR_CALLBACK':'BucketlistApp.settings.show_toolbar',
+'SHOW_TOOLBAR_CALLBACK':'bucketlistapp.settings.show_toolbar',
 
 }
 

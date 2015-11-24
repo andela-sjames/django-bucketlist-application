@@ -15,6 +15,7 @@ from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.views.generic.list import ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.http import Http404
 
 # Create your views here. 
 def custom_404(request):
@@ -178,14 +179,19 @@ class BucketlistView(View, LoginRequiredMixin):
 
 class ViewBucketlistdetail(TemplateView, LoginRequiredMixin):
 
-    '''View bucketlist detail even items enclosed.'''
+    '''View bucketlist detail and associated items'''
 
     template_name='bucketlist/view.html'
 
     def get(self, request, *args, **kwargs):
+
         args ={}
         bucketlistid=self.kwargs.get('id')
-        
+
+        bucketlist = Bucketlist.objects.filter(id=bucketlistid)
+        if not bucketlist:
+            raise Http404 
+
         myitems_list = BucketlistItem.objects.filter(bucketlist_id=bucketlistid)
         paginator = Paginator(myitems_list, 8, 2)
 
@@ -201,7 +207,7 @@ class ViewBucketlistdetail(TemplateView, LoginRequiredMixin):
         
         args.update(csrf(request))
         args['items'] = items
-        args['bucketlists']=Bucketlist.objects.filter(id=bucketlistid)
+        args['bucketlists']=bucketlist
         return render(request, self.template_name, args)
 
 
@@ -323,6 +329,8 @@ class SearchListView(TemplateView, LoginRequiredMixin):
         return render(request, self.template_name, {'search':search_result})
 
 class ItemDone(View):
+
+    '''Class defined to toggle done field. '''
 
     def get(self, request, *args, **kwargs):
 
