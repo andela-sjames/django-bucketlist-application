@@ -3,34 +3,39 @@
 
 ####__Life is but for a moment, best to take advantage of it with Moments Bucketlist.__  
 
-__Moments buckelist is a simple Web App that allows you to create and record moments of your life dreams and prospects, pending when YOU have accomplished them.__  
+Moments buckelist is a simple Web App that allows you to create and record moments of your life dreams and prospects, pending when YOU have accomplished them.  
 
-__In addition to the Web App, an Application Programmable Interface **(API)** is also available for developers to build on and take advantage of the cool features the Web-service provides.__    
+In addition to the Web App, an Application Programmable Interface **(API)** is also available for developers to build on and take advantage of the cool features the Web-service provides.    
 
 #####What cool features ?  
 
 ##API Documentation  
 You can search for buckelists that contains any particular "string" you pass as query parameters  
-__example__: ``` GET /api/buckelists/?q=boy```  
+__Example__: ``` GET /api/buckelists/?q=boy```  
   
 You can also paginate your view via page style.  
-__example__: ``` GET /api/buckecketlists/?page=3```   
+__Example__: ``` GET /api/buckecketlists/?page=3```   
   
 You can also paginate your view via limits and offset style  
-__example__:``` GET /api/bucketlists/?limit=5&offset=3```  
+__Example__:``` GET /api/bucketlists/?limit=5&offset=3```  
 
 You can also decide to combine your search and pagination or not!  
-__example__: ``` GET /api/bucketlists/?q=andela&page=2&limit=5&offset=1```  
+__Example__: ``` GET /api/bucketlists/?q=andela&page=2&limit=5&offset=1```  
 
 To register send to the endpoint below your  
 ```{'username':'myusername','email':'myemail', 'password':'mypassword'}```  
 as a json data in the body of your request.  
-__example__: ```  POST /api/user/register/```
+__Example__: ```  POST /api/user/register/```
 
 To login send to the end point below your request.  
 ```{'username':'myusername', 'password':'mypassword'}```   
+<<<<<<< HEAD
+__Example__: ``` POST /api/auth/login/```  
+Get a Token and you make calls to the protected endpoints..   
+=======
 __example__: ``` POST /api/auth/login/```  
 Get a Token and you can make calls to the protected endpoints..   
+>>>>>>> master
 
 __Note__: For clients to authenticate, the token key should be included in the ```Authorization``` HTTP header. The key should be prefixed by the string literal "Token", with whitespace separating the two strings.  
 __For example__:```Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b ```  
