@@ -45,6 +45,20 @@ class UserCreateViewTestCase(TestCase):
 
         response = DeleteUpdateBucketlistView.as_view()(request, id=19)
         self.assertEquals(response.status_code, 302)
+
+        #test user toggle done field
+        response =self.client.get(reverse_lazy('done', kwargs={
+                    'id':17,
+                    'item_id':19,
+                    }))
+        self.assertEquals(response.status_code, 302)
+
+        #test reverse toggle
+        response =self.client.get(reverse_lazy('done', kwargs={
+                    'id':17,
+                    'item_id':19,
+                    }))
+        self.assertEquals(response.status_code, 302)
     
 
 
@@ -107,6 +121,12 @@ class UserViewDetailTestCase(TestCase):
         #user can view bucketlist and items detail
         response =self.client.get(reverse_lazy('view', kwargs={
                     'id':1
+                    }))
+        self.assertEquals(response.status_code, 200)
+
+        #page not found for wrong bucketlistid
+        response =self.client.get(reverse_lazy('view', kwargs={
+                    'id':900
                     }))
         self.assertEquals(response.status_code, 200)
 
