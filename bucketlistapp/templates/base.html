@@ -13,7 +13,12 @@
 
     <title>{% block title %}Moments - Bucketlist{% endblock %}</title>
 
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{% static 'css/bootstrap-material-design.min.css' %}" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{% static 'css/ripples.min.css' %}" rel="stylesheet" type="text/css" media="screen" />
     <link href="{% static 'css/signup.css' %}" rel="stylesheet" type="text/css" media="screen" />
     <link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css" media="screen" />
     <link href="{% static 'css/animate.min.css' %}" rel="stylesheet" type="text/css" media="screen" />
@@ -21,7 +26,7 @@
 
     <script src="{% static "js/jquery.js" %}"></script>
     <script src="{% static "js/modal.js" %}"></script>
-    
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -44,7 +49,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div class="#" href="#">
-                    <img src="{% static "img/logo.png" width = "auto" %}"/> 
+                    <img src="{% static "img/logo.png" width = "auto" %}"/>
                 </div>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -53,13 +58,13 @@
                   {% if request.user.is_authenticated %}
                     <li role="presentation"><a href="/bucketlist/{{ request.user.username }}">My List</a></li>
                     <li role="presentation"><a href="{% url 'signout' %}">Sign Out</a></li>
-                    <li role="presentation>     
+                    <li role="presentation>
                         <button type="button" style="margin-top: 11px;" class="btn-group srch btn btn-primary btn-group-xs" data-toggle="modal" data-target="#search-modal" href="#search-modal">
                               Search
                         </button>
                     </li>
                     {% else %}
-                     
+
                    {% endif %}
                 </ul>
             </div>
@@ -70,39 +75,41 @@
         {% include "bucketlist/search_modal.html" %}
         <br>
     <main>
-    {% block main %} 
+    {% block main %}
 
-            
 
-    {% endblock main%}   
-    </main>  
+
+    {% endblock main%}
+    </main>
+    {% if request.user.is_authenticated %}
         <div class="col-lg-12">
           <footer class="footer">
-            <div class="container">  
- 
+            <div class="container">
+
               <div class="navbar navbar-default navbar-fixed-bottom">
                 <div class="container">
                   <p class="navbar-text pull-left">© 2015 - Site Built by Samuel James #TIA
                   </p>
-                  
+
                   <a href="http://www.andela.com/" class="navbar-btn btn-primary btn pull-right andel">
                   <span class="glyphicon glyphicon-star"></span> ANDELA</a>
                 </div>
-                
-                
+
+
               </div>
           </footer>
         </div>
+    {% endif %}
     </div>
 
-    
+
     <!-- jQuery -->
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static "js/bootstrap.min.js" %}"></script>
-    
+    <script src="{% static "js/material.min.js" %}"></script>
+    <script src="{% static "js/ripples.min.js" %}"></script>
 
-    
 </body>
 
 </html>

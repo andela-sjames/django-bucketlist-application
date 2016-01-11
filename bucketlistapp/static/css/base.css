@@ -7,7 +7,7 @@ body {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  padding-top: 70px; 
+  padding-top: 70px;
   margin: 0 auto;
 }
 #home {
@@ -28,6 +28,11 @@ body {
    width: 70% ;
    height: 70% ;
  }
+
+ .navbar.navbar-inverse {
+    background: rgba(6, 48, 56, 0.9);
+    color: #fff;
+}
 
  .itm {
   position: relative;
@@ -71,8 +76,8 @@ body {
   width: 700px ;
   margin-left: auto ;
   margin-right: auto ;
-  background:url('#') 
-  
+  background:url('#')
+
 }
 
 #itemsbackground{
@@ -82,8 +87,8 @@ body {
   width: 700px ;
   margin-left: auto ;
   margin-right: auto ;
-  
-  
+
+
 }
 
 .rmov {
@@ -97,7 +102,11 @@ body {
   width: 850px ;
   margin-left: auto ;
   margin-right: auto ;
-  
+
+}
+
+.form-group {
+    padding-bottom: 0px;
 }
 
 .msg{
@@ -124,7 +133,7 @@ body {
 .disp {
   display: inline-block;
 }
- 
+
 .paged{
   margin-left: 45% ;
   position: relative ;
@@ -146,7 +155,7 @@ body {
 }
 
 h4{
-  
+
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:20px;
@@ -155,7 +164,7 @@ h4{
 
 
 p {
-  
+
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:20px;
@@ -163,7 +172,7 @@ p {
 }
 
 .andel {
-  
+
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:15px;
@@ -171,14 +180,14 @@ p {
 }
 
 .srch {
-  
+
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:20px;
   padding-top: 0px;
 }
 .edt {
-  
+
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:20px;
@@ -187,7 +196,7 @@ p {
 
 
 h3 {
-  
+
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:20px;
@@ -195,7 +204,7 @@ h3 {
 }
 
 li {
-  
+
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:20px;
