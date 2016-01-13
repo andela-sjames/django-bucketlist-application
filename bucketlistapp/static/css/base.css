@@ -16,6 +16,11 @@ body {
   margin-right: 0% ;
 }
 
+.wht {
+  background-color: rgb(255, 255, 255);
+}
+
+
  #welcome {
   color: White ;
  }
