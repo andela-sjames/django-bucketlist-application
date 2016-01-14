@@ -27,7 +27,7 @@ var deleteBuckelist = {
 
 $(document).ready(function(){
     deleteBuckelist.init({
-        button: '.glyphicon-trash'
+        button: '.remove'
     })
   $.material.init();
 

@@ -20,6 +20,13 @@ body {
   background-color: rgb(255, 255, 255);
 }
 
+.border-bottom {
+  background-color: rgba(6, 48, 56, 0.9) ! important;
+}
+
+.action-background {
+  background-color: rgba(6, 48, 56, 0.9)
+}
 
  #welcome {
   color: White ;
@@ -132,6 +139,15 @@ body {
   margin-bottom:100px;
 }
 
+.s-form {
+    margin-top: 0px ! important;
+}
+
+.navbar-bck-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+}
+
 .editable-div {
  margin-bottom:20px;
 }
@@ -192,13 +208,17 @@ p {
   padding-top: 0px;
 }
 .edt {
-
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:20px;
   padding-top: 0px;
 }
 
+#navlist li {
+  display: inline;
+  list-style-type: none;
+  padding-right: 20px;
+}
 
 h3 {
 

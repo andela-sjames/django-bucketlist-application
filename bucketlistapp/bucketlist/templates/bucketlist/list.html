@@ -19,60 +19,38 @@
 <div id="list">
     <h4 id="flash">My Moments Bucketlist</h4>
 
-    <button type="button" class="btn btn-success srch lmove" style="float:right" data-toggle="modal" data-target="#create-modal" href="#create-modal">
-      create
-    </button>
-</div>
+    <a data-toggle="modal" data-target="#create-modal" class="btn btn-default btn-fab" style="float:right"><i class="material-icons">add</i></a>
+</div><br>
 
 <div>
 {% for bucketlist in bucketlists %}
 <div class="row">
 
-    <ul class="list-group animated fadeInRight">
+    <div class="panel panel-default animated fadeInRight action-background">
+      <div class="panel-body txt"><a href="/bucketlist/view/{{ bucketlist.id }}/">{{ bucketlist.name }}</a>
 
-        <li class="list-group-item lst"><a href="/bucketlist/view/{{ bucketlist.id }}/">{{ bucketlist.name }}</a>
+            <ul id="navlist" class="pull-right">
+                <li class="#"><a class="modal-toggle txt tooltipbasic" data-toggle="modal" data-target="#additemmodal" data-bucketlist-id="{{ bucketlist.id }}" data-tooltip="Click to Add an Item to this bucketlist"><i class="material-icons">add_circle_outline</i></a></li>
 
+                <li class="#"><a class="modal-toggle txt tooltipbasic" data-toggle="modal" data-target="#editmodal" data-bucketlist-id="{{ bucketlist.id }}" data-tooltip="Click to Edit this bucketlist name"><i class="material-icons">edit</i></a></li>
 
-            <div class="pull-right action-buttons">
-                <a href="#additemmodal" class="modal-toggle txt tooltipbasic" data-toggle="modal" data-target="#additemmodal" data-bucketlist-id="{{ bucketlist.id }}" data-tooltip="Click to Add an Item to this bucketlist"><span class="glyphicon glyphicon-plus xt" aria-hidden="true"></span></a>
+                <li class="#"><a href="/bucketlist/{{ bucketlist.id}}" data-tooltip="Click to Delete this bucketlist" class="tooltipbasic  txt"><i class="material-icons remove">delete</i></a></li>
 
-                <a href="#edit-modal" class="modal-toggle txt tooltipbasic" data-toggle="modal" data-target="#editmodal" data-bucketlist-id="{{ bucketlist.id }}" data-tooltip="Click to Edit this bucketlist name"><span class="glyphicon glyphicon-edit xt" aria-hidden="true"></span></a>
+            </ul>
 
-                <a href="/bucketlist/{{ bucketlist.id}}" data-tooltip="Click to Delete this bucketlist" class="tooltipbasic"><span class="glyphicon glyphicon-trash xt" aria-hidden="true"></span></a>
+        </div>
 
+    </div>
 
-            </div>
-
-        </li>
-
-    </ul>
 </div>
 
 {% endfor %}
+
     <div>
         {% include "bucketlist/additem_modal.html" %}
         {% include "bucketlist/editbucketlist_modal.html" %}
         {% include "bucketlist/create_modal.html" %}
     </div>
-{% else %}
-<div class="container" style="width:700px">
-    <div class="jumbotron">
-        <center><h1><span id="flash">My Moments Bucketlist</span></h1></center>
-           <br><br>
-           <center><p class="xt">Welcome {{ request.user.username }}! </p>
-        <p class="lead">you currently have no bucketlist. Please click the button to start your moments.</p>
-
-        <a href="#" data-toggle="modal"   data-target="#create-modal" class="btn btn-default btn-fab"><i class="material-icons">add</i></a>
-    </div>
-</div>
-
-
-    {% include "bucketlist/create_modal.html" %}
-
-{% endif %}
-</div>
-</div>
-
 
 <nav class="page xt andel">
   <div class="pagination">
@@ -92,6 +70,27 @@
     </span>
    </div>
 </nav>
+
+{% else %}
+<div class="container" style="width:700px">
+    <div class="jumbotron">
+        <center><h1><span id="#">My Moments Bucketlist</span></h1></center>
+           <br><br>
+           <center><p class="xt">Welcome {{ request.user.username }}! </p>
+        <p class="lead">you currently have no bucketlist. Please click the button to start your moments.</p>
+
+        <a data-toggle="modal"   data-target="#create-modal" class="btn btn-default btn-fab"><i class="material-icons">add</i></a>
+    </div>
+</div>
+
+
+    {% include "bucketlist/create_modal.html" %}
+
+{% endif %}
+</div>
+</div>
+
+
 
 
 </div>

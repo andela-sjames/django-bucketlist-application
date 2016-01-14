@@ -22,7 +22,7 @@
     <link href="{% static 'css/signup.css' %}" rel="stylesheet" type="text/css" media="screen" />
     <link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css" media="screen" />
     <link href="{% static 'css/animate.min.css' %}" rel="stylesheet" type="text/css" media="screen" />
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel='stylesheet' type="text/css">
 
     <script src="{% static "js/jquery.js" %}"></script>
     <script src="{% static "js/modal.js" %}"></script>
@@ -38,8 +38,8 @@
 
 <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container" style="width: 72%">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -48,31 +48,33 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <div class="#" href="#">
-                    <img src="{% static "img/logo.png" width = "auto" %}"/>
+                <div >
+                    <img src="{% static "img/logo.png"%}"/>
                 </div>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav pull-right">
-                  {% if request.user.is_authenticated %}
-                    <li role="presentation"><a href="/bucketlist/{{ request.user.username }}">My List</a></li>
-                    <li role="presentation"><a href="{% url 'signout' %}">Sign Out</a></li>
-                    <li role="presentation>
-                        <button type="button" style="margin-top: 11px;" class="btn-group srch btn btn-primary btn-group-xs" data-toggle="modal" data-target="#search-modal" href="#search-modal">
-                              Search
-                        </button>
-                    </li>
-                    {% else %}
-
-                   {% endif %}
+            {% if request.user.is_authenticated %}
+                <ul class="nav navbar-nav">
+                    <li><a href="/bucketlist/{{ request.user.username }}">My List</a></li>
+                    <li><a href="{% url 'signout' %}">Sign Out</a></li>
                 </ul>
+
+                <form method="GET" action="/bucketlist/search/{{ request.user.id }}" class="navbar-form navbar-right s-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control col-md-8" placeholder="Search">
+                    </div>
+                    <button class="btn btn-primary" type="submit"><i class="material-icons">search</i></button>
+                </form>
+            {% else%}
+
+            {% endif %}
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
-    </nav>
-        {% include "bucketlist/search_modal.html" %}
+    </div>
+
         <br>
     <main>
     {% block main %}
@@ -86,7 +88,7 @@
           <footer class="footer">
             <div class="container">
 
-              <div class="navbar navbar-default navbar-fixed-bottom">
+              <div class="navbar navbar-default navbar-fixed-bottom border-bottom">
                 <div class="container">
                   <p class="navbar-text pull-left">© 2015 - Site Built by Samuel James #TIA
                   </p>
