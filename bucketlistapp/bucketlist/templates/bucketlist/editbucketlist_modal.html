@@ -8,14 +8,14 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myeditLabel">Edit Bucketlist</h4>
             </div>
-      
+
             <form method="POST" action="/bucketlist/{{bucketlist.id}}/" style="padding:10px">
                 <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
-                <input id="name" name="name" type="text" placeholder="Edit bucketlist name" class="form-control input-md" required>
-            
+                <input id="name" name="name" type="text" placeholder="Edit bucketlist name" maxlength="100" class="form-control input-md" required>
+
                 <div class="modal-footer">
-                    <input id="button" id="buttn" name="button" class="btn btn-primary" type="submit" value="Edit" />       
+                    <input id="button" id="buttn" name="button" class="btn btn-primary" type="submit" value="Edit" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </form><br>

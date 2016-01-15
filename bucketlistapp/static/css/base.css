@@ -25,7 +25,21 @@ body {
 }
 
 .action-background {
-  background-color: rgba(6, 48, 56, 0.9)
+  background-color: rgba(6, 48, 56, 0.9);
+  padding-bottom: 15px;
+  padding-top: 15px;
+  min-height: 50px;
+}
+
+.fixture {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+#logo {
+  font-size: 60px;
+  font-weight: 700;
 }
 
  #welcome {
@@ -44,6 +58,15 @@ body {
  .navbar.navbar-inverse {
     background: rgba(6, 48, 56, 0.9);
     color: #fff;
+    height: 60px;
+}
+
+.nav-align {
+  margin-left: 0;
+}
+
+.icon-right {
+  padding-right: 0 ! important;
 }
 
  .itm {
@@ -63,6 +86,44 @@ body {
 
 .xt {
   color: black ;
+}
+
+.sz{
+  font-size: 14px
+}
+
+.item-card {
+  flex: 0 ; /* default 0 */
+  width: 383px ;
+  margin: auto;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.item-card .card-text {
+  position: relative;
+  display: block;
+  width: 100% ;
+  height: 150px;
+  text-decoration: none;
+}
+
+.item-card .card-text p {
+  position: absolute;
+  font-size: 18px;
+  text-align: center;
+  line-height: 1.5;
+  width: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container-card {
+  flex-wrap: wrap ;
+  display: flex ;
+  /*justify-content:space-around;*/
+
 }
 
 .bt{
@@ -188,7 +249,7 @@ p {
 
   font-family: 'Lato', sans-serif;
   font-weight:normal;
-  font-size:20px;
+  font-size:16px;
   padding-top: 0px;
 }
 
@@ -214,10 +275,37 @@ p {
   padding-top: 0px;
 }
 
+#go-right {
+  float: right;
+}
+
+.btn-size {
+  height: 50px ! important;
+  margin: auto ! important;
+  min-width: 50px ! important;
+  width: 50px ! important;
+}
+
 #navlist li {
   display: inline;
   list-style-type: none;
-  padding-right: 20px;
+  padding-right: 10px;
+}
+
+#navlist {
+  margin-bottom: 0px;
+}
+
+.navbar .navbar-form .form-group .form-control {
+  font-size:;
+}
+.divider {
+  width: 100%;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  background: #EDEDED;
+
 }
 
 h3 {
@@ -232,7 +320,7 @@ li {
 
   font-family: 'Lato', sans-serif;
   font-weight:normal;
-  font-size:20px;
+  font-size:16px;
   padding-top: 0px;
 }
 
@@ -242,41 +330,7 @@ li {
   left: 0px ;
 }
 
-a:link.tooltipbasic {
-  position:relative;
-}
-a:hover.tooltipbasic {
-  text-decoration:none; /* remove underline on tooltip */
-}
 
-a:hover.tooltipbasic:before {
-  display:block;
-  background:#eef;
-  background:-webkit-gradient(linear, 0 0, 0 100%, from(#ccf), to(#eef));
-  background:-moz-linear-gradient(#ccf, #eef);
-  background:-o-linear-gradient(#ccf, #eef);
-  background:linear-gradient(#ccf, #eef);
-  content:attr(data-tooltip);
-  position:absolute;
-  color:#000;
-  margin:0em 0 1em;
-  bottom:1.5em; /* ensure link is still visible under tooltip */
-  right:0px;
-  width:20em; /* a reasonable width to wrap the tooltip text */
-  text-align:center;
-  padding:4px;
-  border:2px solid #999;
-  -webkit-border-radius:6px;
-     -moz-border-radius:6px;
-      -ms-border-radius:6px;
-       -o-border-radius:6px;
-          border-radius:6px;
-  -webkit-box-shadow: -2px 2px 2px rgba(20, 20, 20, 0.4);
-     -moz-box-shadow: -2px 2px 2px rgba(20, 20, 20, 0.4);
-      -ms-box-shadow: -2px 2px 2px rgba(20, 20, 20, 0.4);
-       -o-box-shadow: -2px 2px 2px rgba(20, 20, 20, 0.4);
-          box-shadow: -2px 2px 2px rgba(20, 20, 20, 0.4);
-}
 
 @media (max-width: 767px) {
   #itemsbackground{
@@ -299,13 +353,6 @@ a:hover.tooltipbasic:before {
 
 #flash {
   display: inline-block;
-  text-shadow: #bbb 0 0 1px, #fff 0 -1px 2px, #fff 0 -3px 2px, rgba(0,0,0,0.8) 0 30px 25px;
-  transition: margin-left 0.3s cubic-bezier(0, 1, 0, 1);
 }
 
-#list:hover #flash {
-  text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;
-  transform: rotateY(360deg);
-  transition:         transform 0.3s cubic-bezier(0, 0.75, 0, 1), text-shadow 0.1s ease-out;
-}
 

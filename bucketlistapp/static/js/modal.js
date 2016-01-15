@@ -29,7 +29,12 @@ $(document).ready(function(){
     deleteBuckelist.init({
         button: '.remove'
     })
+
   $.material.init();
+
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 
 
     $('#tool').tooltip();
