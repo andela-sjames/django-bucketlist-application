@@ -36,8 +36,6 @@ $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip()
   })
 
-
-    $('#tool').tooltip();
     $( "#editme" ).hide( "fast" )
 
     $( ".bucket-item" ).find('.edit').click(function() {
