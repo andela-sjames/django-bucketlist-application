@@ -32,16 +32,15 @@ $(document).ready(function(){
 
   $.material.init();
 
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
-
-    $( "#editme" ).hide( "fast" )
+    $( ".bucket-item" ).find('.close-position').click(function() {
+        var parent = $(this).parentsUntil('.bucket-item').parent();
+        parent.find('.edit-form').css('display','none');
+    });
 
     $( ".bucket-item" ).find('.edit').click(function() {
           var parent = $(this).parentsUntil('.bucket-item').parent();
 
-          parent.find('.edit-form').slideToggle('fast');
+          parent.find('.edit-form').css('display','flex');
     });
 
     $('#additemmodal').on('show.bs.modal', function (event) {

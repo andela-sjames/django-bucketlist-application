@@ -161,7 +161,7 @@ class BucketlistView(View, LoginRequiredMixin):
 
             user_bucketlists = Bucketlist.objects.filter(
                 user=userid).order_by('-date_created')
-            paginator = Paginator(user_bucketlists, 10, 2)
+            paginator = Paginator(user_bucketlists, 9, 2)
 
             try:
                 page = int(request.GET.get('page', 1))

@@ -2,99 +2,80 @@
 {% load static %}
 
 {% block main %}
-
-
-<div class="#" id="itemsbackground2">
-
-    {% if messages %}
-        <div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            {% for message in messages %}
-                {{ message }}
-            {% endfor %}
-        </div>
-    {% endif %}
-
-
+<div class="row clearfix row-fix">
     {% if bucketlists %}
-    {% for bucketlist in bucketlists %}
+        <div id="list">
+            {% for bucketlist in bucketlists %}
+            <h4 id="flash">{{ bucketlist.name|title}}</h4>
 
-      <div>
-      <h3 class="xt" id="flash">{{ bucketlist.name }}</h3>
+            <a data-toggle="modal" data-target="#additemmodal" class="btn btn-default btn-fab btn-size btn-primary pull-right modal-toggle" data-bucketlist-id="{{ bucketlist.id }}"><i class="material-icons">add</i></a>
 
-      <button type="button" class="btn btn-success srch itm" style="float:right" data-toggle="modal" data-target="#additemmodal" data-bucketlist-id="{{ bucketlist.id }}">
-          Add Item
-      </button>
-      </div>
-      
-    {% endfor %}
+            {% endfor %}
+
+        </div><br>
+
     {% include "bucketlist/additem_modal.html" %}
     {% else %}
-    <p class="txt">No BucketList to show.</p>
+        <p class="txt">No BucketList to show.</p>
     {% endif %}
 
 
     {% if items %}
+    <div class="row container-card">
     {% for item in items %}
+        <div class="bucket-item">
+             <div class="card card-block item-card">
+                <div class="box-container">
+                    <p>{{ item.name|title }}</p>
 
-    <div class="bucket-item">
-        <ul class="list-group animated fadeInRight">
 
-            <li class="list-group-item"><a href="/bucketlist/itemdone/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}">{% if item.done %}<span class="glyphicon glyphicon-check xt"></span>{% else %}<span class="glyphicon glyphicon-unchecked xt"></span> {% endif %}</a>{{ item.name }}
+                    <div class="edit-form">
+                        <!--<i class="material-icons">close</i>-->
+                        <form method="POST" class="form-group align-form" action="/bucketlist/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">   <div class="row editable-div">
+                                    <h3 class="close-position">&times;</h3>
+                                    <div class="col-sm-8">
+                                        <input id="itmname" name="itemname"  class="form-control" type="text" class="form-control input-md"
+                                         value="{{ item.name }}">
+                                    </div>
+                                    <div class="col-sm-3">
+                                         <input id="button" name="button" class="btn btn-success edit-submit grn txt" type="submit" value="Edit"/>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
 
-                <div class="pull-right action-buttons">
 
-                    <a href="/bucketlist/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}" class="tooltipbasic" data-tooltip="Click to Delete item"><span class="glyphicon glyphicon-trash xt" aria-hidden="true"></span></a>
-
-                    <a href="#" class="edit tooltipbasic" data-tooltip="Click to Edit this item"><span class="glyphicon glyphicon-edit xt" aria-hidden="true"></span></a>
                 </div>
-            </li>
-        </ul>
+                <div class="action-background">
+                    <ul id="navlist" class="#">
 
-        <div class="edit-form">
-            <form method="POST" class="form-group" action="/bucketlist/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}">
-                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">   <div class="row editable-div">
-                        <div class="col-sm-6" style="margin-bottom:20px">
-                            <input id="itmname" name="itemname"  class="form-control" type="text" placeholder="Edit bucketlist item name" class="form-control input-md" 
-                             value="{{ item.name }}"> 
-                        </div>
-                        <div class="col-sm-4">
-                             <input id="button" name="button" class="btn btn-success edt sz" type="submit" value="Edit"/> 
-                        </div>  
-                    </div>              
-            </form>
+                        <li class="txt pull-left"><a href="/bucketlist/itemdone/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}">{% if item.done %}<span class="glyphicon glyphicon-check txt"></span>{% else %}<span class="glyphicon glyphicon-unchecked txt"></span> {% endif %}</a> Done</li>
+
+                        <li class="txt sz pull-left">Modified: {{ item.date_modified|timesince }} ago</li>
+
+                        <li class="pull-right"><a href="/bucketlist/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}" class="tooltipbasic" data-tooltip="Click to Delete item"><i class="material-icons remove txt">delete</i></a></li>
+
+                        <li><a href="#" class="edit pull-right txt" data-tooltip="Click to Edit this item"><i class="material-icons">edit</i></a></li>
+
+                    </ul>
+
+                </div>
+             </div>
         </div>
-    </div>
 
 
     {% endfor %}
+    </div>
     {% else %}
-    <center>
-         <p class="xt"> No Bucketlist Item to show. </p>
-         <p> Want to add an Item ? Use the plus button above! </p>
-    </center>
+        <center>
+            <center class="xt"> No Bucketlist Item to show. </center>
+            <center> Want to add an Item ? Use the plus '+' button above! </center>
+        </center>
+
     {% endif %}
 
-    {% if items|length %}
-    <nav class="paged xt andel">
-      <div class="pagination">
-        <span class="step-links">
-            {% if items.has_previous %}
-                <a href="?page={{ items.previous_page_number }}"><span aria-hidden="true" class="glyphicon glyphicon-backward"></span></a>
-            {% endif %}
-
-            <span class="current">
-                Page {{ items.number }} of {{ items.paginator.num_pages }}.
-            </span>
-
-            {% if items.has_next %}
-                <a href="?page={{ items.next_page_number }}"><span aria-hidden="true" class="glyphicon glyphicon-forward" ></span></a>
-            {% endif %}
-        </span>
-      </div>
-    </nav>
-    {% else %}
-
-    {% endif %}
 </div>
+
+
 {% endblock%}

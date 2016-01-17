@@ -91,6 +91,9 @@ body {
 .sz{
   font-size: 14px
 }
+.grn {
+  background-color: rgba(6, 48, 56, 0.9) ! important;
+}
 
 .item-card {
   flex: 0 ; /* default 0 */
@@ -119,11 +122,28 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.box-container {
+  position: relative;
+  display: block;
+  width: 100% ;
+  height: 100px;
+}
+
+.box-container p {
+  position: absolute;
+  font-size: 18px;
+  text-align: center;
+  line-height: 1.5;
+  width: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
 .container-card {
   flex-wrap: wrap ;
   display: flex ;
-  /*justify-content:space-around;*/
-
 }
 
 .bt{
@@ -180,6 +200,19 @@ body {
 
 .form-group {
     padding-bottom: 0px;
+}
+
+.close-position {
+  position: absolute;
+  top: -140%;
+  right: -15%;
+  color: #000;
+  cursor: pointer;
+}
+
+.align-form {
+  position: relative;
+  top: -16px;
 }
 
 .msg{
@@ -268,6 +301,19 @@ p {
   font-size:20px;
   padding-top: 0px;
 }
+
+.edit-form {
+  display: none;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.95);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 20px;
+
+}
+
 .edt {
   font-family: 'Lato', sans-serif;
   font-weight:normal;
@@ -275,8 +321,16 @@ p {
   padding-top: 0px;
 }
 
-#go-right {
-  float: right;
+.edit-submit {
+
+  font-family: 'Lato', sans-serif;
+  font-weight: normal;
+  font-size: 12px;
+  padding-top: 2px;
+  color: white ! important;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 }
 
 .btn-size {
@@ -306,6 +360,11 @@ p {
   overflow: hidden;
   background: #EDEDED;
 
+}
+
+.row-fix {
+  margin-right: -15px;
+  margin-left: -11.5px;
 }
 
 h3 {
