@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 import sys
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
+BASE_DIR = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
@@ -40,7 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'bucketlistapi',
-    'bucketlist', 
+    'bucketlist',
     'rest_framework.authtoken',
     'debug_toolbar',
     'django_nose',
@@ -80,7 +80,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'bucketlistapp.wsgi.application'
 
 
-
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
@@ -93,7 +92,7 @@ if 'test' in sys.argv:
         }
     }
 
-#authentication settings
+# authentication settings
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
@@ -113,7 +112,7 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
-        ),
+    ),
 
     'PAGINATE_BY': 10,                 # Default to 10
     'PAGINATE_BY_PARAM': 'page_size',  # Allow client to override, using `?page_size=xxx`.
@@ -122,10 +121,10 @@ REST_FRAMEWORK = {
 
 SWAGGER_SETTINGS = {
     "title": "moments-bucketlist API ",
-  "description": " A web API for creating Buckelist, i.e list of stuffs you want to do before you die.",
+    "description": " A web API for creating Buckelist, i.e list of stuffs you want to do before you die.",
 }
 
-#APPEND_SLASH = False
+# APPEND_SLASH = False
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -153,17 +152,17 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    )
+)
+
 
 def show_toolbar(request):
-    if not request.is_ajax() and request.user and request.user.username == 'andelasjames':
+    if not request.is_ajax() and request.user and\
+            request.user.username == 'andelasjames':
         return True
     return False
 
 DEBUG_TOOLBAR_CONFIG = {
-'SHOW_TOOLBAR_CALLBACK':'bucketlistapp.settings.show_toolbar',
-
+    'SHOW_TOOLBAR_CALLBACK': 'bucketlistapp.settings.show_toolbar',
 }
 
-LOGIN_REDIRECT_URL='/api/bucketlists/'
-
+LOGIN_REDIRECT_URL = '/api/bucketlists/'

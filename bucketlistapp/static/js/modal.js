@@ -24,23 +24,28 @@ var deleteBuckelist = {
    }
 };
 
+
 $(document).ready(function(){
     deleteBuckelist.init({
-        button: '.glyphicon-trash'
+        button: '.remove'
     })
 
-    $('#tool').tooltip(); 
-    $( "#editme" ).hide( "fast" )
+  $.material.init();
+
+    $( ".bucket-item" ).find('.close-position').click(function() {
+        var parent = $(this).parentsUntil('.bucket-item').parent();
+        parent.find('.edit-form').css('display','none');
+    });
 
     $( ".bucket-item" ).find('.edit').click(function() {
           var parent = $(this).parentsUntil('.bucket-item').parent();
-          
-          parent.find('.edit-form').slideToggle('fast');
+
+          parent.find('.edit-form').css('display','flex');
     });
-      
+
     $('#additemmodal').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget) // Button that triggered the modal
-          var bucketlistId = button.data('bucketlistId') 
+          var bucketlistId = button.data('bucketlistId')
           var modalForm = $(this).find('form')
           var modalFormAction = "/bucketlist/" + bucketlistId + "/items/"
 
@@ -49,7 +54,7 @@ $(document).ready(function(){
 
     $('#editmodal').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget) // Button that triggered the modal
-          var bucketlistId = button.data('bucketlistId') 
+          var bucketlistId = button.data('bucketlistId')
           var modalForm = $(this).find('form')
           var modalFormAction = "/bucketlist/" + bucketlistId + "/"
 

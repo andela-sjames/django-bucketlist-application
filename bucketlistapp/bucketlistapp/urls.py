@@ -1,16 +1,14 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.contrib import admin
-from django.conf import settings
 import bucketlist
-import bucketlistapi
 
 urlpatterns = [
-  
+
     url(r'^myappadmin/', include(admin.site.urls)),
     url(r'^bucketlist/', include('bucketlist.urls')),
     url(r'^$', bucketlist.views.SignUpView.as_view(), name='signup'),
     url(r'^api/', include('bucketlistapi.urls')),
-   
+
 ]
 
 urlpatterns += [
@@ -19,7 +17,5 @@ urlpatterns += [
                                namespace='rest_framework')),
 ]
 
-handler404='bucketlist.views.custom_404'
-handler500='bucketlist.views.custom_500'
-
-
+handler404 = 'bucketlist.views.custom_404'
+handler500 = 'bucketlist.views.custom_500'

@@ -27,51 +27,51 @@
         <form class="form-signin" action="{% url 'signin' %}" method="POST">
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
-                <div class="group">
-                    <label for="email" class="label">Email address</label>
-                    <input id="user" type="email" name="email" class="input" required>
+                <div class="form-group">
+                    <label for="email" class="control-label" placeholder="Email">Email address</label>
+                    <input id="user" type="email" name="email" class="form-control" required>
                 </div>
-                <div class="group">
-                    <label for="password" class="label">Password</label>
-                    <input id="pass" type="password" name="password" class="input" data-type="password" required>
+                <div class="form-group">
+                    <label for="password" class="control-label">Password</label>
+                    <input id="pass" type="password" name="password" class="form-control" data-type="password" required>
                 </div>
-                <div class="group">
-                    <input type="submit" class="button" value="Sign In">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary wht">Submit</button>
                 </div>
                 <div class="hr"></div>
         </form>
 
-            </div>
+            </div
     <!--END LOGIN FORM-->
 
     <!--SIGNUP FORM HERE-->
             <div class="sign-up-htm">
 
-        <form class="form-signin" action="{% url 'signup' %}" method="POST">
-        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-                <div class="group">
-                    <label for="username" class="label">Username</label>
-                    <input id="user" name="username" type="text" class="input">
+            <form class="form-signin" action="{% url 'signup' %}" method="POST">
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                <div class="form-group">
+                    <label for="username" class="control-label">Username</label>
+                    <input id="user" name="username" type="text" class="form-control" placeholder="username">
                 </div>
-                <div class="group">
-                    <label for="password1" class="label">Password</label>
-                    <input id="pass" type="password" name="password1" class="input" data-type="password">
+                <div class="form-group">
+                    <label for="password1" class="control-label">Password</label>
+                    <input id="pass" type="password" name="password1" class="form-control" data-type="password" placeholder="password">
                 </div>
-                <div class="group">
-                    <label for="password2" class="label">Repeat Password</label>
-                    <input id="pass" type="password" name="password2" class="input" data-type="password">
+                <div class="form-group">
+                    <label for="password2" class="control-label">Repeat Password</label>
+                    <input id="pass" type="password" name="password2" class="form-control" data-type="password" placeholder="confirm password">
                 </div>
-                <div class="group">
-                    <label for="email" class="label">Email Address</label>
-                    <input id="pass" type="email" name="email" class="input">
+                <div class="form-group">
+                    <label for="email" class="control-label">Email Address</label>
+                    <input id="pass" type="email" name="email" class="form-control" placeholder="Email">
                 </div>
-                <div class="group">
-                    <input type="submit" class="button" value="Sign Up">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary wht">Sign Up</button>
                 </div>
                 <div class="foot-lnk">
-                    <label for="tab-1">Already Member?</label>
+                    <label for="tab-1" class="control-label">Already Member?</label>
                 </div>
-        </form>
+            </form>
 
             </div>
             <!-- END SIGNUP FORM HERE-->
