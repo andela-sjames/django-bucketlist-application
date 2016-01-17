@@ -1,0 +1,21 @@
+{% if items|length %}
+    <nav class="paged xt andel">
+      <div class="pagination">
+        <span class="step-links">
+            {% if items.has_previous %}
+                <a href="?page={{ items.previous_page_number }}"><span aria-hidden="true" class="glyphicon glyphicon-backward"></span></a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ items.number }} of {{ items.paginator.num_pages }}.
+            </span>
+
+            {% if items.has_next %}
+                <a href="?page={{ items.next_page_number }}"><span aria-hidden="true" class="glyphicon glyphicon-forward" ></span></a>
+            {% endif %}
+        </span>
+      </div>
+    </nav>
+{% else %}
+
+{% endif %}

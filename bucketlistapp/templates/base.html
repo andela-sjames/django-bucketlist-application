@@ -63,7 +63,7 @@
 
                 <form method="GET" action="/bucketlist/search/{{ request.user.id }}" class="navbar-form navbar-right s-form">
                     <div class="form-group">
-                        <input type="text" class="form-control col-md-8" placeholder="Search">
+                        <input type="text" name="q" class="form-control col-md-8" placeholder="Search">
                     </div>
                     <button class="btn btn-primary icon-right" type="submit"><i class="material-icons">search</i></button>
                 </form>
@@ -92,7 +92,7 @@
 
               <div class="navbar navbar-default navbar-fixed-bottom border-bottom">
                 <div class="container">
-                  <p class="navbar-text pull-left">© {% now "Y" %} - Site Built by Samuel James #TIA
+                  <p class="navbar-text pull-left">© {% now "Y" %} - Site Built by <a href="https://github.com/andela-sjames"> Samuel James</a> #TIA
                   </p>
                   <p class="navbar-text pull-right">
                     <a href="http://www.andela.com/" class="">ANDELA</a>
@@ -110,7 +110,6 @@
     <!-- jQuery -->
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{% static "js/tether.min.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
     <script src="{% static "js/material.min.js" %}"></script>
     <script src="{% static "js/ripples.min.js" %}"></script>

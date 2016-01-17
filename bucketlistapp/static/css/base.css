@@ -10,11 +10,6 @@ body {
   padding-top: 70px;
   margin: 0 auto;
 }
-#home {
-  border-radius: 5% ;
-  margin-bottom: 0% ;
-  margin-right: 0% ;
-}
 
 .wht {
   background-color: rgb(255, 255, 255);
@@ -31,34 +26,25 @@ body {
   min-height: 50px;
 }
 
-.fixture {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-
 #logo {
   font-size: 60px;
   font-weight: 700;
 }
 
- #welcome {
-  color: White ;
- }
-
  #signedin {
   color: White;
  }
 
- .focus {
-   width: 70% ;
-   height: 70% ;
- }
 
- .navbar.navbar-inverse {
+.navbar.navbar-inverse {
     background: rgba(6, 48, 56, 0.9);
     color: #fff;
     height: 60px;
+}
+
+.navbar-bck-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
 }
 
 .nav-align {
@@ -69,11 +55,10 @@ body {
   padding-right: 0 ! important;
 }
 
- .itm {
-  position: relative;
-  left: 0px ;
-  top: 10px ;
- }
+.fixture {
+  padding-left: 0;
+  padding-right: 0;
+}
 
 .ctr {
    width: 100% ;
@@ -93,6 +78,10 @@ body {
 }
 .grn {
   background-color: rgba(6, 48, 56, 0.9) ! important;
+}
+
+.error-page {
+  font-size: 200px;
 }
 
 .item-card {
@@ -146,58 +135,6 @@ body {
   display: flex ;
 }
 
-.bt{
-  position: relative;
-  top: -30px;
-  left: -65px;
-}
-.pos {
-  position: relative;
-  top: -100px;
-  left: 20px;
-}
-.xmov {
-  position: relative;
-  top: 0px;
-  left: -150px;
-}
-
-#background{
-  background: rgb(200, 54, 54); /* This is for ie8 and below */
-  background: rgba(200,200, 200, 0.7);
-  border-radius: 2% ;
-  width: 700px ;
-  margin-left: auto ;
-  margin-right: auto ;
-  background:url('#')
-
-}
-
-#itemsbackground{
-  background: rgb(200, 54, 54); /* This is for ie8 and below */
-  background: rgba(200,200, 200, 0.0);
-  border-radius: 2% ;
-  width: 700px ;
-  margin-left: auto ;
-  margin-right: auto ;
-
-
-}
-
-.rmov {
-  left: 0px;
-}
-
-#itemsbackground2{
-  background: rgb(200, 54, 54); /* This is for ie8 and below */
-  background: rgba(200,200, 200, 0.0);
-  border-radius: 2% ;
-  width: 850px ;
-  margin-left: auto ;
-  margin-right: auto ;
-
-}
-
 .form-group {
     padding-bottom: 0px;
 }
@@ -205,7 +142,7 @@ body {
 .close-position {
   position: absolute;
   top: -140%;
-  right: -15%;
+  right: -3%;
   color: #000;
   cursor: pointer;
 }
@@ -213,6 +150,7 @@ body {
 .align-form {
   position: relative;
   top: -16px;
+  width: 100%;
 }
 
 .msg{
@@ -237,14 +175,6 @@ body {
     margin-top: 0px ! important;
 }
 
-.navbar-bck-fixed-top {
-    top: 0;
-    border-width: 0 0 1px;
-}
-
-.editable-div {
- margin-bottom:20px;
-}
 .disp {
   display: inline-block;
 }
@@ -265,12 +195,12 @@ body {
         top: 0px;
         left: 400px;
   }
+
 .edit-form {
   display: none;
 }
 
 h4{
-
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:20px;
@@ -279,7 +209,6 @@ h4{
 
 
 p {
-
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:16px;
@@ -287,7 +216,6 @@ p {
 }
 
 .andel {
-
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:15px;
@@ -295,7 +223,6 @@ p {
 }
 
 .srch {
-
   font-family: 'Lato', sans-serif;
   font-weight:normal;
   font-size:20px;
@@ -331,7 +258,6 @@ p {
   padding-top: 5px;
   padding-bottom: 5px;
 }
-}
 
 .btn-size {
   height: 50px ! important;
@@ -343,23 +269,11 @@ p {
 #navlist li {
   display: inline;
   list-style-type: none;
-  padding-right: 10px;
+  padding-right: 6px;
 }
 
 #navlist {
   margin-bottom: 0px;
-}
-
-.navbar .navbar-form .form-group .form-control {
-  font-size:;
-}
-.divider {
-  width: 100%;
-  height: 1px;
-  margin: 0;
-  overflow: hidden;
-  background: #EDEDED;
-
 }
 
 .row-fix {
@@ -382,33 +296,6 @@ li {
   font-size:16px;
   padding-top: 0px;
 }
-
-
-.cdabtn {
-  top: 10px ;
-  left: 0px ;
-}
-
-
-
-@media (max-width: 767px) {
-  #itemsbackground{
-    width:300px;
-    }
-
-    #itemsbackground2{
-    width:300px;
-    }
-
-    #background {
-      width: 300px;
-    }
-    .jumbotron {
-      width: 650px;
-    }
-  }
-
-/* flash ------------------------------------------------------ */
 
 #flash {
   display: inline-block;

@@ -3,48 +3,40 @@
 
 {% block main %}
 
-<div id="background"><br>
+<div class="row clearfix row-fix">
 
-{% if search %}
+    {% if search %}
+    <div class="row container-card">
+    {% for result in search %}
+        <div class="animated fadeInRight">
 
-{% for result in search %}
-    <ul class="list-group animated fadeInRight">
-        <a href="/bucketlist/view/{{ result.id }}/"><li class="list-group-item andel">{{ result.name }}</a>
-             <div class="pull-right action-buttons">
+            <div class="card card-block item-card">
 
-            <a href="/bucketlist/view/{{ result.id }}/"><span class="glyphicon glyphicon-eye-open xt" aria-hidden="true"></span></a>
-             </div>
-        </li>
-    </ul>
+              <a class="card-text" href="/bucketlist/view/{{ result.id }}/">
+                <p>{{ result.name|title }}</p>
+              </a>
+            </div>
 
-
-
-{% endfor %}
-{% else %}
-
-<li class="txt"> Bucketlist Not found </li>
-
-{% endif %}
-
-<nav class="paged xt">
-  <div class="pagination">
-    <span class="step-links">
-        {% if search.has_previous %}
-            <a href="?page={{ search.previous_page_number }}"><span aria-hidden="true" class="glyphicon glyphicon-backward"></span></a>
-        {% endif %}
-
-            <span class="current">
-                Page {{ search.number }} of {{ search.paginator.num_pages }}.
-            </span>
-
-        {% if search.has_next %}
-            <a href="?page={{ search.next_page_number }}"><span aria-hidden="true" class="glyphicon glyphicon-forward" ></span></a>
-        
-        {% endif %}
-    </span>
-  </div>
-</nav>
+        </div>
+    {% endfor %}
+    </div>
 
 
+    {% else %}
+
+
+            <center class="xt"> No Bucketlist/Item Matching Query. </center>
+            <p>Suggestions:</p>
+            <ul>
+                <li>Make sure that all words are spelled correctly.</li>
+                <li>Try different keywords.</li>
+                <li>Try more general keywords.</li>
+                <li>Try fewer keywords.</li>
+            </ul>
+
+    {% endif %}
+
+    {% include "bucketlist/search_pagination.html" %}
 </div>
+
 {% endblock main %}

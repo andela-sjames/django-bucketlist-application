@@ -2,7 +2,9 @@
 {% load static %}
 
 {% block main %}
-<div class="#" id="itemsbackground">
-    <h1 class="xt"> Seems like something went, wrong our Engineers ar currently working on it. </h1>
-</div>
+<center><h1 class="error-page">5<img src="https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/128/sad.png"><img src="https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/128/sad.png"></h1></center>
+    <center><h1 style="color:#333333">OH OH! SERVER ERROR.... !</h1></center>
+
+    <center><a href="/bucketlist/{{ request.user.username }}"><button class="btn btn-success edit-submit grn txt">Go Back</button></a></center>
+    </center>
 {% endblock main %}
