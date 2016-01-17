@@ -10,7 +10,7 @@ install:
 script:
 - cd bucketlistapp
 - coverage run --source bucketlistapi,bucketlist manage.py test
-after_success: 
+after_success:
 - coveralls
 deploy:
   provider: heroku
@@ -19,9 +19,6 @@ deploy:
   strategy: git
   app:
     master: moments-bucketlist
-  run:
-    - "export DJANGO_SETTINGS_MODULE=bucketlistapp.settings.production"
-    - "python bucketlistapp/manage.py collectstatic --noinput"
-    - "python bucketlistapp/manage.py makemigrations --noinput"
-    - "python bucketlistapp/manage.py migrate --noinput"
+  after_deploy:
+  - "heroku ps:scale web=1 --app gentleedit"
 
