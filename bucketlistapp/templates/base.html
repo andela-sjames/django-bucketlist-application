@@ -86,11 +86,13 @@
     </div>
 
     {% if request.user.is_authenticated %}
-        <div class="row make-pagination">
-            {% block paginate %}
+        {% if bucketlists %}
+            <div class="row make-pagination">
+                {% block paginate %}
 
-            {% endblock paginate %}
-        </div>
+                {% endblock paginate %}
+            </div>
+        {% endif %}
 
         <div class="col-lg-12">
           <footer class="footer">

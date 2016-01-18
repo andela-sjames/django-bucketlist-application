@@ -322,6 +322,11 @@ class SearchListView(TemplateView, LoginRequiredMixin):
 
         userid = self.kwargs.get('id')
         text = request.GET.get('q', '')
+        if text == '':
+            return render(request,
+                          self.template_name,
+                          {'search': ''})
+
         result = Bucketlist.objects.filter(
             name__icontains=text).filter(user_id=userid)
 
