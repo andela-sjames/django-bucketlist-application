@@ -58,6 +58,19 @@ body {
   padding-right: 0 ! important;
 }
 
+.move-left {
+  padding-left: 10px ! important;
+}
+
+.move-leftb {
+  padding-left: 16px ! important;
+}
+
+.move-up {
+  position: relative;
+  top: -18px;
+}
+
 .fixture {
   padding-left: 0;
   padding-right: 0;
@@ -117,7 +130,7 @@ body {
 .box-container {
   position: relative;
   display: block;
-  width: 100% ;
+  /*width: 100% ;*/
   height: 100px;
 }
 
@@ -133,6 +146,16 @@ body {
 
 }
 
+.boxitem-container p {
+  position: absolute;
+  font-size: 16px;
+  line-height: 1.5;
+  width: 80%;
+  top: 50%;
+  left: 42%;
+  transform: translate(-50%, -50%);
+
+}
 .container-card {
   flex-wrap: wrap ;
   display: flex ;
@@ -144,15 +167,15 @@ body {
 
 .close-position {
   position: absolute;
-  top: -140%;
-  right: -3%;
+  top: -100%;
+  right: 0%;
   color: #000;
   cursor: pointer;
 }
 
 .align-form {
   position: relative;
-  top: -16px;
+  top: -22px;
   width: 100%;
 }
 
@@ -199,10 +222,6 @@ body {
         left: 400px;
   }
 
-.edit-form {
-  display: none;
-}
-
 h4{
   font-family: 'Lato', sans-serif;
   font-weight:normal;
@@ -234,13 +253,13 @@ p {
 
 .edit-form {
   display: none;
-  position: absolute;
+  position: relative;
   background-color: rgba(255, 255, 255, 0.95);
-  top: 0;
+  top: -12px;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 20px 20px;
+  height: 56px;
 
 }
 
@@ -269,15 +288,36 @@ p {
   width: 50px ! important;
 }
 
+.align-done {
+  position: relative;
+  top: 4px;
+}
+
 #navlist li {
-  display: inline;
+  display: inline-block;
   list-style-type: none;
-  padding-right: 6px;
+  padding-right: 10px;
   cursor: pointer;
 }
 
 #navlist {
+  position: relative;
   margin-bottom: 0px;
+  display: block;
+}
+
+
+#navlist-item li {
+  display: inline-block;
+  list-style-type: none;
+  padding-right: 4px;
+  cursor: pointer;
+}
+
+#navlist-item {
+  position: relative;
+  margin-bottom: 0px;
+  display: block;
 }
 
 .row-fix {
@@ -304,4 +344,45 @@ li {
 #flash {
   display: inline-block;
 }
+
+.panel-div {
+  background-color: white;
+  margin-bottom: 20px;
+  height: 60px;
+  background-color: #fff;
+  border-bottom-right-radius: 0px ! important;
+  border-top-right-radius: 0px ! important;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12);
+  box-shadow: 0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12);
+}
+
+.action-div {
+  background-color: rgba(6, 48, 56, 0.9);
+  padding: 15px;
+  height: 60px;
+  border-bottom-left-radius: 0px ! important;
+  border-top-left-radius: 0px ! important;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12);
+  box-shadow: 0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12);
+}
+
+/*.panel {
+    border-radius: 2px;
+    border: 0;
+    -webkit-box-shadow: 0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12);
+    box-shadow: 0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12);
+}*/
+
+/*.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}*/
 

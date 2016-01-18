@@ -4,22 +4,26 @@
   <div class="modal-dialog">
     <div class="modal-content">
 
-        <div class="modal-header andel">
+        <div class="modal-header andel move-leftb">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myitemLabel">Add Item</h4>
         </div>
 
-
-
         <form method="POST" action="/bucketlist/{{ bucketlist.id}}/items/" style="padding:15px">
+
+        <div class="move-up">
             <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
             <input class="form-control" type="text" maxlength="100" id="itemname" name="itemname" placeholder="Add your item here">
             <div style="padding-top:10px">
-            <label>Have you already accomplished this?</label>
-            <input id="done" name="done" type="checkbox" value="yes"/><label> Mark as Done</label>
-            <input id="button" name="button" class="btn btn-primary" type="submit" value="Add" />
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <label>Have you already accomplished this?</label><br>
+                <input id="done" name="done" type="checkbox" value="yes"/> <label>  Mark as Done</label>
+            </div>
+        </div>
+                <div class="modal-footer">
+                    <input id="button" name="button" class="btn btn-primary" type="submit" value="Add" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </form><br>
 

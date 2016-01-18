@@ -25,53 +25,60 @@
 
 
     {% if items %}
-    <div class="row container-card">
-    {% for item in items %}
+        {% for item in items %}
         <div class="bucket-item">
-             <div class="card card-block item-card">
-                <div class="box-container">
-                    <p>{{ item.name|title }}</p>
+            <div class="panel-body col-sm-10 panel-div boxitem-container">
+                <p class="#">{{ item.name|title }} </p>
 
-
-                    <div class="edit-form">
+                <div class="edit-form">
                         <!--<i class="material-icons">close</i>-->
                         <form method="POST" class="form-group align-form" action="/bucketlist/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}">
                             <input type="hidden" maxlength="100" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
                                 <div class="row">
                                     <h3 class="close-position">&times;</h3>
-                                    <div class="col-md-8">
+                                    <div class="col-md-9">
                                         <input id="itmname" name="itemname"  class="form-control" type="text" class="form-control input-md"
                                          value="{{ item.name }}">
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                          <input id="button" name="button" class="btn btn-success edit-submit grn txt" type="submit" value="Edit"/>
                                     </div>
                                 </div>
                         </form>
                     </div>
 
+            </div>
+            <div class="col-sm-2 action-div">
+                <ul id="navlist-item" class="">
 
-                </div>
-                <div class="action-background">
-                    <ul id="navlist" class="#">
+                    <li class="txt pull-right">
+                        <a href="#" class="edit" title="Click to Edit this item">
+                            <i class="material-icons">edit</i>
+                        </a>
+                    </li>
 
-                        <li class="txt pull-left"><a href="/bucketlist/itemdone/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}">{% if item.done %}<span class="glyphicon glyphicon-check txt"></span>{% else %}<span class="glyphicon glyphicon-unchecked txt"></span> {% endif %}</a> Done</li>
+                    <li class=" txt pull-right">
+                        <a href="/bucketlist/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}" title="Click to Delete item">
+                            <i class="material-icons remove">delete</i>
+                        </a>
+                    </li>
 
-                        <li class="txt sz pull-left">Modified {{ item.date_modified|timesince }} ago</li>
+                    <li class="txt pull-right align-done">
+                        <a href="/bucketlist/itemdone/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}">
+                        {% if item.done %}
+                            <span class="glyphicon glyphicon-check txt"></span>
+                        {% else %}
+                            <span class="glyphicon glyphicon-unchecked txt"></span>
+                        {% endif %}
+                        </a> Done
+                    </li>
 
-                        <li class="pull-right"><a href="/bucketlist/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}" title="Click to Delete item"><i class="material-icons remove txt">delete</i></a></li>
+                </ul>
+            </div>
 
-                        <li><a href="#" class="edit pull-right txt" title="Click to Edit this item"><i class="material-icons">edit</i></a></li>
-
-                    </ul>
-
-                </div>
-             </div>
         </div>
+        {% endfor %}
 
-
-    {% endfor %}
-    </div>
     {% else %}
         <center>
             <center class="xt"> No Bucketlist Item to show. </center>

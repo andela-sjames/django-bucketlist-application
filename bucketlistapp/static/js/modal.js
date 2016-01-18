@@ -50,15 +50,19 @@ $(document).ready(function(){
           var modalFormAction = "/bucketlist/" + bucketlistId + "/items/"
 
           modalForm.attr( "action", modalFormAction );
+
     })
 
     $('#editmodal').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget) // Button that triggered the modal
           var bucketlistId = button.data('bucketlistId')
+          var bucketname = button.data('bucketName')
+          var valueField = $(this).find('#name')
           var modalForm = $(this).find('form')
           var modalFormAction = "/bucketlist/" + bucketlistId + "/"
 
           modalForm.attr( "action", modalFormAction );
+          valueField.attr("value", bucketname);
     })
 
 });
