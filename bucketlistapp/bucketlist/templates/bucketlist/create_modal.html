@@ -9,15 +9,15 @@
                     <h4 class="modal-title" id="mycreateLabel">Create Bucketlist</h4>
                 </div>
 
-    
+
 
                 <form name="bucketlist" method="POST" action="/bucketlist/action/{{ request.user.username }}" style="padding:15px">
                     <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-                                            
-                    <input id="name" name="name" type="text" placeholder="Bucketlist Name" class="form-control input-md" required>
-                    
+
+                    <input id="name" name="name" type="text" maxlength="100" placeholder="Bucketlist Name" class="form-control input-md" required>
+
                     <div class="modal-footer">
-                            
+
                         <input id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit" value="Create" />
 
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

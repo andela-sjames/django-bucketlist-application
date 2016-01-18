@@ -63,7 +63,7 @@
 
                 <form method="GET" action="/bucketlist/search/{{ request.user.id }}" class="navbar-form navbar-right s-form">
                     <div class="form-group">
-                        <input type="text" name="q" class="form-control col-md-8" placeholder="Search">
+                        <input type="text" name="q" class="form-control col-md-8" placeholder="Search" required>
                     </div>
                     <button class="btn btn-primary icon-right" type="submit"><i class="material-icons">search</i></button>
                 </form>
@@ -86,6 +86,12 @@
     </div>
 
     {% if request.user.is_authenticated %}
+        <div class="row make-pagination">
+            {% block paginate %}
+
+            {% endblock paginate %}
+        </div>
+
         <div class="col-lg-12">
           <footer class="footer">
             <div class="container">

@@ -21,7 +21,6 @@
     {% endfor %}
     </div>
 
-
     {% else %}
 
 
@@ -36,7 +35,10 @@
 
     {% endif %}
 
-    {% include "bucketlist/search_pagination.html" %}
 </div>
 
 {% endblock main %}
+
+{% block paginate %}
+    {% include "bucketlist/search_pagination.html" %}
+{% endblock paginate %}

@@ -50,7 +50,7 @@
             {% include "bucketlist/create_modal.html" %}
         </div>
 
-        {% include "bucketlist/list_pagination.html" %}
+
 
     {% else %}
         <div class="container" style="width:700px">
@@ -58,9 +58,9 @@
                 <center><h1><span id="#">My Moments Bucketlist</span></h1></center>
                    <br><br>
                    <center><p class="xt">Welcome {{ request.user.username }}! </p>
-                <p class="lead">you currently have no bucketlist. Please click the button to start your moments.</p>
+                <p class="lead">you currently have no bucketlist. Please click the '+' button to start your moments.</p>
 
-                <a data-toggle="modal"   data-target="#create-modal" class="btn btn-default btn-fab"><i class="material-icons">add</i></a>
+                <a data-toggle="modal"   data-target="#create-modal" class="btn btn-default btn-fab btn-primary"><i class="material-icons">add</i></a>
             </div>
         </div>
 
@@ -71,6 +71,8 @@
     </div>
 </div>
 
-
-
 {% endblock main %}
+
+{% block paginate %}
+    {% include "bucketlist/list_pagination.html" %}
+{% endblock paginate %}

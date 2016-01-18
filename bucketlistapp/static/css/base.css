@@ -32,9 +32,12 @@ body {
 }
 
  #signedin {
-  color: White;
+  color: white;
  }
 
+.make-pagination {
+  position: relative;
+}
 
 .navbar.navbar-inverse {
     background: rgba(6, 48, 56, 0.9);
