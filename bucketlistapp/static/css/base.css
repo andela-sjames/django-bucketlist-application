@@ -291,6 +291,12 @@ p {
 .align-done {
   position: relative;
   top: 4px;
+  left: -20px;
+}
+
+.center-action {
+  position: relative;
+  left: -12px;
 }
 
 #navlist li {
@@ -310,7 +316,7 @@ p {
 #navlist-item li {
   display: inline-block;
   list-style-type: none;
-  padding-right: 4px;
+  padding-right: 15px;
   cursor: pointer;
 }
 
@@ -360,7 +366,10 @@ li {
 
 .action-div {
   background-color: rgba(6, 48, 56, 0.9);
-  padding: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 2px;
+  padding-left: 0px;
   height: 60px;
   border-bottom-left-radius: 0px ! important;
   border-top-left-radius: 0px ! important;
@@ -370,19 +379,5 @@ li {
   box-shadow: 0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12);
 }
 
-/*.panel {
-    border-radius: 2px;
-    border: 0;
-    -webkit-box-shadow: 0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12);
-    box-shadow: 0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12);
-}*/
 
-/*.panel {
-    margin-bottom: 20px;
-    background-color: #fff;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
-    box-shadow: 0 1px 1px rgba(0,0,0,.05);
-}*/
 
