@@ -273,6 +273,7 @@ p {
   display: inline;
   list-style-type: none;
   padding-right: 6px;
+  cursor: pointer;
 }
 
 #navlist {
