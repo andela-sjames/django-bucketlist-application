@@ -55,11 +55,13 @@ a{color:inherit;text-decoration:none}
   margin:0 15px 10px 0;
   display:inline-block;
   border-bottom:2px solid transparent;
+  cursor: pointer;
 }
 .login-html .sign-in:checked + .tab,
 .login-html .sign-up:checked + .tab{
   color:#fff;
-  border-color:#1161ee;
+  border-color:#fff;
+  cursor: pointer;
 }
 .login-form{
   min-height:345px;
