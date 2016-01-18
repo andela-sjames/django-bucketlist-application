@@ -36,7 +36,7 @@
                     <div class="edit-form">
                         <!--<i class="material-icons">close</i>-->
                         <form method="POST" class="form-group align-form" action="/bucketlist/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}">
-                            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                            <input type="hidden" maxlength="100" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
                                 <div class="row">
                                     <h3 class="close-position">&times;</h3>
                                     <div class="col-md-8">
@@ -59,9 +59,9 @@
 
                         <li class="txt sz pull-left">Modified {{ item.date_modified|timesince }} ago</li>
 
-                        <li class="pull-right"><a href="/bucketlist/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}" class="tooltipbasic" data-tooltip="Click to Delete item"><i class="material-icons remove txt">delete</i></a></li>
+                        <li class="pull-right"><a href="/bucketlist/{% if bucketlists %}{% for bucketlist in bucketlists %}{{ bucketlist.id}}{% endfor %}{% endif %}/items/{{item.id}}" title="Click to Delete item"><i class="material-icons remove txt">delete</i></a></li>
 
-                        <li><a href="#" class="edit pull-right txt" data-tooltip="Click to Edit this item"><i class="material-icons">edit</i></a></li>
+                        <li><a href="#" class="edit pull-right txt" title="Click to Edit this item"><i class="material-icons">edit</i></a></li>
 
                     </ul>
 
@@ -80,10 +80,11 @@
 
     {% endif %}
 
-
-    {% include "bucketlist/item_pagination.html" %}
-
 </div>
 
 
 {% endblock%}
+
+{% block paginate %}
+        {% include "bucketlist/item_pagination.html" %}
+{% endblock paginate %}

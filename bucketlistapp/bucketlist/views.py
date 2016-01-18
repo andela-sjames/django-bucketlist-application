@@ -242,7 +242,7 @@ class AddItemsView(View, LoginRequiredMixin):
                              kwargs={'id': bucketlistid}))
 
         else:
-            msg = "Item field should not be left empty."
+            msg = "field should not be submitted empty."
             messages.add_message(request, messages.SUCCESS, msg)
             return HttpResponseRedirect(reverse_lazy('view', kwargs={
                 'id': bucketlistid}))

@@ -9,16 +9,16 @@
             <h4 class="modal-title" id="myitemLabel">Add Item</h4>
         </div>
 
-    
+
 
         <form method="POST" action="/bucketlist/{{ bucketlist.id}}/items/" style="padding:15px">
             <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
-            <input class="form-control" type="text" id="itemname" name="itemname" placeholder="Add your item here">
+            <input class="form-control" type="text" maxlength="100" id="itemname" name="itemname" placeholder="Add your item here">
             <div style="padding-top:10px">
             <label>Have you already accomplished this?</label>
             <input id="done" name="done" type="checkbox" value="yes"/> Mark as Done <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            <input id="button" name="button" class="btn btn-success" type="submit" value="Add Items" />
+            <input id="button" name="button" class="btn btn-primary" type="submit" value="Add" />
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </form><br>
