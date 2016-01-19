@@ -10,7 +10,7 @@
     {% if bucketlists %}
         <div id="list">
             {% for bucketlist in bucketlists %}
-            <h4 id="flash">{{ bucketlist.name|title}}</h4>
+            <h4 id="flash"><a class="unique" href="/bucketlist/{{ request.user.username }}">{{ bucketlist.name|title}}</a></h4>
 
             <a data-toggle="modal" data-target="#additemmodal" class="btn btn-default btn-fab btn-size btn-primary pull-right modal-toggle" data-bucketlist-id="{{ bucketlist.id }}"><i class="material-icons">add</i></a>
 
@@ -28,7 +28,7 @@
         {% for item in items %}
         <div class="bucket-item row">
             <div class="panel-body col-sm-10 panel-div boxitem-container">
-                <p class="#">{{ item.name|title }} </p>
+                <p class="#">{{ item.name|title }}</p>
 
                 <div class="edit-form">
                         <!--<i class="material-icons">close</i>-->
