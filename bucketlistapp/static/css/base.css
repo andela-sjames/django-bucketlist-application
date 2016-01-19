@@ -71,6 +71,18 @@ body {
   top: -18px;
 }
 
+.pad-it {
+  padding-top:10px;
+}
+
+.move-down {
+  margin-bottom: 15px;
+}
+
+.unique {
+  text-decoration: none ! important;
+}
+
 .fixture {
   padding-left: 0;
   padding-right: 0;

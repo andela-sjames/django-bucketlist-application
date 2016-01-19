@@ -15,8 +15,8 @@
             <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
             <input class="form-control" type="text" maxlength="100" id="itemname" name="itemname" placeholder="Add your item here">
-            <div style="padding-top:10px">
-                <label>Have you already accomplished this?</label><br>
+            <div class="pad-it">
+                <label class="move-down">Have you already accomplished this?</label><br>
                 <input id="done" name="done" type="checkbox" value="yes"/> <label>  Mark as Done</label>
             </div>
         </div>
