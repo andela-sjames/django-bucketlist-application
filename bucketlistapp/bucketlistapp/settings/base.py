@@ -45,6 +45,8 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'django_nose',
     'rest_framework_swagger',
+    'django_graphiql',
+    'graphene.contrib.django',
 )
 
 MIDDLEWARE_CLASSES = (
