@@ -5,7 +5,7 @@ dj-static==0.0.6
 Django==1.8.2
 django-debug-toolbar==1.4
 django-envie==0.0.9
-django-filter==0.15.0
+django-filter==0.14.0
 django-graphiql==0.4.4
 django-nose==1.4.2
 django-postgrespool==0.3.0
