@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 
-class Bucketlist((models.Model)):
+class Bucketlist(models.Model):
 
     '''Bucketlist Models defined here.'''
 
