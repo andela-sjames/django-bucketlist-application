@@ -9,7 +9,7 @@ from .models import Bucketlist, BucketlistItem
 
 
 class BucketlistNode(DjangoNode):
-
+    
     class Meta:
         model = Bucketlist
         filter_fields = {
@@ -17,6 +17,7 @@ class BucketlistNode(DjangoNode):
             'user': ['exact'],
         }
         filter_order_by = ['name']
+
 
 
 class BucketlistItemNode(DjangoNode):
@@ -39,6 +40,13 @@ class Query(ObjectType):
 
     Bucketlistitem = relay.NodeField(BucketlistItemNode)
     all_bucketlistitem = DjangoFilterConnectionField(BucketlistItemNode)
+
+    def resolve_all_bucketlist(self, args, context, info):
+        # context will reference to the Django request.
+        if not context.user.is_authenticated():
+            return Bucketlist.objects.none()
+        else:
+            return Bucketlist.objects.filter(user=context.user)
 
     debug = graphene.Field(DjangoDebug, name='__debug')
 
