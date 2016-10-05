@@ -38,9 +38,6 @@ class Query(ObjectType):
     bucketlist = relay.NodeField(BucketlistNode)
     all_bucketlist = DjangoFilterConnectionField(BucketlistNode)
 
-    Bucketlistitem = relay.NodeField(BucketlistItemNode)
-    all_bucketlistitem = DjangoFilterConnectionField(BucketlistItemNode)
-
     def resolve_all_bucketlist(self, args, context, info):
         # context will reference to the Django request.
         if not context.user.is_authenticated():
