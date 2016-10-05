@@ -38,12 +38,24 @@ class Query(ObjectType):
     bucketlist = relay.NodeField(BucketlistNode)
     all_bucketlist = DjangoFilterConnectionField(BucketlistNode)
 
+    Bucketlistitem = relay.NodeField(BucketlistItemNode)
+    all_bucketlistitem = DjangoFilterConnectionField(BucketlistItemNode)
+
     def resolve_all_bucketlist(self, args, context, info):
         # context will reference to the Django request.
         if not context.user.is_authenticated():
             return Bucketlist.objects.none()
         else:
             return Bucketlist.objects.filter(user=context.user)
+
+    def resolve_all_bucketlistitem(self, args, context, info):
+        # context will reference to the Django request.
+        if not context.user.is_authenticated():
+            return BucketlistItem.objects.none()
+        else:
+            bucketlist = Bucketlist.objects.filter(
+            user_id=context.user.id)
+            return BucketlistItem.objects.filter(bucketlist=bucketlist)
 
     debug = graphene.Field(DjangoDebug, name='__debug')
 
