@@ -1,0 +1,8 @@
+# top-most editor config file
+root = true
+
+# unix-style newlines with a new line ending every file indent with 4 spaces
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+indent_size = 2
