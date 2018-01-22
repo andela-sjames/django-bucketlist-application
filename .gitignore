@@ -66,3 +66,14 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# ignore .vsode folder
+.vscode
+
+# ignore .vagrant config
+.vagrant
+
+# ignore .ssh folder
+.ssh
+
+.bash_history
