@@ -21,4 +21,3 @@ deploy:
     master: moments-bucketlist
   after_deploy:
   - "heroku ps:scale web=1 --app gentleedit"
-
