@@ -34,22 +34,27 @@ Vagrant.configure("2") do |config|
 
 
   config.vm.provision "shell" do |s|
-    s.path = "setup_python.sh"
-    s.args = ["bucketlist_app"]
+    s.path = ".provision/setup_python.sh"
+    s.args = ["set_up_python"]
   end
+
+
+  # config.vm.provision "shell" do |s|
+  #   s.path = ".provision/setup_nginx.sh"
+  #   s.args = ["set_up_nginx"]
+  # end
   
   # if Vagrant.has_plugin?("vagrant-vbguest")
   #   config.vbguest.auto_update = false  
   # end
-  
 
-  config.vm.synced_folder '.', '/vagrant', disabled: true
-  config.vm.synced_folder '.', '/home/vagrant'
+  # config.vm.synced_folder '.', '/vagrant', disabled: true
+  # config.vm.synced_folder '.', '/home/vagrant'
   
   config.vm.provider 'virtualbox' do |v|
-    v.memory = 2048
-    v.cpus = 2
+    v.memory = 1024
+    v.cpus = 1
   end
 
-  config.vm.post_up_message = "At this point use `vagrant ssh` and change dir into /vagrant"
+  config.vm.post_up_message = "At this point use `vagrant ssh` to ssh into the development environment"
 end
