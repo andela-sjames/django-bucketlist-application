@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
 
 
   config.vm.provision "shell" do |s|
-    s.path = ".provision/setup_python.sh"
+    s.path = ".provision/setup_env.sh"
     s.args = ["set_up_python"]
   end
 
